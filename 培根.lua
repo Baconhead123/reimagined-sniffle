@@ -140,10 +140,10 @@ local function loadScript()
     MainContent.ZIndex = 3
     MainContent.Parent = MainFrame
     
-    -- 选项卡（修改：将"其他整合脚本"改为"其他脚本"）
-    local Tabs = {"基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", "FE功能", "黑洞功能", "其他脚本"}
+    -- 选项卡（添加"公告"作为第一个选项卡）
+    local Tabs = {"公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", "FE功能", "黑洞功能", "其他脚本"}
     local TabButtons = {}
-    local CurrentTab = "基础功能"
+    local CurrentTab = "公告"
     
     local TabLayout = Instance.new("UIListLayout", TabFrame)
     TabLayout.Padding = UDim.new(0, 5)
@@ -255,7 +255,7 @@ local function loadScript()
         return buttonFrame, button
     end
 
-    -- 重新组织功能分类（修改："其他整合脚本"改为"其他脚本"，添加凋零风暴功能）
+    -- 重新组织功能分类（删除了AI聊天功能）
     local FunctionTabs = {
         ["基础功能"] = {
             {name = "NoclipButton", text = "穿墙模式 [关闭]", desc = "穿透所有墙壁和物体"},
@@ -265,8 +265,7 @@ local function loadScript()
             {name = "PlayerButton", text = "选择玩家: 无", desc = "选择目标玩家"},
             {name = "ClimbWallButton", text = "爬墙模式 [关闭]", desc = "碰到墙自动上升"},
             {name = "AntiFallButton", text = "防摔(多点几次)", desc = "防止从高处掉落受伤"},
-            {name = "SuicideButton", text = "自杀", desc = "立即死亡"},
-            {name = "AIChatButton", text = "智能AI聊天", desc = "启动增强版AI智能聊天系统"}
+            {name = "SuicideButton", text = "自杀", desc = "立即死亡"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -391,22 +390,57 @@ local function loadScript()
         for _, func in ipairs(functions) do
             local buttonFrame, button = createButton(func.text, func.desc)
             buttonFrame.Parent = ContentScrolling
-            buttonFrame.Visible = (tabName == "基础功能")
+            buttonFrame.Visible = false
             ButtonInstances[func.name] = button
             ButtonFrames[func.name] = buttonFrame
         end
     end
 
+    -- 公告内容框架
+    local AnnouncementFrame = Instance.new("Frame")
+    AnnouncementFrame.Size = UDim2.new(1, -10, 1, -10)
+    AnnouncementFrame.Position = UDim2.new(0, 5, 0, 5)
+    AnnouncementFrame.BackgroundTransparency = 1
+    AnnouncementFrame.ZIndex = 4
+    AnnouncementFrame.Parent = MainContent
+    
+    -- 公告内容
+    local AnnouncementText = Instance.new("TextLabel")
+    AnnouncementText.Size = UDim2.new(1, 0, 1, 0)
+    AnnouncementText.BackgroundTransparency = 1
+    AnnouncementText.Text = "此脚本为缝合完全免费，禁止倒卖，倒卖死全家全家操逼\n\n玩家名字: " .. LocalPlayer.Name .. "\n\n北京时间: " .. os.date("%Y-%m-%d %H:%M:%S") .. "\n\n脚本作者: Bacon head"
+    AnnouncementText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    AnnouncementText.TextSize = 16
+    AnnouncementText.Font = Enum.Font.GothamBold
+    AnnouncementText.TextWrapped = true
+    AnnouncementText.ZIndex = 5
+    AnnouncementText.Parent = AnnouncementFrame
+    
     -- 选项卡切换
     for tabName, tabButton in pairs(TabButtons) do
         tabButton.MouseButton1Click:Connect(function()
             CurrentTab = tabName
-            for name, frame in pairs(ButtonFrames) do
-                frame.Visible = false
+            
+            -- 显示/隐藏公告框架
+            if tabName == "公告" then
+                AnnouncementFrame.Visible = true
+                ContentScrolling.Visible = false
+            else
+                AnnouncementFrame.Visible = false
+                ContentScrolling.Visible = true
+                
+                -- 隐藏所有按钮
+                for name, frame in pairs(ButtonFrames) do
+                    frame.Visible = false
+                end
+                
+                -- 显示当前选项卡的按钮
+                for _, func in ipairs(FunctionTabs[tabName]) do
+                    ButtonFrames[func.name].Visible = true
+                end
             end
-            for _, func in ipairs(FunctionTabs[tabName]) do
-                ButtonFrames[func.name].Visible = true
-            end
+            
+            -- 更新选项卡按钮颜色
             for tName, tButton in pairs(TabButtons) do
                 if tName == tabName then
                     tButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
@@ -419,8 +453,11 @@ local function loadScript()
         end)
     end
 
-    TabButtons["基础功能"].BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-    TabButtons["基础功能"].TextColor3 = Color3.fromRGB(255, 255, 255)
+    -- 默认显示公告
+    TabButtons["公告"].BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+    TabButtons["公告"].TextColor3 = Color3.fromRGB(255, 255, 255)
+    AnnouncementFrame.Visible = true
+    ContentScrolling.Visible = false
 
     -- 功能变量
     local noclip, infiniteJump, spinning, walkAir = false, false, false, false
@@ -631,524 +668,6 @@ local function loadScript()
             
             showNotification("自瞄透视碰撞箱已关闭", Color3.fromRGB(150, 150, 150))
         end
-    end
-
-    -- AI聊天功能函数 - 完全修复版
-    local function loadAIChat()
-        playClickSound()
-        showNotification("正在启动AI聊天系统...", Color3.fromRGB(0, 150, 255))
-        
-        -- 创建AI聊天UI（放在屏幕中间）
-        local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
-        
-        if PlayerGui:FindFirstChild("SmartAIChatUI") then
-            PlayerGui:FindFirstChild("SmartAIChatUI"):Destroy()
-        end
-        
-        local AIScreenGui = Instance.new("ScreenGui")
-        AIScreenGui.Name = "SmartAIChatUI"
-        AIScreenGui.ResetOnSpawn = false
-        AIScreenGui.DisplayOrder = 99
-        AIScreenGui.Parent = PlayerGui
-        
-        -- 主窗口（放在屏幕中间，可拖动，带圆角）
-        local AIMainFrame = Instance.new("Frame")
-        AIMainFrame.Name = "MainFrame"
-        AIMainFrame.Size = UDim2.new(0, 500, 0, 600) -- 稍微放大一点
-        AIMainFrame.Position = UDim2.new(0.5, -250, 0.5, -300) -- 屏幕中间
-        AIMainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-        AIMainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 45)
-        AIMainFrame.BackgroundTransparency = 0.1
-        AIMainFrame.Active = true
-        AIMainFrame.Draggable = true
-        AIMainFrame.BorderSizePixel = 0
-        AIMainFrame.Parent = AIScreenGui
-        
-        -- 圆角和边框
-        local AICorner = Instance.new("UICorner", AIMainFrame)
-        AICorner.CornerRadius = UDim.new(0, 20)
-        
-        local AIStroke = Instance.new("UIStroke", AIMainFrame)
-        AIStroke.Color = Color3.fromRGB(0, 180, 255)
-        AIStroke.Thickness = 3
-        
-        -- 标题栏（用于拖动）
-        local AITitleBar = Instance.new("Frame")
-        AITitleBar.Name = "TitleBar"
-        AITitleBar.Size = UDim2.new(1, 0, 0, 50)
-        AITitleBar.Position = UDim2.new(0, 0, 0, 0)
-        AITitleBar.BackgroundColor3 = Color3.fromRGB(0, 100, 180)
-        AITitleBar.BackgroundTransparency = 0.1
-        AITitleBar.BorderSizePixel = 0
-        AITitleBar.Parent = AIMainFrame
-        
-        Instance.new("UICorner", AITitleBar).CornerRadius = UDim.new(0, 20)
-        
-        local AITitle = Instance.new("TextLabel")
-        AITitle.Name = "Title"
-        AITitle.Size = UDim2.new(1, -90, 1, 0)
-        AITitle.Position = UDim2.new(0, 15, 0, 0)
-        AITitle.BackgroundTransparency = 1
-        AITitle.Text = "🤖 智能AI助手"
-        AITitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-        AITitle.TextSize = 24
-        AITitle.TextXAlignment = Enum.TextXAlignment.Left
-        AITitle.Font = Enum.Font.GothamBold
-        AITitle.Parent = AITitleBar
-        
-        -- 关闭按钮
-        local AICloseButton = Instance.new("TextButton")
-        AICloseButton.Name = "CloseButton"
-        AICloseButton.Size = UDim2.new(0, 40, 0, 40)
-        AICloseButton.Position = UDim2.new(1, -45, 0.5, -20)
-        AICloseButton.AnchorPoint = Vector2.new(1, 0.5)
-        AICloseButton.BackgroundColor3 = Color3.fromRGB(220, 60, 60)
-        AICloseButton.BackgroundTransparency = 0.1
-        AICloseButton.Text = "✕"
-        AICloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        AICloseButton.TextSize = 22
-        AICloseButton.Font = Enum.Font.GothamBold
-        AICloseButton.Parent = AITitleBar
-        
-        Instance.new("UICorner", AICloseButton).CornerRadius = UDim.new(0, 10)
-        
-        -- 聊天消息区域
-        local AIChatContainer = Instance.new("ScrollingFrame")
-        AIChatContainer.Name = "ChatContainer"
-        AIChatContainer.Size = UDim2.new(1, -20, 1, -140)
-        AIChatContainer.Position = UDim2.new(0, 10, 0, 60)
-        AIChatContainer.BackgroundTransparency = 1
-        AIChatContainer.BorderSizePixel = 0
-        AIChatContainer.ScrollBarThickness = 10
-        AIChatContainer.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 150)
-        AIChatContainer.AutomaticCanvasSize = Enum.AutomaticSize.Y
-        AIChatContainer.ScrollingDirection = Enum.ScrollingDirection.Y
-        AIChatContainer.Parent = AIMainFrame
-        
-        local AIListLayout = Instance.new("UIListLayout")
-        AIListLayout.Padding = UDim.new(0, 12)
-        AIListLayout.Parent = AIChatContainer
-        
-        -- 输入区域
-        local AIInputArea = Instance.new("Frame")
-        AIInputArea.Name = "InputArea"
-        AIInputArea.Size = UDim2.new(1, -20, 0, 70)
-        AIInputArea.Position = UDim2.new(0, 10, 1, -80)
-        AIInputArea.BackgroundColor3 = Color3.fromRGB(40, 40, 60)
-        AIInputArea.BackgroundTransparency = 0.1
-        AIInputArea.BorderSizePixel = 0
-        AIInputArea.Parent = AIMainFrame
-        
-        Instance.new("UICorner", AIInputArea).CornerRadius = UDim.new(0, 15)
-        
-        local AIInputBox = Instance.new("TextBox")
-        AIInputBox.Name = "InputBox"
-        AIInputBox.Size = UDim2.new(1, -120, 1, -20)
-        AIInputBox.Position = UDim2.new(0, 10, 0, 10)
-        AIInputBox.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
-        AIInputBox.BackgroundTransparency = 0.1
-        AIInputBox.BorderSizePixel = 0
-        AIInputBox.Text = ""
-        AIInputBox.PlaceholderText = "输入你的问题... (按Enter发送)"
-        AIInputBox.PlaceholderColor3 = Color3.fromRGB(180, 180, 180)
-        AIInputBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-        AIInputBox.TextSize = 18
-        AIInputBox.TextXAlignment = Enum.TextXAlignment.Left
-        AIInputBox.ClearTextOnFocus = false
-        AIInputBox.Font = Enum.Font.Gotham
-        AIInputBox.Parent = AIInputArea
-        
-        Instance.new("UICorner", AIInputBox).CornerRadius = UDim.new(0, 10)
-        
-        local AISendButton = Instance.new("TextButton")
-        AISendButton.Name = "SendButton"
-        AISendButton.Size = UDim2.new(0, 100, 0, 50)
-        AISendButton.Position = UDim2.new(1, -110, 0.5, -25)
-        AISendButton.AnchorPoint = Vector2.new(1, 0.5)
-        AISendButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-        AISendButton.BackgroundTransparency = 0.1
-        AISendButton.Text = "发送"
-        AISendButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        AISendButton.TextSize = 20
-        AISendButton.Font = Enum.Font.GothamBold
-        AISendButton.Parent = AIInputArea
-        
-        Instance.new("UICorner", AISendButton).CornerRadius = UDim.new(0, 10)
-        
-        -- 智能AI系统 - 修复版
-        local AIResponses = {
-            -- 问候
-            greeting = {
-                "你好！我是培根脚本的AI助手，很高兴为你服务！😊",
-                "嗨！有什么我可以帮助你的吗？🤗",
-                "欢迎使用AI聊天系统！我是你的游戏助手，可以回答各种问题。✨",
-                "你好呀！我是智能AI助手，可以帮你解答游戏相关问题。🎮"
-            },
-            
-            -- 告别
-            farewell = {
-                "再见！祝你游戏愉快！👋",
-                "拜拜！有问题随时来找我！😊",
-                "下次见！记得好好休息哦！💤",
-                "再见啦！祝你有美好的一天！✨"
-            },
-            
-            -- 感谢
-            thanks = {
-                "不客气！很高兴能帮到你！😊",
-                "随时为你服务！✨",
-                "有问题尽管问我！🤗",
-                "这是我的荣幸！🎮"
-            },
-            
-            -- 帮助
-            help = {
-                "我可以帮助你：\n\n🎮 游戏相关：\n• 游戏玩法攻略\n• 游戏推荐\n• 游戏技巧\n\n🔧 脚本相关：\n• 脚本功能解释\n• 脚本使用方法\n• 脚本推荐\n\n💬 其他：\n• 聊天交流\n• 问题解答\n\n试试问我具体的问题！",
-                "需要帮助吗？我可以解答以下问题：\n1. 游戏相关问题\n2. 脚本功能说明\n3. 游戏技巧攻略\n4. 推荐好玩的游戏\n5. 解决游戏中的问题",
-                "我是培根脚本的AI助手，专门为你提供帮助！\n\n你可以问我：\n• 'Adopt Me怎么玩？'\n• '穿墙模式怎么用？'\n• '推荐射击游戏'\n• '凋零风暴是什么？'\n• 或者其他任何问题！"
-            },
-            
-            -- 游戏相关
-            games = {
-                ["adopt me"] = {
-                    name = "Adopt Me!",
-                    description = "🎮 Adopt Me! 是Roblox上最受欢迎的宠物养成和社交游戏。",
-                    gameplay = "📋 游戏玩法：\n1. 领养宠物并照顾它们\n2. 完成任务获得宠物蛋\n3. 与其他玩家交易宠物\n4. 装饰你的房屋\n5. 参加季节性活动",
-                    tips = "💡 游戏技巧：\n• 每天登录领取奖励\n• 参加活动获得限定宠物\n• 与其他玩家交易获取稀有宠物\n• 完成任务升级更快"
-                },
-                ["brookhaven"] = {
-                    name = "Brookhaven",
-                    description = "🏠 Brookhaven 是社交角色扮演游戏，你可以拥有房屋、车辆，扮演不同职业。",
-                    gameplay = "📋 游戏玩法：\n1. 购买房屋和车辆\n2. 扮演警察、医生等职业\n3. 与朋友社交互动\n4. 探索游戏世界\n5. 参加社区活动",
-                    tips = "💡 游戏技巧：\n• 尝试不同的角色扮演\n• 购买更好的房屋装饰\n• 与朋友一起游玩更有趣\n• 参加活动获得奖励"
-                },
-                ["arsenal"] = {
-                    name = "Arsenal",
-                    description = "🔫 Arsenal 是快节奏第一人称射击游戏，有多种武器和游戏模式。",
-                    gameplay = "📋 游戏玩法：\n1. 选择武器进行战斗\n2. 击杀敌人升级武器\n3. 多种游戏模式选择\n4. 解锁皮肤和角色",
-                    tips = "💡 游戏技巧：\n• 练习瞄准技巧\n• 熟悉不同武器的特性\n• 利用掩体保护自己\n• 与队友配合作战"
-                },
-                ["jailbreak"] = {
-                    name = "Jailbreak",
-                    description = "🚔 Jailbreak 是警匪追逐游戏，你可以扮演囚犯或警察。",
-                    gameplay = "📋 游戏玩法：\n1. 囚犯：计划逃脱路线\n2. 警察：追捕囚犯\n3. 抢劫银行获取金钱\n4. 购买更好的车辆",
-                    tips = "💡 游戏技巧：\n• 囚犯需要合作逃脱\n• 警察可以使用工具追捕\n• 抢劫银行注意时间\n• 购买直升机更快移动"
-                },
-                ["blox fruits"] = {
-                    name = "Blox Fruits",
-                    description = "⚔️ Blox Fruits 是基于海贼王题材的冒险RPG游戏，可以吃恶魔果实获得能力。",
-                    gameplay = "📋 游戏玩法：\n1. 吃恶魔果实获得能力\n2. 升级剑术和武术\n3. 挑战boss和地下城\n4. 探索不同岛屿",
-                    tips = "💡 游戏技巧：\n• 选择合适的恶魔果实\n• 组队挑战boss更容易\n• 探索岛屿获取稀有物品\n• 加入公会获得奖励"
-                }
-            },
-            
-            -- 脚本功能相关
-            scripts = {
-                ["穿墙"] = "🔧 穿墙模式：\n• 功能：让你穿过墙壁和物体\n• 使用：点击'穿墙模式'按钮开启/关闭\n• 提示：开启后可以自由穿过任何障碍物",
-                ["无限跳跃"] = "🔧 无限跳跃：\n• 功能：在空中也能无限跳跃\n• 使用：点击'无限跳跃'按钮开启/关闭\n• 提示：开启后按空格键可以在空中跳跃",
-                ["飞行"] = "🔧 飞行脚本：\n• 功能：让你在空中自由飞行\n• 使用：点击'飞行v2'按钮加载\n• 提示：加载后按指定键飞行",
-                ["黑洞"] = "🔧 黑洞脚本：\n• 功能：生成黑洞吞噬周围物体\n• 使用：点击'黑洞v6/v4/v1'按钮加载\n• 提示：黑洞会吞噬附近的物体和玩家",
-                ["凋零风暴"] = "🔧 凋零风暴：\n• 功能：生成强大的凋零风暴怪物\n• 使用：点击'凋零风暴'按钮加载\n• 提示：凋零风暴会攻击周围的一切",
-                ["fe"] = "🔧 FE脚本：\n• FE代表FilteringEnabled（过滤启用）\n• FE脚本可以在所有服务器使用\n• 通常包含动画、武器、特效等",
-                ["彩虹模式"] = "🔧 彩虹模式：\n• 功能：让你的人物全身彩虹颜色变化\n• 使用：点击'彩虹模式'按钮开启/关闭\n• 提示：开启后颜色会循环变化"
-            },
-            
-            -- 通用问题
-            questions = {
-                ["怎么玩"] = "要了解具体游戏的玩法，请告诉我游戏名称。\n例如：'Adopt Me怎么玩？' 或 'Brookhaven怎么玩？'",
-                ["怎么用"] = "要了解脚本功能的使用方法，请告诉我具体功能。\n例如：'穿墙模式怎么用？' 或 '飞行脚本怎么用？'",
-                ["推荐游戏"] = "🎮 热门游戏推荐：\n1. Adopt Me - 宠物养成\n2. Brookhaven - 社交角色扮演\n3. Arsenal - 射击游戏\n4. Jailbreak - 警匪追逐\n5. Blox Fruits - 冒险RPG\n6. Royale High - 时尚魔法\n\n你想了解哪款游戏的具体信息？",
-                ["哪个好玩"] = "🎮 根据不同类型推荐：\n• 喜欢养宠物：Adopt Me\n• 喜欢社交：Brookhaven\n• 喜欢射击：Arsenal\n• 喜欢冒险：Blox Fruits\n• 喜欢角色扮演：Royale High\n\n你更喜欢哪种类型的游戏？",
-                ["脚本是什么"] = "🔧 脚本是什么：\n• 脚本是修改游戏功能的代码\n• 可以添加新功能或增强原有功能\n• 培根脚本包含了多种实用功能\n• 注意：使用脚本可能违反游戏规则",
-                ["怎么下载"] = "📥 培根脚本已经在你手中了！\n你正在使用的就是培根脚本v6.4\n它包含了多种功能，可以点击各个按钮使用。"
-            },
-            
-            -- 默认回复
-            default = {
-                "我理解你的问题，让我为你解答！😊",
-                "这是一个很好的问题！让我详细解释一下。✨",
-                "我可以帮你解决这个问题！🤗",
-                "让我为你提供有用的信息！🎮"
-            }
-        }
-        
-        -- 添加消息函数
-        local function addMessage(sender, message)
-            local bubble = Instance.new("Frame")
-            bubble.Name = "MessageBubble"
-            bubble.BackgroundTransparency = 1
-            bubble.Size = UDim2.new(1, -20, 0, 0)
-            bubble.AutomaticSize = Enum.AutomaticSize.Y
-            bubble.Parent = AIChatContainer
-            
-            local textLabel = Instance.new("TextLabel")
-            textLabel.Name = "Text"
-            textLabel.Size = UDim2.new(1, 0, 0, 0)
-            textLabel.AutomaticSize = Enum.AutomaticSize.Y
-            textLabel.BackgroundColor3 = sender == "user" and Color3.fromRGB(0, 120, 215) or Color3.fromRGB(70, 70, 90)
-            textLabel.BackgroundTransparency = 0.1
-            textLabel.BorderSizePixel = 0
-            textLabel.Text = message
-            textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-            textLabel.TextSize = 18
-            textLabel.TextWrapped = true
-            textLabel.TextXAlignment = Enum.TextXAlignment.Left
-            textLabel.Font = Enum.Font.Gotham
-            
-            local padding = Instance.new("UIPadding")
-            padding.PaddingLeft = UDim.new(0, 15)
-            padding.PaddingRight = UDim.new(0, 15)
-            padding.PaddingTop = UDim.new(0, 12)
-            padding.PaddingBottom = UDim.new(0, 12)
-            padding.Parent = textLabel
-            
-            local corner = Instance.new("UICorner")
-            corner.CornerRadius = UDim.new(0, 15)
-            corner.Parent = textLabel
-            
-            local stroke = Instance.new("UIStroke")
-            stroke.Color = Color3.fromRGB(100, 100, 120)
-            stroke.Thickness = 1
-            stroke.Parent = textLabel
-            
-            local senderLabel = Instance.new("TextLabel")
-            senderLabel.Name = "Sender"
-            senderLabel.Size = UDim2.new(1, 0, 0, 20)
-            senderLabel.Position = UDim2.new(0, 0, 0, -20)
-            senderLabel.BackgroundTransparency = 1
-            senderLabel.Text = (sender == "user" and "你" or "AI助手") .. " • " .. os.date("%H:%M")
-            senderLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
-            senderLabel.TextSize = 12
-            senderLabel.TextXAlignment = Enum.TextXAlignment.Left
-            senderLabel.Font = Enum.Font.Gotham
-            
-            if sender == "user" then
-                textLabel.AnchorPoint = Vector2.new(1, 0)
-                textLabel.Position = UDim2.new(1, 0, 0, 0)
-                senderLabel.TextXAlignment = Enum.TextXAlignment.Right
-                textLabel.BackgroundColor3 = Color3.fromRGB(0, 100, 180)
-            end
-            
-            textLabel.Parent = bubble
-            senderLabel.Parent = bubble
-            
-            wait()
-            AIChatContainer.CanvasPosition = Vector2.new(0, AIChatContainer.CanvasPosition.Y + 1000)
-        end
-        
-        -- 智能分析用户问题
-        local function analyzeUserQuestion(question)
-            local lowerQuestion = question:lower()
-            
-            -- 检查问候
-            if string.find(lowerQuestion, "你好") or string.find(lowerQuestion, "hi") or 
-               string.find(lowerQuestion, "hello") or string.find(lowerQuestion, "嗨") then
-                return "greeting"
-            end
-            
-            -- 检查告别
-            if string.find(lowerQuestion, "再见") or string.find(lowerQuestion, "拜拜") or 
-               string.find(lowerQuestion, "bye") or string.find(lowerQuestion, "goodbye") then
-                return "farewell"
-            end
-            
-            -- 检查感谢
-            if string.find(lowerQuestion, "谢谢") or string.find(lowerQuestion, "感谢") or 
-               string.find(lowerQuestion, "thx") or string.find(lowerQuestion, "thank") then
-                return "thanks"
-            end
-            
-            -- 检查帮助
-            if string.find(lowerQuestion, "帮助") or string.find(lowerQuestion, "help") or 
-               string.find(lowerQuestion, "怎么用") or string.find(lowerQuestion, "功能") then
-                return "help"
-            end
-            
-            -- 检查游戏相关
-            if string.find(lowerQuestion, "adopt me") or string.find(lowerQuestion, "领养") then
-                return "game", "adopt me"
-            elseif string.find(lowerQuestion, "brookhaven") or string.find(lowerQuestion, "布鲁克") then
-                return "game", "brookhaven"
-            elseif string.find(lowerQuestion, "arsenal") or string.find(lowerQuestion, "阿森纳") then
-                return "game", "arsenal"
-            elseif string.find(lowerQuestion, "jailbreak") or string.find(lowerQuestion, "越狱") then
-                return "game", "jailbreak"
-            elseif string.find(lowerQuestion, "blox fruit") or string.find(lowerQuestion, "海贼王") then
-                return "game", "blox fruits"
-            elseif string.find(lowerQuestion, "游戏") then
-                return "game_general"
-            end
-            
-            -- 检查脚本相关
-            if string.find(lowerQuestion, "穿墙") or string.find(lowerQuestion, "noclip") then
-                return "script", "穿墙"
-            elseif string.find(lowerQuestion, "无限跳跃") or string.find(lowerQuestion, "无限跳") then
-                return "script", "无限跳跃"
-            elseif string.find(lowerQuestion, "飞行") or string.find(lowerQuestion, "fly") then
-                return "script", "飞行"
-            elseif string.find(lowerQuestion, "黑洞") or string.find(lowerQuestion, "black hole") then
-                return "script", "黑洞"
-            elseif string.find(lowerQuestion, "凋零风暴") or string.find(lowerQuestion, "wither") then
-                return "script", "凋零风暴"
-            elseif string.find(lowerQuestion, "fe") or string.find(lowerQuestion, "过滤启用") then
-                return "script", "fe"
-            elseif string.find(lowerQuestion, "彩虹") then
-                return "script", "彩虹模式"
-            elseif string.find(lowerQuestion, "脚本") then
-                return "script_general"
-            end
-            
-            -- 检查通用问题
-            if string.find(lowerQuestion, "怎么玩") or string.find(lowerQuestion, "玩法") then
-                return "question", "怎么玩"
-            elseif string.find(lowerQuestion, "怎么用") or string.find(lowerQuestion, "如何使用") then
-                return "question", "怎么用"
-            elseif string.find(lowerQuestion, "推荐") or string.find(lowerQuestion, "什么好玩") then
-                return "question", "推荐游戏"
-            elseif string.find(lowerQuestion, "哪个好玩") or string.find(lowerQuestion, "哪款游戏") then
-                return "question", "哪个好玩"
-            elseif string.find(lowerQuestion, "脚本是什么") or string.find(lowerQuestion, "什么是脚本") then
-                return "question", "脚本是什么"
-            elseif string.find(lowerQuestion, "怎么下载") or string.find(lowerQuestion, "如何获取") then
-                return "question", "怎么下载"
-            end
-            
-            return "unknown"
-        end
-        
-        -- 生成AI回复
-        local function generateAIResponse(userQuestion)
-            local responseType, detail = analyzeUserQuestion(userQuestion)
-            
-            if responseType == "greeting" then
-                local hour = tonumber(os.date("%H"))
-                local timeGreeting = ""
-                if hour >= 5 and hour < 12 then
-                    timeGreeting = "🌅 早上好！"
-                elseif hour >= 12 and hour < 14 then
-                    timeGreeting = "☀️ 中午好！"
-                elseif hour >= 14 and hour < 18 then
-                    timeGreeting = "🌤️ 下午好！"
-                elseif hour >= 18 and hour < 22 then
-                    timeGreeting = "🌙 晚上好！"
-                else
-                    timeGreeting = "🌃 夜深了，"
-                end
-                
-                local responses = AIResponses.greeting
-                return timeGreeting .. " " .. responses[math.random(#responses)]
-                
-            elseif responseType == "farewell" then
-                local responses = AIResponses.farewell
-                return responses[math.random(#responses)]
-                
-            elseif responseType == "thanks" then
-                local responses = AIResponses.thanks
-                return responses[math.random(#responses)]
-                
-            elseif responseType == "help" then
-                local responses = AIResponses.help
-                return responses[math.random(#responses)]
-                
-            elseif responseType == "game" and detail then
-                local gameInfo = AIResponses.games[detail]
-                if gameInfo then
-                    return gameInfo.description .. "\n\n" .. gameInfo.gameplay .. "\n\n" .. gameInfo.tips
-                end
-                
-            elseif responseType == "game_general" then
-                return "你想了解哪款游戏呢？\n可以说出游戏名称，比如：\n• 'Adopt Me是什么游戏？'\n• 'Brookhaven怎么玩？'\n• '推荐射击游戏'"
-                
-            elseif responseType == "script" and detail then
-                local scriptInfo = AIResponses.scripts[detail]
-                if scriptInfo then
-                    return scriptInfo
-                end
-                
-            elseif responseType == "script_general" then
-                return "你想了解哪个脚本功能呢？\n可以说出功能名称，比如：\n• '穿墙模式怎么用？'\n• '凋零风暴是什么？'\n• 'FE脚本是什么？'"
-                
-            elseif responseType == "question" and detail then
-                local questionInfo = AIResponses.questions[detail]
-                if questionInfo then
-                    return questionInfo
-                end
-            end
-            
-            -- 未知问题
-            local unknownResponses = {
-                "我不太理解你的问题，请尝试换个问法。\n\n例如：\n• 'Adopt Me怎么玩？'\n• '穿墙模式怎么用？'\n• '推荐好玩的游戏'",
-                "你的问题有点模糊，可以具体一点吗？\n\n我可以回答：\n1. 游戏相关问题\n2. 脚本功能说明\n3. 游戏技巧攻略\n4. 其他游戏帮助",
-                "请告诉我更具体的问题，比如：\n• 关于哪个游戏？\n• 关于哪个脚本功能？\n• 需要什么帮助？",
-                "让我更好地帮助你！请尝试这样问：\n• '我想知道Adopt Me的玩法'\n• '如何开启穿墙模式'\n• '有什么好玩的射击游戏推荐'"
-            }
-            
-            return unknownResponses[math.random(#unknownResponses)]
-        end
-        
-        -- 处理用户输入
-        local function processUserInput()
-            local input = AIInputBox.Text
-            if input == "" or string.len(input) < 2 then 
-                return 
-            end
-            
-            -- 添加用户消息
-            addMessage("user", input)
-            AIInputBox.Text = ""
-            
-            -- 生成AI回复
-            local response = generateAIResponse(input)
-            
-            -- 模拟AI思考时间
-            wait(math.random(0.5, 1.5))
-            
-            -- 添加AI回复
-            addMessage("ai", response)
-        end
-        
-        -- 设置初始消息
-        addMessage("ai", "✨ 智能AI助手已启动！\n\n🔧 我可以帮助你：\n• 解答游戏相关问题\n• 解释脚本功能用法\n• 提供游戏攻略技巧\n• 推荐好玩的游戏\n• 回答其他疑问\n\n💡 试试问我：\n• 'Adopt Me怎么玩？'\n• '穿墙模式怎么用？'\n• '推荐射击游戏'\n• '凋零风暴是什么？'\n• '帮助' 查看所有功能")
-        
-        -- 绑定事件
-        AISendButton.MouseButton1Click:Connect(function()
-            playClickSound()
-            processUserInput()
-        end)
-        
-        AIInputBox.FocusLost:Connect(function(enterPressed)
-            if enterPressed then
-                playClickSound()
-                processUserInput()
-            end
-        end)
-        
-        AICloseButton.MouseButton1Click:Connect(function()
-            playClickSound()
-            TweenService:Create(AIMainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 0, 0, 0)}):Play()
-            wait(0.3)
-            AIScreenGui:Destroy()
-            showNotification("AI聊天已关闭", Color3.fromRGB(150, 150, 150))
-        end)
-        
-        -- 设置键盘快捷键
-        UserInputService.InputBegan:Connect(function(input, gameProcessed)
-            if gameProcessed then return end
-            
-            if input.KeyCode == Enum.KeyCode.F2 then
-                AIMainFrame.Visible = not AIMainFrame.Visible
-            elseif input.KeyCode == Enum.KeyCode.Slash and AIMainFrame.Visible then
-                AIInputBox:CaptureFocus()
-            end
-        end)
-        
-        -- 添加UI动画效果
-        AIMainFrame.Size = UDim2.new(0, 0, 0, 0)
-        AIMainFrame.Visible = true
-        TweenService:Create(AIMainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
-            {Size = UDim2.new(0, 500, 0, 600)}):Play()
-        
-        showNotification("AI聊天系统已启动！按F2显示/隐藏窗口", Color3.fromRGB(0, 200, 0))
     end
 
     -- 新增功能函数
@@ -2165,7 +1684,6 @@ print("安全版自然灾害免疫已激活")
         FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
         FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
-        AIChatButton = loadAIChat,
         WitherStormButton = loadWitherStorm,
         -- 新增功能
         FER6DeerCanButton = loadFER6DeerCan,
