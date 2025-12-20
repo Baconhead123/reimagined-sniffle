@@ -311,15 +311,24 @@ local function loadScript()
             {name = "CatAnimButton", text = "猫动作", desc = "加载猫动作脚本"},
             {name = "InvincibleButton", text = "无敌", desc = "加载无敌脚本"},
             {name = "FEAK47Button", text = "FE AK47", desc = "加载FE AK47脚本"},
-            {name = "FESniperButton", text = "FE 狙击枪", desc = "加载FE狙击枪脚本"}
+            {name = "FESniperButton", text = "FE 狙击枪", desc = "加载FE狙击枪脚本"},
+            -- 新增FE功能
+            {name = "FER6DeerCanButton", text = "FEr6鹿罐", desc = "加载FEr6鹿罐脚本"},
+            {name = "FER15DeerCanButton", text = "FEr15鹿罐", desc = "加载FEr15鹿罐脚本"},
+            {name = "FECoolKidButton", text = "FE酷小孩", desc = "加载FE酷小孩脚本"},
+            {name = "FEJasonButton", text = "FE杰森", desc = "加载FE杰森脚本"},
+            {name = "FESnakeButton", text = "FE蛇", desc = "加载FE蛇脚本"},
+            {name = "FEBaseballPlayerButton", text = "FE棒球手", desc = "加载FE棒球手脚本"},
+            {name = "FEVRButton", text = "FE vr", desc = "加载FE vr脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
             {name = "BlackHoleV4Button", text = "黑洞v4", desc = "加载黑洞v4脚本"},
             {name = "BlackHoleV1Button", text = "黑洞v1", desc = "加载黑洞v1脚本"}
         },
-        ["其他脚本"] = { -- 修改：将"其他整合脚本"改为"其他脚本"，添加凋零风暴
-            {name = "FlyButton", text = "ARCEUS飞行脚本", desc = "点击加载ARCEUS X FLY V2飞行脚本"},
+        ["其他脚本"] = { -- 修改：将"其他整合脚本"改为"其他脚本"
+            -- 修改：将飞行改为飞行v2
+            {name = "FlyButton", text = "飞行v2", desc = "点击加载ARCEUS X FLY V2飞行脚本"},
             {name = "InvincibleFlyButton", text = "无敌苍蝇飞行", desc = "加载无敌苍蝇飞行脚本"},
             {name = "FakeLagButton", text = "假延迟", desc = "加载假延迟脚本"},
             {name = "DayunButton", text = "大运", desc = "加载大运脚本"},
@@ -343,7 +352,34 @@ local function loadScript()
             {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
             {name = "BeatDogButton", text = "悦服循环打狗", desc = "加载悦服循环打狗脚本"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
-            {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"} -- 添加凋零风暴
+            {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
+            -- 新增功能
+            {name = "BurstScriptButton", text = "爆燃脚本", desc = "加载爆燃脚本"},
+            {name = "BootCheckButton", text = "开机检测", desc = "加载开机检测脚本"},
+            {name = "CalculatorButton", text = "计算器", desc = "加载计算器脚本"},
+            {name = "ChatBubbleBeautifyButton", text = "聊天气泡美化", desc = "加载聊天气泡美化脚本"},
+            {name = "C00lkidBlackShellButton", text = "c00lkid黑壳", desc = "加载c00lkid黑壳脚本"},
+            {name = "DoorsModeButton", text = "doors模式", desc = "加载doors模式脚本"},
+            {name = "DoorsHardcoreModeButton", text = "doors硬核模式", desc = "加载doors硬核模式脚本"},
+            {name = "ChatTranslatorButton", text = "聊天翻译器", desc = "加载聊天翻译器脚本"},
+            {name = "KennyAutoTranslateButton", text = "kenny自动汉化", desc = "加载kenny自动汉化脚本"},
+            {name = "MindPullButton", text = "心灵牵引", desc = "加载心灵牵引脚本"},
+            {name = "TelepathyButton", text = "心灵感应", desc = "加载心灵感应脚本"},
+            {name = "FishScriptButton", text = "鱼脚本", desc = "加载鱼脚本"},
+            {name = "DingScriptButton", text = "丁脚本", desc = "加载丁脚本"},
+            {name = "ChuScriptButton", text = "初脚本", desc = "加载初脚本"},
+            {name = "Forest99NightDiamondButton", text = "森林99夜刷钻石", desc = "加载森林99夜刷钻石脚本"},
+            {name = "StealBrainRedRainbowButton", text = "偷走脑红彩虹板", desc = "加载偷走脑红彩虹板脚本"},
+            {name = "StealBrainRedBigBoardButton", text = "偷走脑红大板子", desc = "加载偷走脑红大板子脚本"},
+            {name = "DeathOfDeathButton", text = "死亡之死", desc = "加载死亡之死脚本"},
+            {name = "DoorsAutoAvoidButton", text = "doors自动躲怪全图高亮", desc = "加载doors自动躲怪全图高亮脚本"},
+            {name = "DoorsExtremeModeButton", text = "doors极端模式", desc = "加载doors极端模式脚本"},
+            {name = "NicoNextbotButton", text = "nico' Nextbot", desc = "加载nico' Nextbot脚本"},
+            {name = "ShipTreasureButton", text = "造船寻宝", desc = "加载造船寻宝脚本"},
+            {name = "AimBotESPButton", text = "自瞄透视碰撞箱[关]", desc = "可关闭的自瞄和透视和碰撞箱显示"},
+            {name = "SpeedLegendButton", text = "极速传奇", desc = "加载极速传奇脚本"},
+            {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
+            {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"}
         }
     }
 
@@ -490,6 +526,111 @@ local function loadScript()
         showNotification("正在加载凋零风暴...", Color3.fromRGB(255, 100, 0))
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ian49972/SCRIPTS/refs/heads/main/Wither"))()
         showNotification("凋零风暴已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 自瞄透视碰撞箱功能
+    local aimbotESPEnabled = false
+    local aimbotConnection
+    local espParts = {}
+    local aimbotTarget = nil
+    
+    local function toggleAimbotESP()
+        playClickSound()
+        aimbotESPEnabled = not aimbotESPEnabled
+        
+        if aimbotESPEnabled then
+            ButtonInstances.AimBotESPButton.Text = "自瞄透视碰撞箱[开]"
+            ButtonInstances.AimBotESPButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            -- 启用透视
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer and player.Character then
+                    local highlight = Instance.new("Highlight")
+                    highlight.Name = "BaconESP"
+                    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                    highlight.OutlineColor = Color3.fromRGB(255, 255, 0)
+                    highlight.FillTransparency = 0.5
+                    highlight.OutlineTransparency = 0
+                    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    highlight.Adornee = player.Character
+                    highlight.Parent = player.Character
+                    espParts[player] = highlight
+                end
+            end
+            
+            -- 启用自瞄
+            aimbotConnection = RunService.RenderStepped:Connect(function()
+                if aimbotESPEnabled then
+                    local character = LocalPlayer.Character
+                    local camera = Workspace.CurrentCamera
+                    
+                    if character and camera then
+                        local mouse = UserInputService:GetMouseLocation()
+                        local closestPlayer = nil
+                        local closestDistance = math.huge
+                        
+                        for _, player in pairs(Players:GetPlayers()) do
+                            if player ~= LocalPlayer and player.Character then
+                                local head = player.Character:FindFirstChild("Head")
+                                if head then
+                                    local screenPoint, visible = camera:WorldToViewportPoint(head.Position)
+                                    if visible then
+                                        local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(screenPoint.X, screenPoint.Y)).Magnitude
+                                        if distance < closestDistance and distance < 100 then
+                                            closestDistance = distance
+                                            closestPlayer = player
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                        
+                        aimbotTarget = closestPlayer
+                    end
+                end
+            end)
+            
+            -- 显示碰撞箱
+            for _, obj in pairs(Workspace:GetDescendants()) do
+                if obj:IsA("BasePart") and obj.Name ~= "Handle" and not obj:IsDescendantOf(LocalPlayer.Character or LocalPlayer) then
+                    local box = Instance.new("SelectionBox")
+                    box.Name = "BaconCollisionBox"
+                    box.Adornee = obj
+                    box.Color3 = Color3.fromRGB(0, 255, 0)
+                    box.LineThickness = 0.05
+                    box.Transparency = 0.3
+                    box.Parent = obj
+                end
+            end
+            
+            showNotification("自瞄透视碰撞箱已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.AimBotESPButton.Text = "自瞄透视碰撞箱[关]"
+            ButtonInstances.AimBotESPButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            -- 关闭透视
+            for player, highlight in pairs(espParts) do
+                if highlight then
+                    highlight:Destroy()
+                end
+            end
+            espParts = {}
+            
+            -- 关闭自瞄
+            if aimbotConnection then
+                aimbotConnection:Disconnect()
+                aimbotConnection = nil
+            end
+            
+            -- 移除碰撞箱
+            for _, obj in pairs(Workspace:GetDescendants()) do
+                if obj:IsA("BasePart") and obj:FindFirstChild("BaconCollisionBox") then
+                    obj.BaconCollisionBox:Destroy()
+                end
+            end
+            
+            showNotification("自瞄透视碰撞箱已关闭", Color3.fromRGB(150, 150, 150))
+        end
     end
 
     -- AI聊天功能函数 - 完全修复版
@@ -705,7 +846,7 @@ local function loadScript()
             scripts = {
                 ["穿墙"] = "🔧 穿墙模式：\n• 功能：让你穿过墙壁和物体\n• 使用：点击'穿墙模式'按钮开启/关闭\n• 提示：开启后可以自由穿过任何障碍物",
                 ["无限跳跃"] = "🔧 无限跳跃：\n• 功能：在空中也能无限跳跃\n• 使用：点击'无限跳跃'按钮开启/关闭\n• 提示：开启后按空格键可以在空中跳跃",
-                ["飞行"] = "🔧 飞行脚本：\n• 功能：让你在空中自由飞行\n• 使用：点击'ARCEUS飞行脚本'按钮加载\n• 提示：加载后按指定键飞行",
+                ["飞行"] = "🔧 飞行脚本：\n• 功能：让你在空中自由飞行\n• 使用：点击'飞行v2'按钮加载\n• 提示：加载后按指定键飞行",
                 ["黑洞"] = "🔧 黑洞脚本：\n• 功能：生成黑洞吞噬周围物体\n• 使用：点击'黑洞v6/v4/v1'按钮加载\n• 提示：黑洞会吞噬附近的物体和玩家",
                 ["凋零风暴"] = "🔧 凋零风暴：\n• 功能：生成强大的凋零风暴怪物\n• 使用：点击'凋零风暴'按钮加载\n• 提示：凋零风暴会攻击周围的一切",
                 ["fe"] = "🔧 FE脚本：\n• FE代表FilteringEnabled（过滤启用）\n• FE脚本可以在所有服务器使用\n• 通常包含动画、武器、特效等",
@@ -1011,70 +1152,202 @@ local function loadScript()
     end
 
     -- 新增功能函数
-    local function loadStealBrainRed()
+    local function loadFER6DeerCan()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/偷走脑红"))()
-        showNotification("偷走脑红脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+        showNotification("FEr6鹿罐已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadGarden()
+    local function loadFER15DeerCan()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
-        showNotification("种植花园脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+        showNotification("FEr15鹿罐已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadOhio()
+    local function loadBurstScript()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou"))()
-        showNotification("俄亥俄州脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/放克表情.lua"))()
+        showNotification("爆燃脚本已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadForsaken()
+    local function loadBootCheck()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub"))()
-        showNotification("被遗弃脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/开机检测.lua"))()
+        showNotification("开机检测已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadThrowFly()
+    local function loadCalculator()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6"))()
-        showNotification("甩飞脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Calculator'))()
+        showNotification("计算器已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadCatAnim()
+    local function loadChatBubbleBeautify()
         playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/Y1MkBRn3"))()
-        showNotification("猫动作脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/4M1NrMnc.txt"))()
+        showNotification("聊天气泡美化已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadInvincible()
+    local function loadC00lkidBlackShell()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/5twh2hsf9j-byte/BowenPrime67/refs/heads/main/Python"))()
-        showNotification("无敌脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-coolkid-gui-15453"))()
+        showNotification("c00lkid黑壳已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadBeatDog()
+    local function loadDoorsMode()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt"))()
-        showNotification("悦服循环打狗脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://pastebin.com/raw/Pm3rvBNw"))()
+        showNotification("doors模式已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadFEAK47()
+    local function loadDoorsHardcoreMode()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47"))()
-        showNotification("FE AK47脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://glot.io/snippets/gp5pu59o7f/raw"))()
+        showNotification("doors硬核模式已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadFESniper()
+    local function loadChatTranslator()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper"))()
-        showNotification("FE 狙击枪脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Translator'))()
+        showNotification("聊天翻译器已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadChenScript()
+    local function loadKennyAutoTranslate()
         playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt"))()
-        showNotification("辰脚本已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY自动汉化.txt"))()
+        showNotification("kenny自动汉化已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadMindPull()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E7%BF%BB%E8%AF%91.txt"))()
+        showNotification("心灵牵引已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadTelepathy()
+        playClickSound()
+        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty11.lua"))()
+        showNotification("心灵感应已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFishScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+        showNotification("鱼脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadDingScript()
+        playClickSound()
+        loadstring(game:HttpGet("http://pastefy.app/g7wgZQya/raw"))()
+        showNotification("丁脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadChuScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/refs/heads/main/%E5%88%9D%E8%84%9A%E6%9C%AC.lua"))()
+        showNotification("初脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadForest99NightDiamond()
+        playClickSound()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/MQPS7/99-Night-in-the-Forset/refs/heads/main/Gfarm'))()
+        showNotification("森林99夜刷钻石已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadStealBrainRedRainbow()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/PkYWvKhM/raw"))()
+        showNotification("偷走脑红彩虹板已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadStealBrainRedBigBoard()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/zhe4ie0W"))()
+        showNotification("偷走脑红大板子已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadDeathOfDeath()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub"))()
+        showNotification("死亡之死已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadDoorsAutoAvoid()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Script.lua"))()
+        showNotification("doors自动躲怪全图高亮已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadDoorsExtremeMode()
+        playClickSound()
+        loadstring(game:HttpGet('https://github.com/HollowedOutMods/MayhemMode/blob/main/loader.lua?raw=true'))()
+        showNotification("doors极端模式已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadNicoNextbot()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/NicoNextBots", true))()
+        showNotification("nico' Nextbot已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFlyV2()
+        playClickSound()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+        showNotification("飞行v2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadShipTreasure()
+        playClickSound()
+        loadstring(game:HttpGet(('https://raw.githubusercontent.com/urmomjklol69/GoldFarmBabft/main/GoldFarm.lua'),true))()
+        showNotification("造船寻宝已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadSpeedLegend()
+        playClickSound()
+        loadstring(Game:HttpGet("https://pastebin.com/raw/0A4J7V8M"))()
+        showNotification("极速传奇已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadWallRun()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
+        showNotification("飞檐走壁已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadNaturalDisaster()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/TurkOyuncu99/7c75386107937fa006304efd24543ad4/raw/8d759dfcd95d39949c692735cfdf62baec0bf835/cafwetweg", true))()
+        showNotification("自然灾害已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFEVR()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty45.lua"))()
+        showNotification("FE vr已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFECoolKid()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty2.lua"))()
+        showNotification("FE酷小孩已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFEJason()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/6203b323781cfb0a7ad35e4e9f60e026/raw/222815c2a4f6ffe38f8ae3965f6b3640c180ab4c/Jason.lua"))()
+        showNotification("FE杰森已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFESnake()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty5.lua"))()
+        showNotification("FE蛇已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadFEBaseballPlayer()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty44.lua"))()
+        showNotification("FE棒球手已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 防摔功能
@@ -1811,9 +2084,9 @@ print("安全版自然灾害免疫已激活")
         tabButton.MouseButton1Click:Connect(playClickSound)
     end
 
-    -- 绑定功能按钮（包含AI聊天功能和凋零风暴功能）
+    -- 绑定功能按钮
     local buttonActions = {
-        FlyButton = function() loadExternalScript("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10", "ARCEUS飞行") end,
+        FlyButton = loadFlyV2,  -- 改为飞行v2
         InvincibleFlyButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414", "无敌苍蝇飞行") end,
         FakeLagButton = function() loadExternalScript("https://raw.githubusercontent.com/RENZXW/RENZXW-SCRIPTS/main/fakeLAGRENZXW.txt", "假延迟") end,
         DayunButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "大运") end,
@@ -1881,19 +2154,53 @@ print("安全版自然灾害免疫已激活")
         HackButton = applyHackEffects,
         UIColorButton = changeUIColor,
         SuicideButton = suicide,
-        StealBrainRedButton = loadStealBrainRed,
-        GardenButton = loadGarden,
-        OhioButton = loadOhio,
-        ForsakenButton = loadForsaken,
-        ThrowFlyButton = loadThrowFly,
-        CatAnimButton = loadCatAnim,
-        InvincibleButton = loadInvincible,
-        BeatDogButton = loadBeatDog,
-        FEAK47Button = loadFEAK47,
-        FESniperButton = loadFESniper,
-        ChenScriptButton = loadChenScript,
-        AIChatButton = loadAIChat,  -- 修复版AI聊天
-        WitherStormButton = loadWitherStorm  -- 凋零风暴
+        StealBrainRedButton = function() loadExternalScript("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/偷走脑红", "偷走脑红") end,
+        GardenButton = function() loadExternalScript("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1", "种植花园") end,
+        OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
+        ForsakenButton = function() loadExternalScript("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub", "被遗弃脚本") end,
+        ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
+        CatAnimButton = function() loadExternalScript("https://pastebin.com/raw/Y1MkBRn3", "猫动作") end,
+        InvincibleButton = function() loadExternalScript("https://raw.githubusercontent.com/5twh2hsf9j-byte/BowenPrime67/refs/heads/main/Python", "无敌脚本") end,
+        BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "悦服循环打狗") end,
+        FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
+        FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
+        ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
+        AIChatButton = loadAIChat,
+        WitherStormButton = loadWitherStorm,
+        -- 新增功能
+        FER6DeerCanButton = loadFER6DeerCan,
+        FER15DeerCanButton = loadFER15DeerCan,
+        BurstScriptButton = loadBurstScript,
+        BootCheckButton = loadBootCheck,
+        CalculatorButton = loadCalculator,
+        ChatBubbleBeautifyButton = loadChatBubbleBeautify,
+        C00lkidBlackShellButton = loadC00lkidBlackShell,
+        DoorsModeButton = loadDoorsMode,
+        DoorsHardcoreModeButton = loadDoorsHardcoreMode,
+        ChatTranslatorButton = loadChatTranslator,
+        KennyAutoTranslateButton = loadKennyAutoTranslate,
+        MindPullButton = loadMindPull,
+        TelepathyButton = loadTelepathy,
+        FishScriptButton = loadFishScript,
+        DingScriptButton = loadDingScript,
+        ChuScriptButton = loadChuScript,
+        Forest99NightDiamondButton = loadForest99NightDiamond,
+        StealBrainRedRainbowButton = loadStealBrainRedRainbow,
+        StealBrainRedBigBoardButton = loadStealBrainRedBigBoard,
+        DeathOfDeathButton = loadDeathOfDeath,
+        DoorsAutoAvoidButton = loadDoorsAutoAvoid,
+        DoorsExtremeModeButton = loadDoorsExtremeMode,
+        NicoNextbotButton = loadNicoNextbot,
+        ShipTreasureButton = loadShipTreasure,
+        AimBotESPButton = toggleAimbotESP,
+        SpeedLegendButton = loadSpeedLegend,
+        WallRunButton = loadWallRun,
+        NaturalDisasterButton = loadNaturalDisaster,
+        FEVRButton = loadFEVR,
+        FECoolKidButton = loadFECoolKid,
+        FEJasonButton = loadFEJason,
+        FESnakeButton = loadFESnake,
+        FEBaseballPlayerButton = loadFEBaseballPlayer
     }
 
     for buttonName, action in pairs(buttonActions) do
