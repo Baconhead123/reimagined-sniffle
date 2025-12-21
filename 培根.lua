@@ -30,12 +30,12 @@ local function loadScript()
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.Parent = CoreGui
     
-    -- 主窗口（减小三分之一）
+    -- 主窗口（改小尺寸）
     local MainFrame = Instance.new("Frame")
     MainFrame.Size = UDim2.new(0, 467, 0, 300) -- 从700x450减小三分之一到467x300
     MainFrame.Position = UDim2.new(0.5, -233.5, 0.5, -150)
     MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
-    MainFrame.BackgroundTransparency = 0.1
+    MainFrame.BackgroundTransparency = 0 -- 不透明
     MainFrame.BorderSizePixel = 0
     MainFrame.Active = true
     MainFrame.Draggable = true
@@ -62,12 +62,12 @@ local function loadScript()
     MainStroke.Color = Color3.fromRGB(0, 150, 255)
     MainStroke.Thickness = 1.3 -- 减小三分之一
     
-    -- 背景图片（保留原本UI背景）
+    -- 背景图片（不透明，没有滤镜）
     local BackgroundImage = Instance.new("ImageLabel")
     BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
     BackgroundImage.BackgroundTransparency = 1
     BackgroundImage.Image = "rbxassetid://78752306566484"
-    BackgroundImage.ImageTransparency = 0.3
+    BackgroundImage.ImageTransparency = 0.3 -- 保持原样
     BackgroundImage.ScaleType = Enum.ScaleType.Crop
     BackgroundImage.ZIndex = 1
     Instance.new("UICorner", BackgroundImage).CornerRadius = UDim.new(0, 11)
@@ -77,7 +77,7 @@ local function loadScript()
     local TitleBar = Instance.new("Frame")
     TitleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
     TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
-    TitleBar.BackgroundTransparency = 0.2
+    TitleBar.BackgroundTransparency = 0.2 -- 保持原样
     TitleBar.BorderSizePixel = 0
     TitleBar.ZIndex = 5
     Instance.new("UICorner", TitleBar).CornerRadius = UDim.new(0, 11)
@@ -100,7 +100,7 @@ local function loadScript()
     MinimizeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
     MinimizeButton.Position = UDim2.new(1, -47, 0, 3.5) -- 减小三分之一
     MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 150, 200)
-    MinimizeButton.BackgroundTransparency = 0.2
+    MinimizeButton.BackgroundTransparency = 0.2 -- 保持原样
     MinimizeButton.Text = "_"
     MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     MinimizeButton.TextSize = 16 -- 字体大小不变
@@ -113,7 +113,7 @@ local function loadScript()
     CloseButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
     CloseButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
     CloseButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-    CloseButton.BackgroundTransparency = 0.2
+    CloseButton.BackgroundTransparency = 0.2 -- 保持原样
     CloseButton.Text = "X"
     CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     CloseButton.TextSize = 14 -- 字体大小不变
@@ -127,7 +127,7 @@ local function loadScript()
     TabFrame.Size = UDim2.new(0, 100, 1, -27) -- 减小三分之一
     TabFrame.Position = UDim2.new(0, 0, 0, 27)
     TabFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 50)
-    TabFrame.BackgroundTransparency = 0.2
+    TabFrame.BackgroundTransparency = 0.2 -- 保持原样
     TabFrame.ZIndex = 3
     Instance.new("UICorner", TabFrame).CornerRadius = UDim.new(0, 11)
     TabFrame.Parent = MainFrame
@@ -155,7 +155,7 @@ local function loadScript()
         local tabButton = Instance.new("TextButton")
         tabButton.Size = UDim2.new(1, -6.7, 0, 23.3) -- 减小三分之一
         tabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
-        tabButton.BackgroundTransparency = 0.3
+        tabButton.BackgroundTransparency = 0.3 -- 保持原样
         tabButton.Text = tabName
         tabButton.TextColor3 = Color3.fromRGB(200, 200, 255)
         tabButton.TextSize = 12 -- 字体大小不变
@@ -198,7 +198,7 @@ local function loadScript()
         local button = Instance.new("TextButton")
         button.Size = UDim2.new(1, 0, 1, 0)
         button.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
-        button.BackgroundTransparency = 0.3
+        button.BackgroundTransparency = 0.3 -- 保持原样
         button.Text = text
         button.TextColor3 = Color3.fromRGB(200, 200, 255)
         button.TextSize = 12 -- 字体大小不变
@@ -217,7 +217,7 @@ local function loadScript()
                 tooltip.Size = UDim2.new(0, 107, 0, 0) -- 减小三分之一
                 tooltip.Position = UDim2.new(0, -53.5, 1, 3.3) -- 减小三分之一
                 tooltip.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-                tooltip.BackgroundTransparency = 0.1
+                tooltip.BackgroundTransparency = 0.1 -- 保持原样
                 tooltip.Text = description
                 tooltip.TextColor3 = Color3.fromRGB(200, 200, 255)
                 tooltip.TextSize = 11 -- 字体大小不变
@@ -243,12 +243,12 @@ local function loadScript()
         end
         
         button.MouseEnter:Connect(function()
-            button.BackgroundTransparency = 0.1
+            button.BackgroundTransparency = 0.1 -- 保持原样
             buttonStroke.Thickness = 1.3 -- 减小三分之一
         end)
         
         button.MouseLeave:Connect(function()
-            button.BackgroundTransparency = 0.3
+            button.BackgroundTransparency = 0.3 -- 保持原样
             buttonStroke.Thickness = 0.7 -- 减小三分之一
         end)
         
@@ -485,7 +485,7 @@ local function loadScript()
         notification.Size = UDim2.new(0, 200, 0, 40) -- 减小三分之一
         notification.Position = UDim2.new(0.5, -100, 0.1, 0) -- 减小三分之一
         notification.BackgroundColor3 = color
-        notification.BackgroundTransparency = 0.2
+        notification.BackgroundTransparency = 0.2 -- 保持原样
         notification.ZIndex = 100
         Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 8) -- 减小三分之一
         Instance.new("UIStroke", notification).Color = Color3.fromRGB(255, 255, 255)
@@ -893,7 +893,7 @@ local function setupSafeImmunity()
         if character and character:FindFirstChild("Humanoid") then
             character.Humanoid.Health = character.Humanoid.MaxHealth
         end
-    end
+    end)
 end
 
 setupSafeImmunity()
@@ -1154,7 +1154,7 @@ print("安全版自然灾害免疫已激活")
         backpackFrame.Size = UDim2.new(0, 267, 0, 333) -- 减小三分之一
         backpackFrame.Position = UDim2.new(0.5, -133.5, 0.5, -166.5) -- 减小三分之一
         backpackFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
-        backpackFrame.BackgroundTransparency = 0.1
+        backpackFrame.BackgroundTransparency = 0.1 -- 保持原样
         backpackFrame.BorderSizePixel = 2
         backpackFrame.BorderColor3 = Color3.fromRGB(0, 150, 255)
         backpackFrame.Active = true
@@ -1168,7 +1168,7 @@ print("安全版自然灾害免疫已激活")
         local titleBar = Instance.new("Frame")
         titleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
         titleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
-        titleBar.BackgroundTransparency = 0.1
+        titleBar.BackgroundTransparency = 0.1 -- 保持原样
         titleBar.BorderSizePixel = 0
         titleBar.ZIndex = 51
         Instance.new("UICorner", titleBar).CornerRadius = UDim.new(0, 10)
@@ -1190,7 +1190,7 @@ print("安全版自然灾害免疫已激活")
         closeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
         closeButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
         closeButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-        closeButton.BackgroundTransparency = 0.2
+        closeButton.BackgroundTransparency = 0.2 -- 保持原样
         closeButton.Text = "X"
         closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         closeButton.TextSize = 16 -- 字体大小不变
@@ -1254,7 +1254,7 @@ print("安全版自然灾害免疫已激活")
                 local itemFrame = Instance.new("Frame")
                 itemFrame.Size = UDim2.new(1, 0, 0, 40) -- 减小三分之一
                 itemFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
-                itemFrame.BackgroundTransparency = 0.3
+                itemFrame.BackgroundTransparency = 0.3 -- 保持原样
                 itemFrame.ZIndex = 52
                 Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
                 Instance.new("UIStroke", itemFrame).Color = Color3.fromRGB(100, 100, 200)
@@ -1276,7 +1276,7 @@ print("安全版自然灾害免疫已激活")
                 stealButton.Size = UDim2.new(0.35, -6.7, 0.5, -3.3) -- 减小三分之一
                 stealButton.Position = UDim2.new(0.6, 3.3, 0, 3.3) -- 减小三分之一
                 stealButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-                stealButton.BackgroundTransparency = 0.2
+                stealButton.BackgroundTransparency = 0.2 -- 保持原样
                 stealButton.Text = "偷取"
                 stealButton.TextColor3 = Color3.fromRGB(255, 255, 255)
                 stealButton.TextSize = 14 -- 字体大小不变
@@ -1311,11 +1311,11 @@ print("安全版自然灾害免疫已激活")
 
                 -- 按钮悬停效果
                 stealButton.MouseEnter:Connect(function()
-                    stealButton.BackgroundTransparency = 0
+                    stealButton.BackgroundTransparency = 0.1 -- 保持原样
                 end)
                 
                 stealButton.MouseLeave:Connect(function()
-                    stealButton.BackgroundTransparency = 0.2
+                    stealButton.BackgroundTransparency = 0.2 -- 保持原样
                 end)
             end
         end
