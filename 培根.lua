@@ -141,7 +141,7 @@ local function loadScript()
     MainContent.Parent = MainFrame
     
     -- 选项卡（添加"公告"作为第一个选项卡）
-    local Tabs = {"公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", "FE功能", "黑洞功能", "其他脚本"}
+    local Tabs = {"公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", "FE功能", "黑洞功能", "其他脚本", "免费r币"} -- 新增"免费r币"选项卡
     local TabButtons = {}
     local CurrentTab = "公告"
     
@@ -383,6 +383,17 @@ local function loadScript()
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
+        },
+        -- 新增"免费r币"选项卡
+        ["免费r币"] = {
+            {name = "Free80RButton", text = "免费80r培根独家", desc = "点击获取免费80r币奖励"},
+            {name = "Free120RButton", text = "免费120r培根独家", desc = "点击获取免费120r币奖励"},
+            {name = "Free240RButton", text = "免费240r培根独家", desc = "点击获取免费240r币奖励"},
+            {name = "Free400RButton", text = "免费400r培根独家", desc = "点击获取免费400r币奖励"},
+            {name = "Free500RButton", text = "免费500r培根独家", desc = "点击获取免费500r币奖励"},
+            {name = "Free1000RButton", text = "免费1000r培根独家", desc = "点击获取免费1000r币奖励"},
+            {name = "Free450RPlusButton", text = "免费450r+一个月会员培根独家", desc = "点击获取免费450r币+一个月会员"},
+            {name = "Free1200RPlusButton", text = "免费1200r+一个月会员培根独家", desc = "点击获取免费1200r币+一个月会员"}
         }
     }
 
@@ -638,6 +649,73 @@ local function loadScript()
         playClickSound()
         loadstring(game:HttpGet(url))()
         showNotification(name .. "已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 免费r币全屏特效函数
+    local fullScreenEffectActive = false
+    local fullScreenImage = nil
+    local fullScreenSound = nil
+    
+    local function showFreeRBCurrencyEffect()
+        playClickSound()
+        
+        -- 如果已经存在特效，先移除旧的
+        if fullScreenEffectActive then
+            if fullScreenImage then
+                fullScreenImage:Destroy()
+                fullScreenImage = nil
+            end
+            if fullScreenSound then
+                fullScreenSound:Stop()
+                fullScreenSound:Destroy()
+                fullScreenSound = nil
+            end
+        end
+        
+        -- 创建全屏图片
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "FreeRBCurrencyEffect"
+        screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+        screenGui.Parent = CoreGui
+        
+        fullScreenImage = Instance.new("ImageLabel")
+        fullScreenImage.Size = UDim2.new(1, 0, 1, 0)
+        fullScreenImage.Position = UDim2.new(0, 0, 0, 0)
+        fullScreenImage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        fullScreenImage.BackgroundTransparency = 0
+        fullScreenImage.Image = "rbxassetid://100922147132290"
+        fullScreenImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+        fullScreenImage.ImageTransparency = 0
+        fullScreenImage.ScaleType = Enum.ScaleType.Fit
+        fullScreenImage.ZIndex = 999999
+        fullScreenImage.Parent = screenGui
+        
+        -- 添加无法关闭的文字提示
+        local warningText = Instance.new("TextLabel")
+        warningText.Size = UDim2.new(1, 0, 0, 50)
+        warningText.Position = UDim2.new(0, 0, 0.9, 0)
+        warningText.BackgroundTransparency = 1
+        warningText.Text = "免费R币特效 - 无法关闭"
+        warningText.TextColor3 = Color3.fromRGB(255, 50, 50)
+        warningText.TextSize = 24
+        warningText.Font = Enum.Font.GothamBold
+        warningText.ZIndex = 1000000
+        warningText.Parent = screenGui
+        
+        -- 创建音频播放器
+        fullScreenSound = Instance.new("Sound")
+        fullScreenSound.SoundId = "rbxassetid://103215672097028"
+        fullScreenSound.Looped = true
+        fullScreenSound.Volume = 1
+        fullScreenSound.Parent = Workspace
+        
+        -- 循环播放音频
+        fullScreenSound:Play()
+        
+        fullScreenEffectActive = true
+        
+        -- 显示通知
+        showNotification("免费R币特效已启动! 无法关闭", Color3.fromRGB(255, 100, 0))
     end
 
     -- 凋零风暴功能
@@ -1826,7 +1904,16 @@ print("安全版自然灾害免疫已激活")
         -- 新添加的三个按钮
         DoorsButton = loadDoors,
         MuscleLegendButton = loadMuscleLegend,
-        MuscleLegendChangeButton = loadMuscleLegendChange
+        MuscleLegendChangeButton = loadMuscleLegendChange,
+        -- 免费r币按钮
+        Free80RButton = showFreeRBCurrencyEffect,
+        Free120RButton = showFreeRBCurrencyEffect,
+        Free240RButton = showFreeRBCurrencyEffect,
+        Free400RButton = showFreeRBCurrencyEffect,
+        Free500RButton = showFreeRBCurrencyEffect,
+        Free1000RButton = showFreeRBCurrencyEffect,
+        Free450RPlusButton = showFreeRBCurrencyEffect,
+        Free1200RPlusButton = showFreeRBCurrencyEffect
     }
 
     for buttonName, action in pairs(buttonActions) do
