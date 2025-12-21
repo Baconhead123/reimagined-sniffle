@@ -32,8 +32,8 @@ local function loadScript()
     
     -- 主窗口（改小尺寸）
     local MainFrame = Instance.new("Frame")
-    MainFrame.Size = UDim2.new(0, 467, 0, 300) -- 从700x450减小三分之一到467x300
-    MainFrame.Position = UDim2.new(0.5, -233.5, 0.5, -150)
+    MainFrame.Size = UDim2.new(0, 700, 0, 450)
+    MainFrame.Position = UDim2.new(0.5, -350, 0.5, -225)
     MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
     MainFrame.BackgroundTransparency = 0 -- 不透明
     MainFrame.BorderSizePixel = 0
@@ -44,8 +44,8 @@ local function loadScript()
     
     -- 添加阴影效果
     local Shadow = Instance.new("ImageLabel")
-    Shadow.Size = UDim2.new(1, 13, 1, 13) -- 减小三分之一
-    Shadow.Position = UDim2.new(0, -6.5, 0, -6.5) -- 减小三分之一
+    Shadow.Size = UDim2.new(1, 20, 1, 20)
+    Shadow.Position = UDim2.new(0, -10, 0, -10)
     Shadow.BackgroundTransparency = 1
     Shadow.Image = "rbxassetid://5554236805"
     Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
@@ -56,40 +56,40 @@ local function loadScript()
     
     -- 增强圆角效果
     local MainCorner = Instance.new("UICorner", MainFrame)
-    MainCorner.CornerRadius = UDim.new(0, 11) -- 减小三分之一
+    MainCorner.CornerRadius = UDim.new(0, 16)
     
     local MainStroke = Instance.new("UIStroke", MainFrame)
     MainStroke.Color = Color3.fromRGB(0, 150, 255)
-    MainStroke.Thickness = 1.3 -- 减小三分之一
+    MainStroke.Thickness = 2
     
     -- 背景图片（不透明，没有滤镜）
     local BackgroundImage = Instance.new("ImageLabel")
     BackgroundImage.Size = UDim2.new(1, 0, 1, 0)
     BackgroundImage.BackgroundTransparency = 1
     BackgroundImage.Image = "rbxassetid://78752306566484"
-    BackgroundImage.ImageTransparency = 0.3 -- 保持原样
+    BackgroundImage.ImageTransparency = 0 -- 不透明
     BackgroundImage.ScaleType = Enum.ScaleType.Crop
     BackgroundImage.ZIndex = 1
-    Instance.new("UICorner", BackgroundImage).CornerRadius = UDim.new(0, 11)
+    Instance.new("UICorner", BackgroundImage).CornerRadius = UDim.new(0, 16)
     BackgroundImage.Parent = MainFrame
     
     -- 标题栏
     local TitleBar = Instance.new("Frame")
-    TitleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
+    TitleBar.Size = UDim2.new(1, 0, 0, 40)
     TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
-    TitleBar.BackgroundTransparency = 0.2 -- 保持原样
+    TitleBar.BackgroundTransparency = 0
     TitleBar.BorderSizePixel = 0
     TitleBar.ZIndex = 5
-    Instance.new("UICorner", TitleBar).CornerRadius = UDim.new(0, 11)
+    Instance.new("UICorner", TitleBar).CornerRadius = UDim.new(0, 16)
     TitleBar.Parent = MainFrame
     
     local TitleLabel = Instance.new("TextLabel")
-    TitleLabel.Size = UDim2.new(1, -67, 1, 0) -- 减小三分之一
-    TitleLabel.Position = UDim2.new(0, 10, 0, 0) -- 减小三分之一
+    TitleLabel.Size = UDim2.new(1, -100, 1, 0)
+    TitleLabel.Position = UDim2.new(0, 15, 0, 0)
     TitleLabel.BackgroundTransparency = 1
-    TitleLabel.Text = "培根脚本 v6.4"
+    TitleLabel.Text = "培根脚本 v6.5"
     TitleLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-    TitleLabel.TextSize = 20 -- 字体大小不变
+    TitleLabel.TextSize = 20
     TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
     TitleLabel.Font = Enum.Font.GothamBold
     TitleLabel.ZIndex = 6
@@ -97,45 +97,45 @@ local function loadScript()
     
     -- 控制按钮
     local MinimizeButton = Instance.new("TextButton")
-    MinimizeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-    MinimizeButton.Position = UDim2.new(1, -47, 0, 3.5) -- 减小三分之一
+    MinimizeButton.Size = UDim2.new(0, 30, 0, 30)
+    MinimizeButton.Position = UDim2.new(1, -70, 0, 5)
     MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 150, 200)
-    MinimizeButton.BackgroundTransparency = 0.2 -- 保持原样
+    MinimizeButton.BackgroundTransparency = 0
     MinimizeButton.Text = "_"
     MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    MinimizeButton.TextSize = 16 -- 字体大小不变
+    MinimizeButton.TextSize = 16
     MinimizeButton.Font = Enum.Font.GothamBold
     MinimizeButton.ZIndex = 6
-    Instance.new("UICorner", MinimizeButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+    Instance.new("UICorner", MinimizeButton).CornerRadius = UDim.new(0, 8)
     MinimizeButton.Parent = TitleBar
 
     local CloseButton = Instance.new("TextButton")
-    CloseButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-    CloseButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
+    CloseButton.Size = UDim2.new(0, 30, 0, 30)
+    CloseButton.Position = UDim2.new(1, -35, 0, 5)
     CloseButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-    CloseButton.BackgroundTransparency = 0.2 -- 保持原样
+    CloseButton.BackgroundTransparency = 0
     CloseButton.Text = "X"
     CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    CloseButton.TextSize = 14 -- 字体大小不变
+    CloseButton.TextSize = 14
     CloseButton.Font = Enum.Font.GothamBold
     CloseButton.ZIndex = 6
-    Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+    Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 8)
     CloseButton.Parent = TitleBar
     
     -- 选项卡区域（左侧）
     local TabFrame = Instance.new("Frame")
-    TabFrame.Size = UDim2.new(0, 100, 1, -27) -- 减小三分之一
-    TabFrame.Position = UDim2.new(0, 0, 0, 27)
+    TabFrame.Size = UDim2.new(0, 150, 1, -40)
+    TabFrame.Position = UDim2.new(0, 0, 0, 40)
     TabFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 50)
-    TabFrame.BackgroundTransparency = 0.2 -- 保持原样
+    TabFrame.BackgroundTransparency = 0
     TabFrame.ZIndex = 3
-    Instance.new("UICorner", TabFrame).CornerRadius = UDim.new(0, 11)
+    Instance.new("UICorner", TabFrame).CornerRadius = UDim.new(0, 16)
     TabFrame.Parent = MainFrame
     
     -- 主内容区域（右侧）
     local MainContent = Instance.new("Frame")
-    MainContent.Size = UDim2.new(1, -100, 1, -27)
-    MainContent.Position = UDim2.new(0, 100, 0, 27)
+    MainContent.Size = UDim2.new(1, -150, 1, -40)
+    MainContent.Position = UDim2.new(0, 150, 0, 40)
     MainContent.BackgroundTransparency = 1
     MainContent.ZIndex = 3
     MainContent.Parent = MainFrame
@@ -146,33 +146,33 @@ local function loadScript()
     local CurrentTab = "公告"
     
     local TabLayout = Instance.new("UIListLayout", TabFrame)
-    TabLayout.Padding = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingTop = UDim.new(0, 6.7) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
+    TabLayout.Padding = UDim.new(0, 5)
+    Instance.new("UIPadding", TabFrame).PaddingTop = UDim.new(0, 10)
+    Instance.new("UIPadding", TabFrame).PaddingLeft = UDim.new(0, 5)
+    Instance.new("UIPadding", TabFrame).PaddingRight = UDim.new(0, 5)
 
     for i, tabName in ipairs(Tabs) do
         local tabButton = Instance.new("TextButton")
-        tabButton.Size = UDim2.new(1, -6.7, 0, 23.3) -- 减小三分之一
+        tabButton.Size = UDim2.new(1, -10, 0, 35)
         tabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
-        tabButton.BackgroundTransparency = 0.3 -- 保持原样
+        tabButton.BackgroundTransparency = 0
         tabButton.Text = tabName
         tabButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-        tabButton.TextSize = 12 -- 字体大小不变
+        tabButton.TextSize = 12
         tabButton.Font = Enum.Font.Gotham
         tabButton.ZIndex = 4
         tabButton.AutoButtonColor = false
-        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
+        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 10)
         tabButton.Parent = TabFrame
         TabButtons[tabName] = tabButton
     end
     
     -- 内容区域（使用列表布局，单列按钮）
     local ContentScrolling = Instance.new("ScrollingFrame")
-    ContentScrolling.Size = UDim2.new(1, -6.7, 1, -6.7) -- 减小三分之一
-    ContentScrolling.Position = UDim2.new(0, 3.3, 0, 3.3) -- 减小三分之一
+    ContentScrolling.Size = UDim2.new(1, -10, 1, -10)
+    ContentScrolling.Position = UDim2.new(0, 5, 0, 5)
     ContentScrolling.BackgroundTransparency = 1
-    ContentScrolling.ScrollBarThickness = 4 -- 减小三分之一
+    ContentScrolling.ScrollBarThickness = 6
     ContentScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
     ContentScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
     ContentScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -181,32 +181,32 @@ local function loadScript()
     
     -- 使用UIListLayout
     local ContentList = Instance.new("UIListLayout", ContentScrolling)
-    ContentList.Padding = UDim.new(0, 5.3) -- 减小三分之一
+    ContentList.Padding = UDim.new(0, 8)
     ContentList.SortOrder = Enum.SortOrder.LayoutOrder
     
-    Instance.new("UIPadding", ContentScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", ContentScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", ContentScrolling).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", ContentScrolling).PaddingLeft = UDim.new(0, 5)
+    Instance.new("UIPadding", ContentScrolling).PaddingRight = UDim.new(0, 5)
+    Instance.new("UIPadding", ContentScrolling).PaddingTop = UDim.new(0, 5)
     
     -- 创建按钮函数（单列按钮）
     local function createButton(text, description)
         local buttonFrame = Instance.new("Frame")
-        buttonFrame.Size = UDim2.new(1, -6.7, 0, 30) -- 减小三分之一
+        buttonFrame.Size = UDim2.new(1, -10, 0, 45)
         buttonFrame.BackgroundTransparency = 1
         buttonFrame.LayoutOrder = #ContentScrolling:GetChildren()
         
         local button = Instance.new("TextButton")
         button.Size = UDim2.new(1, 0, 1, 0)
         button.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
-        button.BackgroundTransparency = 0.3 -- 保持原样
+        button.BackgroundTransparency = 0
         button.Text = text
         button.TextColor3 = Color3.fromRGB(200, 200, 255)
-        button.TextSize = 12 -- 字体大小不变
+        button.TextSize = 12
         button.Font = Enum.Font.Gotham
         button.AutoButtonColor = false
         button.ZIndex = 5
         button.TextWrapped = true
-        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 12)
         local buttonStroke = Instance.new("UIStroke", button)
         buttonStroke.Color = Color3.fromRGB(100, 100, 200)
         button.Parent = buttonFrame
@@ -214,28 +214,28 @@ local function loadScript()
         if description then
             button.MouseEnter:Connect(function()
                 local tooltip = Instance.new("TextLabel")
-                tooltip.Size = UDim2.new(0, 107, 0, 0) -- 减小三分之一
-                tooltip.Position = UDim2.new(0, -53.5, 1, 3.3) -- 减小三分之一
+                tooltip.Size = UDim2.new(0, 160, 0, 0)
+                tooltip.Position = UDim2.new(0, -80, 1, 5)
                 tooltip.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
-                tooltip.BackgroundTransparency = 0.1 -- 保持原样
+                tooltip.BackgroundTransparency = 0
                 tooltip.Text = description
                 tooltip.TextColor3 = Color3.fromRGB(200, 200, 255)
-                tooltip.TextSize = 11 -- 字体大小不变
+                tooltip.TextSize = 11
                 tooltip.TextWrapped = true
                 tooltip.ZIndex = 100
                 tooltip.Visible = false
-                Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 8)
                 Instance.new("UIStroke", tooltip).Color = Color3.fromRGB(0, 150, 255)
                 tooltip.Parent = buttonFrame
                 
                 tooltip.Visible = true
-                TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play() -- 减小三分之一
+                TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 160, 0, 50)}):Play()
             end)
             
             button.MouseLeave:Connect(function()
                 local tooltip = buttonFrame:FindFirstChildWhichIsA("TextLabel")
                 if tooltip then
-                    TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 0)}):Play()
+                    TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 160, 0, 0)}):Play()
                     wait(0.2)
                     tooltip:Destroy()
                 end
@@ -243,19 +243,19 @@ local function loadScript()
         end
         
         button.MouseEnter:Connect(function()
-            button.BackgroundTransparency = 0.1 -- 保持原样
-            buttonStroke.Thickness = 1.3 -- 减小三分之一
+            button.BackgroundTransparency = 0.1
+            buttonStroke.Thickness = 2
         end)
         
         button.MouseLeave:Connect(function()
-            button.BackgroundTransparency = 0.3 -- 保持原样
-            buttonStroke.Thickness = 0.7 -- 减小三分之一
+            button.BackgroundTransparency = 0
+            buttonStroke.Thickness = 1
         end)
         
         return buttonFrame, button
     end
 
-    -- 重新组织功能分类（删除了AI聊天功能）
+    -- 重新组织功能分类
     local FunctionTabs = {
         ["基础功能"] = {
             {name = "NoclipButton", text = "穿墙模式 [关闭]", desc = "穿透所有墙壁和物体"},
@@ -325,8 +325,12 @@ local function loadScript()
             {name = "BlackHoleV4Button", text = "黑洞v4", desc = "加载黑洞v4脚本"},
             {name = "BlackHoleV1Button", text = "黑洞v1", desc = "加载黑洞v1脚本"}
         },
-        ["其他脚本"] = { -- 修改：将"其他整合脚本"改为"其他脚本"
-            -- 修改：将飞行改为飞行v2
+        ["其他脚本"] = {
+            -- 新增的三个按钮
+            {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
+            {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
+            {name = "MuscleLegendModButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
+            
             {name = "FlyButton", text = "飞行v2", desc = "点击加载ARCEUS X FLY V2飞行脚本"},
             {name = "InvincibleFlyButton", text = "无敌苍蝇飞行", desc = "加载无敌苍蝇飞行脚本"},
             {name = "FakeLagButton", text = "假延迟", desc = "加载假延迟脚本"},
@@ -349,7 +353,7 @@ local function loadScript()
             {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
             {name = "ForsakenButton", text = "被遗弃脚本", desc = "加载被遗弃脚本"},
             {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
-            {name = "BeatDogButton", text = "悦服循环打狗", desc = "加载悦服循环打狗脚本"},
+            {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载悦服循环打狗脚本"}, -- 改名
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
             {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
             -- 新增功能
@@ -396,25 +400,90 @@ local function loadScript()
         end
     end
 
-    -- 公告内容框架
-    local AnnouncementFrame = Instance.new("Frame")
-    AnnouncementFrame.Size = UDim2.new(1, -6.7, 1, -6.7) -- 减小三分之一
-    AnnouncementFrame.Position = UDim2.new(0, 3.3, 0, 3.3) -- 减小三分之一
-    AnnouncementFrame.BackgroundTransparency = 1
-    AnnouncementFrame.ZIndex = 4
-    AnnouncementFrame.Parent = MainContent
+    -- 公告内容框架（改为ScrollingFrame）
+    local AnnouncementScrolling = Instance.new("ScrollingFrame")
+    AnnouncementScrolling.Size = UDim2.new(1, -10, 1, -10)
+    AnnouncementScrolling.Position = UDim2.new(0, 5, 0, 5)
+    AnnouncementScrolling.BackgroundTransparency = 1
+    AnnouncementScrolling.ScrollBarThickness = 6
+    AnnouncementScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
+    AnnouncementScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
+    AnnouncementScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    AnnouncementScrolling.ZIndex = 4
+    AnnouncementScrolling.Parent = MainContent
     
-    -- 公告内容
-    local AnnouncementText = Instance.new("TextLabel")
-    AnnouncementText.Size = UDim2.new(1, 0, 1, 0)
-    AnnouncementText.BackgroundTransparency = 1
-    AnnouncementText.Text = "此脚本为缝合完全免费，禁止倒卖，倒卖死全家全家操逼\n\n玩家名字: " .. LocalPlayer.Name .. "\n\n北京时间: " .. os.date("%Y-%m-%d %H:%M:%S") .. "\n\n脚本作者: Bacon head"
-    AnnouncementText.TextColor3 = Color3.fromRGB(255, 255, 255)
-    AnnouncementText.TextSize = 16 -- 字体大小不变
-    AnnouncementText.Font = Enum.Font.GothamBold
-    AnnouncementText.TextWrapped = true
-    AnnouncementText.ZIndex = 5
-    AnnouncementText.Parent = AnnouncementFrame
+    local AnnouncementList = Instance.new("UIListLayout", AnnouncementScrolling)
+    AnnouncementList.Padding = UDim.new(0, 10)
+    AnnouncementList.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingLeft = UDim.new(0, 5)
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingRight = UDim.new(0, 5)
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingTop = UDim.new(0, 5)
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingBottom = UDim.new(0, 5)
+    
+    -- 公告内容文本
+    local function createAnnouncementText(text, size, bold)
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 0, size)
+        textLabel.BackgroundTransparency = 1
+        textLabel.Text = text
+        textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        textLabel.TextSize = 14
+        textLabel.Font = bold and Enum.Font.GothamBold or Enum.Font.Gotham
+        textLabel.TextWrapped = true
+        textLabel.ZIndex = 5
+        textLabel.Parent = AnnouncementScrolling
+        return textLabel
+    end
+    
+    -- 第一行
+    createAnnouncementText("此脚本为缝合完全免费，禁止倒卖，倒卖死全家全家操逼", 30, true)
+    
+    -- 第二行
+    createAnnouncementText("玩家名字: " .. LocalPlayer.Name, 20, false)
+    
+    -- 第三行
+    createAnnouncementText("北京时间: " .. os.date("%Y-%m-%d %H:%M:%S"), 20, false)
+    
+    -- 第四行
+    createAnnouncementText("脚本作者: Bacon head", 20, false)
+    
+    -- 第五行：显示玩家账户年龄
+    local accountAge = 0
+    pcall(function()
+        accountAge = LocalPlayer.AccountAge
+    end)
+    createAnnouncementText("玩家账户年龄: " .. accountAge .. " 天", 20, false)
+    
+    -- 第六行
+    createAnnouncementText("脚本加载延迟或者加载不出来不是我的问题", 20, false)
+    
+    -- 第七行：图片和文字
+    local imageFrame = Instance.new("Frame")
+    imageFrame.Size = UDim2.new(1, 0, 0, 135) -- 长是其他按钮的三倍（45*3）
+    imageFrame.BackgroundTransparency = 1
+    imageFrame.LayoutOrder = 7
+    imageFrame.Parent = AnnouncementScrolling
+    
+    local imageLabel = Instance.new("ImageLabel")
+    imageLabel.Size = UDim2.new(1, 0, 0, 100)
+    imageLabel.BackgroundTransparency = 1
+    imageLabel.Image = "rbxassetid://78752306566484"
+    imageLabel.ScaleType = Enum.ScaleType.Crop
+    imageLabel.ZIndex = 5
+    Instance.new("UICorner", imageLabel).CornerRadius = UDim.new(0, 12)
+    imageLabel.Parent = imageFrame
+    
+    local imageText = Instance.new("TextLabel")
+    imageText.Size = UDim2.new(1, 0, 0, 30)
+    imageText.Position = UDim2.new(0, 0, 0, 105)
+    imageText.BackgroundTransparency = 1
+    imageText.Text = "神秘的猫"
+    imageText.TextColor3 = Color3.fromRGB(0, 255, 255)
+    imageText.TextSize = 16
+    imageText.Font = Enum.Font.GothamBold
+    imageText.ZIndex = 5
+    imageText.Parent = imageFrame
     
     -- 选项卡切换
     for tabName, tabButton in pairs(TabButtons) do
@@ -423,10 +492,10 @@ local function loadScript()
             
             -- 显示/隐藏公告框架
             if tabName == "公告" then
-                AnnouncementFrame.Visible = true
+                AnnouncementScrolling.Visible = true
                 ContentScrolling.Visible = false
             else
-                AnnouncementFrame.Visible = false
+                AnnouncementScrolling.Visible = false
                 ContentScrolling.Visible = true
                 
                 -- 隐藏所有按钮
@@ -456,7 +525,7 @@ local function loadScript()
     -- 默认显示公告
     TabButtons["公告"].BackgroundColor3 = Color3.fromRGB(0, 150, 255)
     TabButtons["公告"].TextColor3 = Color3.fromRGB(255, 255, 255)
-    AnnouncementFrame.Visible = true
+    AnnouncementScrolling.Visible = true
     ContentScrolling.Visible = false
 
     -- 功能变量
@@ -479,34 +548,34 @@ local function loadScript()
         game:GetService("Debris"):AddItem(sound, 2)
     end
 
-    -- 通知函数（减小通知尺寸）
+    -- 通知函数
     local function showNotification(message, color)
         local notification = Instance.new("Frame")
-        notification.Size = UDim2.new(0, 200, 0, 40) -- 减小三分之一
-        notification.Position = UDim2.new(0.5, -100, 0.1, 0) -- 减小三分之一
+        notification.Size = UDim2.new(0, 300, 0, 60)
+        notification.Position = UDim2.new(0.5, -150, 0.1, 0)
         notification.BackgroundColor3 = color
-        notification.BackgroundTransparency = 0.2 -- 保持原样
+        notification.BackgroundTransparency = 0
         notification.ZIndex = 100
-        Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+        Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 12)
         Instance.new("UIStroke", notification).Color = Color3.fromRGB(255, 255, 255)
         notification.Parent = ScreenGui
         
         local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, -13.3, 1, -6.7) -- 减小三分之一
-        label.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+        label.Size = UDim2.new(1, -20, 1, -10)
+        label.Position = UDim2.new(0, 10, 0, 5)
         label.BackgroundTransparency = 1
         label.Text = message
         label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.TextSize = 16 -- 字体大小不变
+        label.TextSize = 16
         label.Font = Enum.Font.GothamBold
         label.TextWrapped = true
         label.Parent = notification
         
-        notification.Position = UDim2.new(0.5, -100, 0, -46.7) -- 减小三分之一
-        TweenService:Create(notification, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -100, 0.1, 0)}):Play()
+        notification.Position = UDim2.new(0.5, -150, 0, -70)
+        TweenService:Create(notification, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -150, 0.1, 0)}):Play()
         
         wait(3)
-        TweenService:Create(notification, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -100, 0, -46.7)}):Play()
+        TweenService:Create(notification, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -150, 0, -70)}):Play()
         wait(0.5)
         notification:Destroy()
     end
@@ -517,7 +586,7 @@ local function loadScript()
         playClickSound()
         minimized = not minimized
         if minimized then
-            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 120, 0, 27)}):Play() -- 减小三分之一
+            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 180, 0, 40)}):Play()
             wait(0.3)
             TabFrame.Visible = false
             MainContent.Visible = false
@@ -525,7 +594,7 @@ local function loadScript()
         else
             TabFrame.Visible = true
             MainContent.Visible = true
-            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 467, 0, 300)}):Play() -- 减小三分之一
+            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 700, 0, 450)}):Play()
             MinimizeButton.Text = "_"
         end
     end
@@ -555,6 +624,28 @@ local function loadScript()
         playClickSound()
         loadstring(game:HttpGet(url))()
         showNotification(name .. "已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 新增的三个功能函数
+    local function loadDoorsScript()
+        playClickSound()
+        showNotification("正在加载doors脚本...", Color3.fromRGB(255, 100, 0))
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/mstudio45/MSDOORS/main/MSDOORS.lua'))()
+        showNotification("doors脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadMuscleLegend()
+        playClickSound()
+        showNotification("正在加载力量传奇...", Color3.fromRGB(255, 100, 0))
+        loadstring(game:GetObjects("rbxassetid://10048914323")[1].Source)()
+        showNotification("力量传奇已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadMuscleLegendMod()
+        playClickSound()
+        showNotification("正在加载力量传奇改力量...", Color3.fromRGB(255, 100, 0))
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua'))()
+        showNotification("力量传奇改力量已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 凋零风暴功能
@@ -1141,7 +1232,7 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 查看玩家背包（减小背包窗口尺寸）
+    -- 查看玩家背包
     local function viewPlayerBackpack()
         playClickSound()
         if not selectedPlayer then
@@ -1149,62 +1240,62 @@ print("安全版自然灾害免疫已激活")
             return
         end
 
-        -- 创建背包查看窗口（减小三分之一）
+        -- 创建背包查看窗口
         local backpackFrame = Instance.new("Frame")
-        backpackFrame.Size = UDim2.new(0, 267, 0, 333) -- 减小三分之一
-        backpackFrame.Position = UDim2.new(0.5, -133.5, 0.5, -166.5) -- 减小三分之一
+        backpackFrame.Size = UDim2.new(0, 400, 0, 500)
+        backpackFrame.Position = UDim2.new(0.5, -200, 0.5, -250)
         backpackFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
-        backpackFrame.BackgroundTransparency = 0.1 -- 保持原样
+        backpackFrame.BackgroundTransparency = 0
         backpackFrame.BorderSizePixel = 2
         backpackFrame.BorderColor3 = Color3.fromRGB(0, 150, 255)
         backpackFrame.Active = true
         backpackFrame.Draggable = true
         backpackFrame.ZIndex = 50
-        Instance.new("UICorner", backpackFrame).CornerRadius = UDim.new(0, 10) -- 减小三分之一
+        Instance.new("UICorner", backpackFrame).CornerRadius = UDim.new(0, 15)
         Instance.new("UIStroke", backpackFrame).Color = Color3.fromRGB(0, 150, 255)
         backpackFrame.Parent = ScreenGui
 
         -- 标题栏
         local titleBar = Instance.new("Frame")
-        titleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
+        titleBar.Size = UDim2.new(1, 0, 0, 40)
         titleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
-        titleBar.BackgroundTransparency = 0.1 -- 保持原样
+        titleBar.BackgroundTransparency = 0
         titleBar.BorderSizePixel = 0
         titleBar.ZIndex = 51
-        Instance.new("UICorner", titleBar).CornerRadius = UDim.new(0, 10)
+        Instance.new("UICorner", titleBar).CornerRadius = UDim.new(0, 15)
         titleBar.Parent = backpackFrame
 
         local titleLabel = Instance.new("TextLabel")
-        titleLabel.Size = UDim2.new(1, -33.5, 1, 0) -- 减小三分之一
-        titleLabel.Position = UDim2.new(0, 10, 0, 0) -- 减小三分之一
+        titleLabel.Size = UDim2.new(1, -50, 1, 0)
+        titleLabel.Position = UDim2.new(0, 15, 0, 0)
         titleLabel.BackgroundTransparency = 1
         titleLabel.Text = selectedPlayer.Name .. "的背包"
         titleLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-        titleLabel.TextSize = 18 -- 字体大小不变
+        titleLabel.TextSize = 18
         titleLabel.TextXAlignment = Enum.TextXAlignment.Left
         titleLabel.Font = Enum.Font.GothamBold
         titleLabel.ZIndex = 52
         titleLabel.Parent = titleBar
 
         local closeButton = Instance.new("TextButton")
-        closeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-        closeButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
+        closeButton.Size = UDim2.new(0, 30, 0, 30)
+        closeButton.Position = UDim2.new(1, -35, 0, 5)
         closeButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-        closeButton.BackgroundTransparency = 0.2 -- 保持原样
+        closeButton.BackgroundTransparency = 0
         closeButton.Text = "X"
         closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        closeButton.TextSize = 16 -- 字体大小不变
+        closeButton.TextSize = 16
         closeButton.Font = Enum.Font.GothamBold
         closeButton.ZIndex = 52
-        Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+        Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 8)
         closeButton.Parent = titleBar
 
         -- 内容区域
         local contentFrame = Instance.new("ScrollingFrame")
-        contentFrame.Size = UDim2.new(1, -13.3, 1, -40) -- 减小三分之一
-        contentFrame.Position = UDim2.new(0, 6.7, 0, 33.3) -- 减小三分之一
+        contentFrame.Size = UDim2.new(1, -20, 1, -60)
+        contentFrame.Position = UDim2.new(0, 10, 0, 50)
         contentFrame.BackgroundTransparency = 1
-        contentFrame.ScrollBarThickness = 5.3 -- 减小三分之一
+        contentFrame.ScrollBarThickness = 8
         contentFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
         contentFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
         contentFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -1212,8 +1303,8 @@ print("安全版自然灾害免疫已激活")
         contentFrame.Parent = backpackFrame
 
         local contentLayout = Instance.new("UIListLayout", contentFrame)
-        contentLayout.Padding = UDim.new(0, 6.7) -- 减小三分之一
-        Instance.new("UIPadding", contentFrame).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+        contentLayout.Padding = UDim.new(0, 10)
+        Instance.new("UIPadding", contentFrame).PaddingTop = UDim.new(0, 5)
 
         -- 获取目标玩家的背包和角色中的工具
         local targetBackpack = selectedPlayer:FindFirstChildOfClass("Backpack")
@@ -1241,57 +1332,57 @@ print("安全版自然灾害免疫已激活")
         -- 显示工具列表
         if #tools == 0 then
             local noItemsLabel = Instance.new("TextLabel")
-            noItemsLabel.Size = UDim2.new(1, 0, 0, 33.3) -- 减小三分之一
+            noItemsLabel.Size = UDim2.new(1, 0, 0, 50)
             noItemsLabel.BackgroundTransparency = 1
             noItemsLabel.Text = "背包为空"
             noItemsLabel.TextColor3 = Color3.fromRGB(150, 150, 200)
-            noItemsLabel.TextSize = 16 -- 字体大小不变
+            noItemsLabel.TextSize = 16
             noItemsLabel.Font = Enum.Font.Gotham
             noItemsLabel.ZIndex = 52
             noItemsLabel.Parent = contentFrame
         else
             for _, tool in ipairs(tools) do
                 local itemFrame = Instance.new("Frame")
-                itemFrame.Size = UDim2.new(1, 0, 0, 40) -- 减小三分之一
+                itemFrame.Size = UDim2.new(1, 0, 0, 60)
                 itemFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
-                itemFrame.BackgroundTransparency = 0.3 -- 保持原样
+                itemFrame.BackgroundTransparency = 0
                 itemFrame.ZIndex = 52
-                Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
+                Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 10)
                 Instance.new("UIStroke", itemFrame).Color = Color3.fromRGB(100, 100, 200)
                 itemFrame.Parent = contentFrame
 
                 local itemName = Instance.new("TextLabel")
-                itemName.Size = UDim2.new(0.6, -6.7, 0.5, -3.3) -- 减小三分之一
-                itemName.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+                itemName.Size = UDim2.new(0.6, -10, 0.5, -5)
+                itemName.Position = UDim2.new(0, 10, 0, 5)
                 itemName.BackgroundTransparency = 1
                 itemName.Text = tool.Name
                 itemName.TextColor3 = Color3.fromRGB(200, 200, 255)
-                itemName.TextSize = 16 -- 字体大小不变
+                itemName.TextSize = 16
                 itemName.TextXAlignment = Enum.TextXAlignment.Left
                 itemName.Font = Enum.Font.Gotham
                 itemName.ZIndex = 53
                 itemName.Parent = itemFrame
 
                 local stealButton = Instance.new("TextButton")
-                stealButton.Size = UDim2.new(0.35, -6.7, 0.5, -3.3) -- 减小三分之一
-                stealButton.Position = UDim2.new(0.6, 3.3, 0, 3.3) -- 减小三分之一
+                stealButton.Size = UDim2.new(0.35, -10, 0.5, -5)
+                stealButton.Position = UDim2.new(0.6, 5, 0, 5)
                 stealButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
-                stealButton.BackgroundTransparency = 0.2 -- 保持原样
+                stealButton.BackgroundTransparency = 0
                 stealButton.Text = "偷取"
                 stealButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                stealButton.TextSize = 14 -- 字体大小不变
+                stealButton.TextSize = 14
                 stealButton.Font = Enum.Font.GothamBold
                 stealButton.ZIndex = 53
-                Instance.new("UICorner", stealButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                Instance.new("UICorner", stealButton).CornerRadius = UDim.new(0, 8)
                 stealButton.Parent = itemFrame
 
                 local itemDesc = Instance.new("TextLabel")
-                itemDesc.Size = UDim2.new(1, -13.3, 0.5, -3.3) -- 减小三分之一
-                itemDesc.Position = UDim2.new(0, 6.7, 0.5, 0)
+                itemDesc.Size = UDim2.new(1, -20, 0.5, -5)
+                itemDesc.Position = UDim2.new(0, 10, 0.5, 0)
                 itemDesc.BackgroundTransparency = 1
                 itemDesc.Text = "工具类物品"
                 itemDesc.TextColor3 = Color3.fromRGB(150, 150, 200)
-                itemDesc.TextSize = 12 -- 字体大小不变
+                itemDesc.TextSize = 12
                 itemDesc.TextXAlignment = Enum.TextXAlignment.Left
                 itemDesc.Font = Enum.Font.Gotham
                 itemDesc.ZIndex = 53
@@ -1311,11 +1402,11 @@ print("安全版自然灾害免疫已激活")
 
                 -- 按钮悬停效果
                 stealButton.MouseEnter:Connect(function()
-                    stealButton.BackgroundTransparency = 0.1 -- 保持原样
+                    stealButton.BackgroundTransparency = 0.2
                 end)
                 
                 stealButton.MouseLeave:Connect(function()
-                    stealButton.BackgroundTransparency = 0.2 -- 保持原样
+                    stealButton.BackgroundTransparency = 0
                 end)
             end
         end
@@ -1605,7 +1696,12 @@ print("安全版自然灾害免疫已激活")
 
     -- 绑定功能按钮
     local buttonActions = {
-        FlyButton = loadFlyV2,  -- 改为飞行v2
+        -- 新增的三个按钮
+        DoorsButton = loadDoorsScript,
+        MuscleLegendButton = loadMuscleLegend,
+        MuscleLegendModButton = loadMuscleLegendMod,
+        
+        FlyButton = loadFlyV2,
         InvincibleFlyButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414", "无敌苍蝇飞行") end,
         FakeLagButton = function() loadExternalScript("https://raw.githubusercontent.com/RENZXW/RENZXW-SCRIPTS/main/fakeLAGRENZXW.txt", "假延迟") end,
         DayunButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "大运") end,
@@ -1680,7 +1776,7 @@ print("安全版自然灾害免疫已激活")
         ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
         CatAnimButton = function() loadExternalScript("https://pastebin.com/raw/Y1MkBRn3", "猫动作") end,
         InvincibleButton = function() loadExternalScript("https://raw.githubusercontent.com/5twh2hsf9j-byte/BowenPrime67/refs/heads/main/Python", "无敌脚本") end,
-        BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "悦服循环打狗") end,
+        BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "Kenny悦服循环打狗") end,
         FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
         FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
@@ -1727,39 +1823,39 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 启动动画（减小启动界面尺寸）
+    -- 启动动画（透明背景）
     local startupFrame = Instance.new("Frame")
     startupFrame.Size = UDim2.new(1, 0, 1, 0)
-    startupFrame.BackgroundTransparency = 1 -- 透明背景
+    startupFrame.BackgroundTransparency = 1
     startupFrame.ZIndex = 100
     startupFrame.Parent = ScreenGui
     
     local startupLabel = Instance.new("TextLabel")
-    startupLabel.Size = UDim2.new(0, 200, 0, 66.7) -- 减小三分之一
-    startupLabel.Position = UDim2.new(0.5, -100, 0.5, -33.35) -- 减小三分之一
+    startupLabel.Size = UDim2.new(0, 300, 0, 100)
+    startupLabel.Position = UDim2.new(0.5, -150, 0.5, -50)
     startupLabel.BackgroundTransparency = 1
-    startupLabel.Text = "培根脚本 v6.4\n加载中..."
+    startupLabel.Text = "培根脚本 v6.5\n加载中..."
     startupLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-    startupLabel.TextSize = 24 -- 字体大小不变
+    startupLabel.TextSize = 24
     startupLabel.Font = Enum.Font.GothamBold
     startupLabel.ZIndex = 101
     startupLabel.Parent = startupFrame
 
     spawn(function()
         for i = 1, 5 do
-            startupLabel.Text = "培根脚本 v6.4\n加载中" .. string.rep(".", i)
+            startupLabel.Text = "培根脚本 v6.5\n加载中" .. string.rep(".", i)
             wait(0.5)
         end
-        startupLabel.Text = "培根脚本 v6.4\n加载完成!"
+        startupLabel.Text = "培根脚本 v6.5\n加载完成!"
         TweenService:Create(startupLabel, TweenInfo.new(1.5), {TextTransparency = 1}):Play()
         wait(1.5)
         startupFrame:Destroy()
         
         MainFrame.Visible = true
-        MainFrame.Position = UDim2.new(1.5, -233.5, 0.5, -150) -- 减小三分之一
-        TweenService:Create(MainFrame, TweenInfo.new(0.8), {Position = UDim2.new(0.5, -233.5, 0.5, -150)}):Play() -- 减小三分之一
+        MainFrame.Position = UDim2.new(1.5, -350, 0.5, -225)
+        TweenService:Create(MainFrame, TweenInfo.new(0.8), {Position = UDim2.new(0.5, -350, 0.5, -225)}):Play()
         
-        showNotification("培根脚本 v6.4 已加载!", Color3.fromRGB(0, 200, 255))
+        showNotification("培根脚本 v6.5 已加载!", Color3.fromRGB(0, 200, 255))
         
         -- 初始设置
         local humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
