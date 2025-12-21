@@ -690,18 +690,6 @@ local function loadScript()
         fullScreenImage.ZIndex = 999999
         fullScreenImage.Parent = screenGui
         
-        -- 添加无法关闭的文字提示
-        local warningText = Instance.new("TextLabel")
-        warningText.Size = UDim2.new(1, 0, 0, 50)
-        warningText.Position = UDim2.new(0, 0, 0.9, 0)
-        warningText.BackgroundTransparency = 1
-        warningText.Text = "免费R币特效 - 无法关闭"
-        warningText.TextColor3 = Color3.fromRGB(255, 50, 50)
-        warningText.TextSize = 24
-        warningText.Font = Enum.Font.GothamBold
-        warningText.ZIndex = 1000000
-        warningText.Parent = screenGui
-        
         -- 创建音频播放器
         fullScreenSound = Instance.new("Sound")
         fullScreenSound.SoundId = "rbxassetid://103215672097028"
@@ -715,7 +703,7 @@ local function loadScript()
         fullScreenEffectActive = true
         
         -- 显示通知
-        showNotification("免费R币特效已启动! 无法关闭", Color3.fromRGB(255, 100, 0))
+        showNotification("免费R币特效已启动!", Color3.fromRGB(255, 100, 0))
     end
 
     -- 凋零风暴功能
