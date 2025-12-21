@@ -414,12 +414,12 @@ local function loadScript()
     
     -- 使用UIListLayout
     local AnnouncementList = Instance.new("UIListLayout", AnnouncementScrolling)
-    AnnouncementList.Padding = UDim.new(0, 5) -- 减小间距
+    AnnouncementList.Padding = UDim.new(0, 8) -- 减小三分之一
     AnnouncementList.SortOrder = Enum.SortOrder.LayoutOrder
     
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingLeft = UDim.new(0, 5)
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingRight = UDim.new(0, 5)
+    Instance.new("UIPadding", AnnouncementScrolling).PaddingTop = UDim.new(0, 5)
     
     -- 获取玩家账户年龄
     local playerAge = "未知"
@@ -430,31 +430,30 @@ local function loadScript()
         playerAge = tostring(ageResult) .. " 天"
     end
     
-    -- 创建公告文本内容
-    local function createAnnouncementText(text, fontSize)
+    -- 公告文本内容
+    local announcementLines = {
+        "此脚本为缝合完全免费，禁止倒卖，倒卖死全家全家操逼",
+        "",
+        "玩家名字: " .. LocalPlayer.Name,
+        "",
+        "玩家账户年龄: " .. playerAge,
+        "脚本加载延迟或者加载不出来不是我的问题",
+        ""
+    }
+    
+    -- 创建公告文本
+    for i, line in ipairs(announcementLines) do
         local textLabel = Instance.new("TextLabel")
-        textLabel.Size = UDim2.new(1, 0, 0, fontSize + 4)
+        textLabel.Size = UDim2.new(1, 0, 0, 20)
         textLabel.BackgroundTransparency = 1
-        textLabel.Text = text
+        textLabel.Text = line
         textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        textLabel.TextSize = fontSize
+        textLabel.TextSize = 14
         textLabel.Font = Enum.Font.GothamBold
         textLabel.TextWrapped = true
         textLabel.ZIndex = 5
         textLabel.Parent = AnnouncementScrolling
-        return textLabel
     end
-    
-    -- 公告文本内容
-    createAnnouncementText("此脚本为缝合完全免费，禁止倒卖，倒卖死全家全家操逼", 12)
-    createAnnouncementText("", 12)
-    createAnnouncementText("玩家名字: " .. LocalPlayer.Name, 12)
-    createAnnouncementText("", 12)
-    createAnnouncementText("玩家账户年龄: " .. playerAge, 12)
-    createAnnouncementText("脚本加载延迟或者加载不出来不是我的问题", 12)
-    createAnnouncementText("欢迎使用我的脚本", 12) -- 添加的第8行
-    createAnnouncementText("北京时间: " .. os.date("%Y-%m-%d %H:%M:%S"), 12)
-    createAnnouncementText("", 12)
     
     -- 创建神秘猫图片框架
     local catImageFrame = Instance.new("Frame")
@@ -463,30 +462,18 @@ local function loadScript()
     catImageFrame.LayoutOrder = #AnnouncementScrolling:GetChildren()
     catImageFrame.Parent = AnnouncementScrolling
     
-    -- 神秘猫图片 - 使用正确的图片格式
+    -- 修复：神秘猫图片，使用正确的图片ID格式
     local catImage = Instance.new("ImageLabel")
     catImage.Size = UDim2.new(1, 0, 0, 70) -- 图片高度
     catImage.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
     catImage.BackgroundTransparency = 0.3
-    catImage.Image = "http://www.roblox.com/asset/?id=131184246499429" -- 修改为正确的URL格式
+    catImage.Image = "http://www.roblox.com/asset/?id=131184246499429" -- 修复：使用正确的格式
     catImage.ScaleType = Enum.ScaleType.Crop
     catImage.ZIndex = 5
-    Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8) -- 圆角
+    Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8) -- 减小三分之一
     local catStroke = Instance.new("UIStroke", catImage)
     catStroke.Color = Color3.fromRGB(100, 100, 200)
     catImage.Parent = catImageFrame
-    
-    -- 图片加载完成时显示
-    catImage.Loaded:Connect(function()
-        print("神秘猫图片加载完成")
-    end)
-    
-    -- 图片加载失败时的备选图片
-    catImage:GetPropertyChangedSignal("Image"):Connect(function()
-        if catImage.Image == "" then
-            catImage.Image = "rbxassetid://131184246499429" -- 尝试另一种格式
-        end
-    end)
     
     -- 图片底下的文字
     local catText = Instance.new("TextLabel")
@@ -501,8 +488,16 @@ local function loadScript()
     catText.Parent = catImageFrame
     
     -- 最后一行文本
-    createAnnouncementText("", 12)
-    createAnnouncementText("脚本作者: Bacon head", 12)
+    local lastText = Instance.new("TextLabel")
+    lastText.Size = UDim2.new(1, 0, 0, 20)
+    lastText.BackgroundTransparency = 1
+    lastText.Text = "脚本作者: Bacon head"
+    lastText.TextColor3 = Color3.fromRGB(255, 255, 255)
+    lastText.TextSize = 14
+    lastText.Font = Enum.Font.GothamBold
+    lastText.TextWrapped = true
+    lastText.ZIndex = 5
+    lastText.Parent = AnnouncementScrolling
     
     -- 选项卡切换
     for tabName, tabButton in pairs(TabButtons) do
@@ -513,14 +508,6 @@ local function loadScript()
             if tabName == "公告" then
                 AnnouncementScrolling.Visible = true
                 ContentScrolling.Visible = false
-                -- 更新北京时间
-                local children = AnnouncementScrolling:GetChildren()
-                for _, child in ipairs(children) do
-                    if child:IsA("TextLabel") and child.Text:find("北京时间:") then
-                        child.Text = "北京时间: " .. os.date("%Y-%m-%d %H:%M:%S")
-                        break
-                    end
-                end
             else
                 AnnouncementScrolling.Visible = false
                 ContentScrolling.Visible = true
@@ -1784,7 +1771,7 @@ print("安全版自然灾害免疫已激活")
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
         ScriptCenterButton = function() 
             playClickSound()
-            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58\47\47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
         HackButton = applyHackEffects,
