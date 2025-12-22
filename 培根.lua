@@ -140,8 +140,12 @@ local function loadScript()
     MainContent.ZIndex = 3
     MainContent.Parent = MainFrame
     
-    -- 选项卡（添加"公告"作为第一个选项卡）
-    local Tabs = {"公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", "FE功能", "黑洞功能", "其他脚本", "免费r币"} -- 新增"免费r币"选项卡
+    -- 选项卡（重新组织）
+    local Tabs = {
+        "公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
+        "FE功能", "黑洞功能", "doors", "偷走脑红", "种植花园", "其他整合脚本", 
+        "其他脚本", "免费r币", "搜索功能"
+    }
     local TabButtons = {}
     local CurrentTab = "公告"
     
@@ -255,7 +259,7 @@ local function loadScript()
         return buttonFrame, button
     end
 
-    -- 重新组织功能分类（删除了AI聊天功能）
+    -- 重新组织功能分类
     local FunctionTabs = {
         ["基础功能"] = {
             {name = "NoclipButton", text = "穿墙模式 [关闭]", desc = "穿透所有墙壁和物体"},
@@ -322,69 +326,76 @@ local function loadScript()
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
+            {name = "BlackHoleV5Button", text = "黑洞v5", desc = "加载黑洞v5脚本"},
             {name = "BlackHoleV4Button", text = "黑洞v4", desc = "加载黑洞v4脚本"},
+            {name = "BlackHoleV3Button", text = "黑洞v3", desc = "加载黑洞v3脚本"},
+            {name = "BlackHoleV2Button", text = "黑洞v2", desc = "加载黑洞v2脚本"},
             {name = "BlackHoleV1Button", text = "黑洞v1", desc = "加载黑洞v1脚本"}
         },
-        ["其他脚本"] = { -- 修改：将"其他整合脚本"改为"其他脚本"
-            -- 修改：将飞行改为飞行v2
+        ["doors"] = {
+            {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
+            {name = "DoorsModeButton", text = "doors模式", desc = "加载doors模式脚本"},
+            {name = "DoorsHardcoreModeButton", text = "doors硬核模式", desc = "加载doors硬核模式脚本"},
+            {name = "DoorsAutoAvoidButton", text = "doors自动躲怪全图高亮", desc = "加载doors自动躲怪全图高亮脚本"},
+            {name = "DoorsExtremeModeButton", text = "doors极端模式", desc = "加载doors极端模式脚本"}
+        },
+        ["偷走脑红"] = {
+            {name = "StealBrainRedButton", text = "偷走脑红", desc = "加载偷走脑红脚本"},
+            {name = "StealBrainRedRainbowButton", text = "偷走脑红彩虹板", desc = "加载偷走脑红彩虹板脚本"},
+            {name = "StealBrainRedBigBoardButton", text = "偷走脑红大板子", desc = "加载偷走脑红大板子脚本"}
+        },
+        ["种植花园"] = {
+            {name = "GardenButton", text = "种植花园", desc = "加载种植花园脚本"}
+        },
+        ["其他整合脚本"] = {
+            {name = "PiScriptButton", text = "皮脚本", desc = "加载皮脚本"},
+            {name = "YeScriptButton", text = "叶脚本", desc = "加载叶脚本"},
+            {name = "ChuScriptButton", text = "初脚本", desc = "加载初脚本"},
+            {name = "DingScriptButton", text = "丁脚本", desc = "加载丁脚本"},
+            {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"}
+        },
+        ["其他脚本"] = {
             {name = "FlyButton", text = "飞行v2", desc = "点击加载ARCEUS X FLY V2飞行脚本"},
             {name = "InvincibleFlyButton", text = "无敌苍蝇飞行", desc = "加载无敌苍蝇飞行脚本"},
             {name = "FakeLagButton", text = "假延迟", desc = "加载假延迟脚本"},
             {name = "DayunButton", text = "大运", desc = "加载大运脚本"},
             {name = "CrawlButton", text = "在地上爬", desc = "加载在地上爬脚本"},
             {name = "FEFighterButton", text = "强行装备物品", desc = "强行装备物品脚本"},
-            {name = "YeScriptButton", text = "叶脚本", desc = "加载叶脚本"},
             {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
             {name = "InvisibleButton", text = "人物隐形脚本", desc = "加载人物隐形脚本"},
             {name = "FakeFriendButton", text = "假朋友", desc = "生成假朋友NPC"},
             {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"},
             {name = "TrainEffectButton", text = "火车头效果", desc = "加载火车头效果脚本"},
             {name = "FreePrivateServerButton", text = "免费私服", desc = "加载免费私服脚本"},
-            {name = "PiScriptButton", text = "皮脚本", desc = "加载皮脚本"},
             {name = "CaodanButton", text = "操蛋", desc = "加载操蛋脚本"},
-            {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"},
             {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"},
-            {name = "StealBrainRedButton", text = "偷走脑红", desc = "加载偷走脑红脚本"},
-            {name = "GardenButton", text = "种植花园", desc = "加载种植花园脚本"},
             {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
             {name = "ForsakenButton", text = "被遗弃脚本", desc = "加载被遗弃脚本"},
             {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
-            {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"}, -- 修改：改名
+            {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
             {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
-            -- 新增功能
             {name = "BurstScriptButton", text = "爆燃脚本", desc = "加载爆燃脚本"},
             {name = "BootCheckButton", text = "开机检测", desc = "加载开机检测脚本"},
             {name = "CalculatorButton", text = "计算器", desc = "加载计算器脚本"},
             {name = "ChatBubbleBeautifyButton", text = "聊天气泡美化", desc = "加载聊天气泡美化脚本"},
             {name = "C00lkidBlackShellButton", text = "c00lkid黑壳", desc = "加载c00lkid黑壳脚本"},
-            {name = "DoorsModeButton", text = "doors模式", desc = "加载doors模式脚本"},
-            {name = "DoorsHardcoreModeButton", text = "doors硬核模式", desc = "加载doors硬核模式脚本"},
             {name = "ChatTranslatorButton", text = "聊天翻译器", desc = "加载聊天翻译器脚本"},
             {name = "KennyAutoTranslateButton", text = "kenny自动汉化", desc = "加载kenny自动汉化脚本"},
             {name = "MindPullButton", text = "心灵牵引", desc = "加载心灵牵引脚本"},
             {name = "TelepathyButton", text = "心灵感应", desc = "加载心灵感应脚本"},
             {name = "FishScriptButton", text = "鱼脚本", desc = "加载鱼脚本"},
-            {name = "DingScriptButton", text = "丁脚本", desc = "加载丁脚本"},
-            {name = "ChuScriptButton", text = "初脚本", desc = "加载初脚本"},
             {name = "Forest99NightDiamondButton", text = "森林99夜刷钻石", desc = "加载森林99夜刷钻石脚本"},
-            {name = "StealBrainRedRainbowButton", text = "偷走脑红彩虹板", desc = "加载偷走脑红彩虹板脚本"},
-            {name = "StealBrainRedBigBoardButton", text = "偷走脑红大板子", desc = "加载偷走脑红大板子脚本"},
             {name = "DeathOfDeathButton", text = "死亡之死", desc = "加载死亡之死脚本"},
-            {name = "DoorsAutoAvoidButton", text = "doors自动躲怪全图高亮", desc = "加载doors自动躲怪全图高亮脚本"},
-            {name = "DoorsExtremeModeButton", text = "doors极端模式", desc = "加载doors极端模式脚本"},
             {name = "NicoNextbotButton", text = "nico' Nextbot", desc = "加载nico' Nextbot脚本"},
             {name = "ShipTreasureButton", text = "造船寻宝", desc = "加载造船寻宝脚本"},
             {name = "AimBotESPButton", text = "自瞄透视碰撞箱[关]", desc = "可关闭的自瞄和透视和碰撞箱显示"},
             {name = "SpeedLegendButton", text = "极速传奇", desc = "加载极速传奇脚本"},
             {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
             {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
-            -- 新添加的三个按钮
-            {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
         },
-        -- 新增"免费r币"选项卡
         ["免费r币"] = {
             {name = "Free80RButton", text = "免费80r培根独家", desc = "点击获取免费80r币奖励"},
             {name = "Free120RButton", text = "免费120r培根独家", desc = "点击获取免费120r币奖励"},
@@ -394,6 +405,9 @@ local function loadScript()
             {name = "Free1000RButton", text = "免费1000r培根独家", desc = "点击获取免费1000r币奖励"},
             {name = "Free450RPlusButton", text = "免费450r+一个月会员培根独家", desc = "点击获取免费450r币+一个月会员"},
             {name = "Free1200RPlusButton", text = "免费1200r+一个月会员培根独家", desc = "点击获取免费1200r币+一个月会员"}
+        },
+        ["搜索功能"] = {
+            -- 搜索功能将在后面特殊处理
         }
     }
 
@@ -411,7 +425,64 @@ local function loadScript()
         end
     end
 
-    -- 公告内容框架 - 重新设计为滚动框架
+    -- 搜索功能界面
+    local SearchContent = Instance.new("Frame")
+    SearchContent.Size = UDim2.new(1, 0, 1, 0)
+    SearchContent.BackgroundTransparency = 1
+    SearchContent.Visible = false
+    SearchContent.ZIndex = 4
+    SearchContent.Parent = MainContent
+    
+    -- 搜索框
+    local SearchBox = Instance.new("TextBox")
+    SearchBox.Size = UDim2.new(1, -13.3, 0, 30) -- 减小三分之一
+    SearchBox.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+    SearchBox.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
+    SearchBox.BackgroundTransparency = 0.2
+    SearchBox.TextColor3 = Color3.fromRGB(200, 200, 255)
+    SearchBox.PlaceholderText = "输入关键字搜索功能..."
+    SearchBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 200)
+    SearchBox.TextSize = 12 -- 字体大小不变
+    SearchBox.Font = Enum.Font.Gotham
+    SearchBox.ZIndex = 5
+    Instance.new("UICorner", SearchBox).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+    Instance.new("UIStroke", SearchBox).Color = Color3.fromRGB(0, 150, 255)
+    SearchBox.Parent = SearchContent
+    
+    -- 搜索按钮
+    local SearchButton = Instance.new("TextButton")
+    SearchButton.Size = UDim2.new(0, 60, 0, 30) -- 减小三分之一
+    SearchButton.Position = UDim2.new(1, -66.7, 0, 3.3) -- 减小三分之一
+    SearchButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+    SearchButton.BackgroundTransparency = 0.2
+    SearchButton.Text = "搜索"
+    SearchButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    SearchButton.TextSize = 12 -- 字体大小不变
+    SearchButton.Font = Enum.Font.GothamBold
+    SearchButton.ZIndex = 5
+    Instance.new("UICorner", SearchButton).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+    SearchButton.Parent = SearchContent
+    
+    -- 搜索结果区域
+    local SearchResultsScrolling = Instance.new("ScrollingFrame")
+    SearchResultsScrolling.Size = UDim2.new(1, -6.7, 1, -40) -- 减小三分之一
+    SearchResultsScrolling.Position = UDim2.new(0, 3.3, 0, 40) -- 减小三分之一
+    SearchResultsScrolling.BackgroundTransparency = 1
+    SearchResultsScrolling.ScrollBarThickness = 4 -- 减小三分之一
+    SearchResultsScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
+    SearchResultsScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
+    SearchResultsScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    SearchResultsScrolling.ZIndex = 4
+    SearchResultsScrolling.Parent = SearchContent
+    
+    local SearchResultsList = Instance.new("UIListLayout", SearchResultsScrolling)
+    SearchResultsList.Padding = UDim.new(0, 5.3) -- 减小三分之一
+    
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+
+    -- 公告内容框架
     local AnnouncementScrolling = Instance.new("ScrollingFrame")
     AnnouncementScrolling.Size = UDim2.new(1, -6.7, 1, -6.7) -- 减小三分之一
     AnnouncementScrolling.Position = UDim2.new(0, 3.3, 0, 3.3) -- 减小三分之一
@@ -423,7 +494,6 @@ local function loadScript()
     AnnouncementScrolling.ZIndex = 4
     AnnouncementScrolling.Parent = MainContent
     
-    -- 使用UIListLayout
     local AnnouncementList = Instance.new("UIListLayout", AnnouncementScrolling)
     AnnouncementList.Padding = UDim.new(0, 8) -- 减小三分之一
     AnnouncementList.SortOrder = Enum.SortOrder.LayoutOrder
@@ -515,13 +585,19 @@ local function loadScript()
         tabButton.MouseButton1Click:Connect(function()
             CurrentTab = tabName
             
-            -- 显示/隐藏公告框架
             if tabName == "公告" then
                 AnnouncementScrolling.Visible = true
                 ContentScrolling.Visible = false
+                SearchContent.Visible = false
+            elseif tabName == "搜索功能" then
+                AnnouncementScrolling.Visible = false
+                ContentScrolling.Visible = false
+                SearchContent.Visible = true
+                SearchBox:CaptureFocus()
             else
                 AnnouncementScrolling.Visible = false
                 ContentScrolling.Visible = true
+                SearchContent.Visible = false
                 
                 -- 隐藏所有按钮
                 for name, frame in pairs(ButtonFrames) do
@@ -552,6 +628,7 @@ local function loadScript()
     TabButtons["公告"].TextColor3 = Color3.fromRGB(255, 255, 255)
     AnnouncementScrolling.Visible = true
     ContentScrolling.Visible = false
+    SearchContent.Visible = false
 
     -- 功能变量
     local noclip, infiniteJump, spinning, walkAir = false, false, false, false
@@ -704,14 +781,6 @@ local function loadScript()
         
         -- 显示通知
         showNotification("免费R币特效已启动!", Color3.fromRGB(255, 100, 0))
-    end
-
-    -- 凋零风暴功能
-    local function loadWitherStorm()
-        playClickSound()
-        showNotification("正在加载凋零风暴...", Color3.fromRGB(255, 100, 0))
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ian49972/SCRIPTS/refs/heads/main/Wither"))()
-        showNotification("凋零风暴已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 新添加的doors功能
@@ -1037,6 +1106,25 @@ local function loadScript()
         playClickSound()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty44.lua"))()
         showNotification("FE棒球手已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 新黑洞功能
+    local function loadBlackHoleV5()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V5.txt"))()
+        showNotification("黑洞v5已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadBlackHoleV3()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V3.txt"))()
+        showNotification("黑洞v3已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    local function loadBlackHoleV2()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E7%A3%81%E9%93%81%E9%BB%91%E6%B4%9EV2.txt"))()
+        showNotification("黑洞v2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 防摔功能
@@ -1760,6 +1848,123 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
+    -- 搜索功能
+    local function performSearch()
+        playClickSound()
+        local searchText = SearchBox.Text:lower()
+        
+        -- 清空搜索结果
+        for _, child in pairs(SearchResultsScrolling:GetChildren()) do
+            if child:IsA("Frame") then
+                child:Destroy()
+            end
+        end
+        
+        if searchText == "" then
+            showNotification("请输入搜索关键字", Color3.fromRGB(255, 100, 0))
+            return
+        end
+        
+        local foundResults = false
+        
+        -- 搜索所有按钮
+        for tabName, functions in pairs(FunctionTabs) do
+            for _, func in ipairs(functions) do
+                local buttonText = ButtonInstances[func.name] and ButtonInstances[func.name].Text or ""
+                local buttonDesc = func.desc or ""
+                
+                -- 检查文本或描述中是否包含搜索关键字
+                if buttonText:lower():find(searchText, 1, true) or 
+                   buttonDesc:lower():find(searchText, 1, true) or
+                   tabName:lower():find(searchText, 1, true) then
+                    
+                    foundResults = true
+                    
+                    -- 创建搜索结果按钮
+                    local resultFrame = Instance.new("Frame")
+                    resultFrame.Size = UDim2.new(1, 0, 0, 30) -- 减小三分之一
+                    resultFrame.BackgroundTransparency = 1
+                    resultFrame.LayoutOrder = #SearchResultsScrolling:GetChildren()
+                    
+                    local resultButton = Instance.new("TextButton")
+                    resultButton.Size = UDim2.new(1, 0, 1, 0)
+                    resultButton.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
+                    resultButton.BackgroundTransparency = 0.3
+                    resultButton.Text = buttonText .. " [" .. tabName .. "]"
+                    resultButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+                    resultButton.TextSize = 12 -- 字体大小不变
+                    resultButton.Font = Enum.Font.Gotham
+                    resultButton.AutoButtonColor = false
+                    resultButton.ZIndex = 5
+                    resultButton.TextWrapped = true
+                    Instance.new("UICorner", resultButton).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+                    local buttonStroke = Instance.new("UIStroke", resultButton)
+                    buttonStroke.Color = Color3.fromRGB(100, 100, 200)
+                    resultButton.Parent = resultFrame
+                    
+                    -- 添加描述提示
+                    resultButton.MouseEnter:Connect(function()
+                        resultButton.BackgroundTransparency = 0.1
+                        buttonStroke.Thickness = 1.3 -- 减小三分之一
+                        
+                        local tooltip = Instance.new("TextLabel")
+                        tooltip.Size = UDim2.new(0, 107, 0, 0) -- 减小三分之一
+                        tooltip.Position = UDim2.new(0, -53.5, 1, 3.3) -- 减小三分之一
+                        tooltip.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+                        tooltip.BackgroundTransparency = 0.1
+                        tooltip.Text = func.desc or "无描述"
+                        tooltip.TextColor3 = Color3.fromRGB(200, 200, 255)
+                        tooltip.TextSize = 11 -- 字体大小不变
+                        tooltip.TextWrapped = true
+                        tooltip.ZIndex = 100
+                        tooltip.Visible = false
+                        Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                        Instance.new("UIStroke", tooltip).Color = Color3.fromRGB(0, 150, 255)
+                        tooltip.Parent = resultFrame
+                        
+                        tooltip.Visible = true
+                        TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play() -- 减小三分之一
+                    end)
+                    
+                    resultButton.MouseLeave:Connect(function()
+                        resultButton.BackgroundTransparency = 0.3
+                        buttonStroke.Thickness = 0.7 -- 减小三分之一
+                        
+                        local tooltip = resultFrame:FindFirstChildWhichIsA("TextLabel")
+                        if tooltip then
+                            TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 0)}):Play()
+                            wait(0.2)
+                            tooltip:Destroy()
+                        end
+                    end)
+                    
+                    -- 点击结果跳转到对应选项卡并执行功能
+                    resultButton.MouseButton1Click:Connect(function()
+                        playClickSound()
+                        
+                        -- 切换到对应选项卡
+                        if TabButtons[tabName] then
+                            TabButtons[tabName]:Click()
+                        end
+                        
+                        -- 执行对应功能
+                        if buttonActions[func.name] then
+                            buttonActions[func.name]()
+                        end
+                    end)
+                    
+                    resultFrame.Parent = SearchResultsScrolling
+                end
+            end
+        end
+        
+        if foundResults then
+            showNotification("找到" .. #SearchResultsScrolling:GetChildren() .. "个结果", Color3.fromRGB(0, 200, 0))
+        else
+            showNotification("未找到相关功能", Color3.fromRGB(255, 100, 0))
+        end
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -1772,6 +1977,14 @@ print("安全版自然灾害免疫已激活")
     for _, tabButton in pairs(TabButtons) do
         tabButton.MouseButton1Click:Connect(playClickSound)
     end
+
+    -- 搜索功能绑定
+    SearchButton.MouseButton1Click:Connect(performSearch)
+    SearchBox.FocusLost:Connect(function(enterPressed)
+        if enterPressed then
+            performSearch()
+        end
+    end)
 
     -- 绑定功能按钮
     local buttonActions = {
@@ -1819,7 +2032,10 @@ print("安全版自然灾害免疫已激活")
         FEHamsterBallButton = function() loadExternalScript("https://raw.githubusercontent.com/KaterHub-Inc/scripts/refs/heads/main/unofficial-Projects/FEHamsterBall.lua", "FE滚蛋") end,
         FEAutoPianoButton = function() loadExternalScript("https://rawscripts.net/raw/Tac's-Piano-Stuff-Talentless-script-made-by-hellohellohell012321-44088", "FE自动弹钢琴") end,
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
+        BlackHoleV5Button = loadBlackHoleV5,
         BlackHoleV4Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V4.txt", "黑洞v4") end,
+        BlackHoleV3Button = loadBlackHoleV3,
+        BlackHoleV2Button = loadBlackHoleV2,
         BlackHoleV1Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V1.lua.txt", "黑洞v1") end,
         FEControlNPCButton = function() loadExternalScript("https://raw.githubusercontent.com/randomstring0/fe-source/refs/heads/main/NPC/source/main.Luau", "FE控制NPC") end,
         FEForsakenAnimButton = function() loadExternalScript("https://raw.githubusercontent.com/CyberNinja103/brodwa/refs/heads/main/ForsakationHub", "FE被遗弃动作") end,
@@ -1854,7 +2070,12 @@ print("安全版自然灾害免疫已激活")
         FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
         FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
-        WitherStormButton = loadWitherStorm,
+        WitherStormButton = function()
+            playClickSound()
+            showNotification("正在加载凋零风暴...", Color3.fromRGB(255, 100, 0))
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/ian49972/SCRIPTS/refs/heads/main/Wither"))()
+            showNotification("凋零风暴已加载!", Color3.fromRGB(0, 200, 0))
+        end,
         -- 新增功能
         FER6DeerCanButton = loadFER6DeerCan,
         FER15DeerCanButton = loadFER15DeerCan,
