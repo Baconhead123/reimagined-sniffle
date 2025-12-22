@@ -122,7 +122,7 @@ local function loadScript()
     Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
     CloseButton.Parent = TitleBar
     
-    -- 选项卡区域（左侧）
+    -- 选项卡区域（左侧）- 修改为可滚动
     local TabFrame = Instance.new("Frame")
     TabFrame.Size = UDim2.new(0, 100, 1, -27) -- 减小三分之一
     TabFrame.Position = UDim2.new(0, 0, 0, 27)
@@ -140,20 +140,35 @@ local function loadScript()
     MainContent.ZIndex = 3
     MainContent.Parent = MainFrame
     
-    -- 选项卡（重新组织）
+    -- 选项卡（重新组织，搜索功能放在第二行）
     local Tabs = {
-        "公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
+        "公告", "搜索功能", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
         "FE功能", "黑洞功能", "doors", "偷走脑红", "种植花园", "其他整合脚本", 
-        "其他脚本", "免费r币", "搜索功能"
+        "其他脚本", "免费r币"
     }
     local TabButtons = {}
     local CurrentTab = "公告"
     
-    local TabLayout = Instance.new("UIListLayout", TabFrame)
+    -- 创建可滚动的选项卡容器
+    local TabScrolling = Instance.new("ScrollingFrame")
+    TabScrolling.Size = UDim2.new(1, 0, 1, 0)
+    TabScrolling.Position = UDim2.new(0, 0, 0, 0)
+    TabScrolling.BackgroundTransparency = 1
+    TabScrolling.BorderSizePixel = 0
+    TabScrolling.ScrollBarThickness = 4
+    TabScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
+    TabScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
+    TabScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    TabScrolling.ZIndex = 4
+    TabScrolling.Parent = TabFrame
+    
+    local TabLayout = Instance.new("UIListLayout", TabScrolling)
     TabLayout.Padding = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingTop = UDim.new(0, 6.7) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabFrame).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
+    
+    Instance.new("UIPadding", TabScrolling).PaddingTop = UDim.new(0, 6.7) -- 减小三分之一
+    Instance.new("UIPadding", TabScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", TabScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", TabScrolling).PaddingBottom = UDim.new(0, 6.7) -- 添加底部内边距
 
     for i, tabName in ipairs(Tabs) do
         local tabButton = Instance.new("TextButton")
@@ -164,10 +179,10 @@ local function loadScript()
         tabButton.TextColor3 = Color3.fromRGB(200, 200, 255)
         tabButton.TextSize = 12 -- 字体大小不变
         tabButton.Font = Enum.Font.Gotham
-        tabButton.ZIndex = 4
+        tabButton.ZIndex = 5
         tabButton.AutoButtonColor = false
         Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
-        tabButton.Parent = TabFrame
+        tabButton.Parent = TabScrolling
         TabButtons[tabName] = tabButton
     end
     
@@ -605,8 +620,12 @@ local function loadScript()
                 end
                 
                 -- 显示当前选项卡的按钮
-                for _, func in ipairs(FunctionTabs[tabName]) do
-                    ButtonFrames[func.name].Visible = true
+                if FunctionTabs[tabName] then
+                    for _, func in ipairs(FunctionTabs[tabName]) do
+                        if ButtonFrames[func.name] then
+                            ButtonFrames[func.name].Visible = true
+                        end
+                    end
                 end
             end
             
@@ -1938,7 +1957,7 @@ print("安全版自然灾害免疫已激活")
                         end
                     end)
                     
-                    -- 点击结果跳转到对应选项卡并执行功能
+                    -- 修复：搜索结果按钮点击事件 - 直接调用对应功能
                     resultButton.MouseButton1Click:Connect(function()
                         playClickSound()
                         
@@ -1947,9 +1966,11 @@ print("安全版自然灾害免疫已激活")
                             TabButtons[tabName]:Click()
                         end
                         
-                        -- 执行对应功能
+                        -- 直接调用对应功能
                         if buttonActions[func.name] then
                             buttonActions[func.name]()
+                        else
+                            showNotification("功能 [" .. func.name .. "] 未找到对应操作", Color3.fromRGB(255, 100, 0))
                         end
                     end)
                     
