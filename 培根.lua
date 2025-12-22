@@ -32,7 +32,7 @@ local function loadScript()
     
     -- 主窗口（减小三分之一）
     local MainFrame = Instance.new("Frame")
-    MainFrame.Size = UDim2.new(0, 467, 0, 300) -- 从700x450减小三分之一到467x300
+    MainFrame.Size = UDim2.new(0, 467, 0, 300)
     MainFrame.Position = UDim2.new(0.5, -233.5, 0.5, -150)
     MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
     MainFrame.BackgroundTransparency = 0.1
@@ -44,8 +44,8 @@ local function loadScript()
     
     -- 添加阴影效果
     local Shadow = Instance.new("ImageLabel")
-    Shadow.Size = UDim2.new(1, 13, 1, 13) -- 减小三分之一
-    Shadow.Position = UDim2.new(0, -6.5, 0, -6.5) -- 减小三分之一
+    Shadow.Size = UDim2.new(1, 13, 1, 13)
+    Shadow.Position = UDim2.new(0, -6.5, 0, -6.5)
     Shadow.BackgroundTransparency = 1
     Shadow.Image = "rbxassetid://5554236805"
     Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
@@ -56,11 +56,11 @@ local function loadScript()
     
     -- 增强圆角效果
     local MainCorner = Instance.new("UICorner", MainFrame)
-    MainCorner.CornerRadius = UDim.new(0, 11) -- 减小三分之一
+    MainCorner.CornerRadius = UDim.new(0, 11)
     
     local MainStroke = Instance.new("UIStroke", MainFrame)
     MainStroke.Color = Color3.fromRGB(0, 150, 255)
-    MainStroke.Thickness = 1.3 -- 减小三分之一
+    MainStroke.Thickness = 1.3
     
     -- 背景图片（保留原本UI背景）
     local BackgroundImage = Instance.new("ImageLabel")
@@ -75,7 +75,7 @@ local function loadScript()
     
     -- 标题栏
     local TitleBar = Instance.new("Frame")
-    TitleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
+    TitleBar.Size = UDim2.new(1, 0, 0, 27)
     TitleBar.BackgroundColor3 = Color3.fromRGB(20, 20, 40)
     TitleBar.BackgroundTransparency = 0.2
     TitleBar.BorderSizePixel = 0
@@ -84,12 +84,12 @@ local function loadScript()
     TitleBar.Parent = MainFrame
     
     local TitleLabel = Instance.new("TextLabel")
-    TitleLabel.Size = UDim2.new(1, -67, 1, 0) -- 减小三分之一
-    TitleLabel.Position = UDim2.new(0, 10, 0, 0) -- 减小三分之一
+    TitleLabel.Size = UDim2.new(1, -67, 1, 0)
+    TitleLabel.Position = UDim2.new(0, 10, 0, 0)
     TitleLabel.BackgroundTransparency = 1
     TitleLabel.Text = "培根脚本 v6.4"
     TitleLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-    TitleLabel.TextSize = 20 -- 字体大小不变
+    TitleLabel.TextSize = 20
     TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
     TitleLabel.Font = Enum.Font.GothamBold
     TitleLabel.ZIndex = 6
@@ -97,34 +97,34 @@ local function loadScript()
     
     -- 控制按钮
     local MinimizeButton = Instance.new("TextButton")
-    MinimizeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-    MinimizeButton.Position = UDim2.new(1, -47, 0, 3.5) -- 减小三分之一
+    MinimizeButton.Size = UDim2.new(0, 20, 0, 20)
+    MinimizeButton.Position = UDim2.new(1, -47, 0, 3.5)
     MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 150, 200)
     MinimizeButton.BackgroundTransparency = 0.2
     MinimizeButton.Text = "_"
     MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    MinimizeButton.TextSize = 16 -- 字体大小不变
+    MinimizeButton.TextSize = 16
     MinimizeButton.Font = Enum.Font.GothamBold
     MinimizeButton.ZIndex = 6
-    Instance.new("UICorner", MinimizeButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+    Instance.new("UICorner", MinimizeButton).CornerRadius = UDim.new(0, 5.3)
     MinimizeButton.Parent = TitleBar
 
     local CloseButton = Instance.new("TextButton")
-    CloseButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-    CloseButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
+    CloseButton.Size = UDim2.new(0, 20, 0, 20)
+    CloseButton.Position = UDim2.new(1, -23.5, 0, 3.5)
     CloseButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
     CloseButton.BackgroundTransparency = 0.2
     CloseButton.Text = "X"
     CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    CloseButton.TextSize = 14 -- 字体大小不变
+    CloseButton.TextSize = 14
     CloseButton.Font = Enum.Font.GothamBold
     CloseButton.ZIndex = 6
-    Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+    Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 5.3)
     CloseButton.Parent = TitleBar
     
     -- 选项卡区域（左侧）- 修改为可滚动
     local TabFrame = Instance.new("Frame")
-    TabFrame.Size = UDim2.new(0, 100, 1, -27) -- 减小三分之一
+    TabFrame.Size = UDim2.new(0, 100, 1, -27)
     TabFrame.Position = UDim2.new(0, 0, 0, 27)
     TabFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 50)
     TabFrame.BackgroundTransparency = 0.2
@@ -140,11 +140,11 @@ local function loadScript()
     MainContent.ZIndex = 3
     MainContent.Parent = MainFrame
     
-    -- 选项卡（重新组织，搜索功能放在第二行）
+    -- 选项卡（重新组织，按你的要求重新排序）
     local Tabs = {
         "公告", "搜索功能", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
-        "FE功能", "黑洞功能", "doors", "偷走脑红", "种植花园", "其他整合脚本", 
-        "其他脚本", "免费r币"
+        "FE功能", "黑洞功能", "其他脚本", "doors", "偷走脑红", "种植花园", 
+        "其他脚本整合", "免费r币", "死亡之死", "被遗弃", "无敌少侠飞行"
     }
     local TabButtons = {}
     local CurrentTab = "公告"
@@ -163,35 +163,35 @@ local function loadScript()
     TabScrolling.Parent = TabFrame
     
     local TabLayout = Instance.new("UIListLayout", TabScrolling)
-    TabLayout.Padding = UDim.new(0, 3.3) -- 减小三分之一
+    TabLayout.Padding = UDim.new(0, 3.3)
     
-    Instance.new("UIPadding", TabScrolling).PaddingTop = UDim.new(0, 6.7) -- 减小三分之一
-    Instance.new("UIPadding", TabScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", TabScrolling).PaddingBottom = UDim.new(0, 6.7) -- 添加底部内边距
+    Instance.new("UIPadding", TabScrolling).PaddingTop = UDim.new(0, 6.7)
+    Instance.new("UIPadding", TabScrolling).PaddingLeft = UDim.new(0, 3.3)
+    Instance.new("UIPadding", TabScrolling).PaddingRight = UDim.new(0, 3.3)
+    Instance.new("UIPadding", TabScrolling).PaddingBottom = UDim.new(0, 6.7)
 
     for i, tabName in ipairs(Tabs) do
         local tabButton = Instance.new("TextButton")
-        tabButton.Size = UDim2.new(1, -6.7, 0, 23.3) -- 减小三分之一
+        tabButton.Size = UDim2.new(1, -6.7, 0, 23.3)
         tabButton.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
         tabButton.BackgroundTransparency = 0.3
         tabButton.Text = tabName
         tabButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-        tabButton.TextSize = 12 -- 字体大小不变
+        tabButton.TextSize = 12
         tabButton.Font = Enum.Font.Gotham
         tabButton.ZIndex = 5
         tabButton.AutoButtonColor = false
-        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
+        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 6.7)
         tabButton.Parent = TabScrolling
         TabButtons[tabName] = tabButton
     end
     
     -- 内容区域（使用列表布局，单列按钮）
     local ContentScrolling = Instance.new("ScrollingFrame")
-    ContentScrolling.Size = UDim2.new(1, -6.7, 1, -6.7) -- 减小三分之一
-    ContentScrolling.Position = UDim2.new(0, 3.3, 0, 3.3) -- 减小三分之一
+    ContentScrolling.Size = UDim2.new(1, -6.7, 1, -6.7)
+    ContentScrolling.Position = UDim2.new(0, 3.3, 0, 3.3)
     ContentScrolling.BackgroundTransparency = 1
-    ContentScrolling.ScrollBarThickness = 4 -- 减小三分之一
+    ContentScrolling.ScrollBarThickness = 4
     ContentScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
     ContentScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
     ContentScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -200,17 +200,17 @@ local function loadScript()
     
     -- 使用UIListLayout
     local ContentList = Instance.new("UIListLayout", ContentScrolling)
-    ContentList.Padding = UDim.new(0, 5.3) -- 减小三分之一
+    ContentList.Padding = UDim.new(0, 5.3)
     ContentList.SortOrder = Enum.SortOrder.LayoutOrder
     
-    Instance.new("UIPadding", ContentScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", ContentScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", ContentScrolling).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", ContentScrolling).PaddingLeft = UDim.new(0, 3.3)
+    Instance.new("UIPadding", ContentScrolling).PaddingRight = UDim.new(0, 3.3)
+    Instance.new("UIPadding", ContentScrolling).PaddingTop = UDim.new(0, 3.3)
     
     -- 创建按钮函数（单列按钮）
     local function createButton(text, description)
         local buttonFrame = Instance.new("Frame")
-        buttonFrame.Size = UDim2.new(1, -6.7, 0, 30) -- 减小三分之一
+        buttonFrame.Size = UDim2.new(1, -6.7, 0, 30)
         buttonFrame.BackgroundTransparency = 1
         buttonFrame.LayoutOrder = #ContentScrolling:GetChildren()
         
@@ -220,12 +220,12 @@ local function loadScript()
         button.BackgroundTransparency = 0.3
         button.Text = text
         button.TextColor3 = Color3.fromRGB(200, 200, 255)
-        button.TextSize = 12 -- 字体大小不变
+        button.TextSize = 12
         button.Font = Enum.Font.Gotham
         button.AutoButtonColor = false
         button.ZIndex = 5
         button.TextWrapped = true
-        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 8)
         local buttonStroke = Instance.new("UIStroke", button)
         buttonStroke.Color = Color3.fromRGB(100, 100, 200)
         button.Parent = buttonFrame
@@ -233,22 +233,22 @@ local function loadScript()
         if description then
             button.MouseEnter:Connect(function()
                 local tooltip = Instance.new("TextLabel")
-                tooltip.Size = UDim2.new(0, 107, 0, 0) -- 减小三分之一
-                tooltip.Position = UDim2.new(0, -53.5, 1, 3.3) -- 减小三分之一
+                tooltip.Size = UDim2.new(0, 107, 0, 0)
+                tooltip.Position = UDim2.new(0, -53.5, 1, 3.3)
                 tooltip.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
                 tooltip.BackgroundTransparency = 0.1
                 tooltip.Text = description
                 tooltip.TextColor3 = Color3.fromRGB(200, 200, 255)
-                tooltip.TextSize = 11 -- 字体大小不变
+                tooltip.TextSize = 11
                 tooltip.TextWrapped = true
                 tooltip.ZIndex = 100
                 tooltip.Visible = false
-                Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3)
                 Instance.new("UIStroke", tooltip).Color = Color3.fromRGB(0, 150, 255)
                 tooltip.Parent = buttonFrame
                 
                 tooltip.Visible = true
-                TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play() -- 减小三分之一
+                TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play()
             end)
             
             button.MouseLeave:Connect(function()
@@ -263,18 +263,18 @@ local function loadScript()
         
         button.MouseEnter:Connect(function()
             button.BackgroundTransparency = 0.1
-            buttonStroke.Thickness = 1.3 -- 减小三分之一
+            buttonStroke.Thickness = 1.3
         end)
         
         button.MouseLeave:Connect(function()
             button.BackgroundTransparency = 0.3
-            buttonStroke.Thickness = 0.7 -- 减小三分之一
+            buttonStroke.Thickness = 0.7
         end)
         
         return buttonFrame, button
     end
 
-    -- 重新组织功能分类
+    -- 重新组织功能分类（按照你的要求）
     local FunctionTabs = {
         ["基础功能"] = {
             {name = "NoclipButton", text = "穿墙模式 [关闭]", desc = "穿透所有墙壁和物体"},
@@ -284,7 +284,11 @@ local function loadScript()
             {name = "PlayerButton", text = "选择玩家: 无", desc = "选择目标玩家"},
             {name = "ClimbWallButton", text = "爬墙模式 [关闭]", desc = "碰到墙自动上升"},
             {name = "AntiFallButton", text = "防摔(多点几次)", desc = "防止从高处掉落受伤"},
-            {name = "SuicideButton", text = "自杀", desc = "立即死亡"}
+            {name = "SuicideButton", text = "自杀", desc = "立即死亡"},
+            {name = "FlyButton", text = "飞行v2 [关闭]", desc = "点击开启/关闭飞行模式"},
+            {name = "InvincibleButton", text = "无敌 [关闭]", desc = "开启无敌模式"},
+            {name = "CollisionBoxButton", text = "显示碰撞箱 [关闭]", desc = "显示物体碰撞箱"},
+            {name = "WalkAirButton", text = "踏空行走 [关闭]", desc = "在空中行走"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -297,7 +301,8 @@ local function loadScript()
             {name = "SitSpinButton", text = "坐在头上旋转 [关闭]", desc = "坐在目标玩家头上旋转"},
             {name = "RideHeadButton", text = "骑在玩家头上 [关闭]", desc = "骑在目标玩家头上跟随移动"},
             {name = "ViewBackpackButton", text = "查看玩家背包", desc = "查看并偷取其他玩家的物品"},
-            {name = "ClickTeleportButton", text = "点击传送", desc = "加载点击传送工具脚本"}
+            {name = "ClickTeleportButton", text = "点击传送", desc = "加载点击传送工具脚本"},
+            {name = "AimbotButton", text = "可关闭的自瞄 [关闭]", desc = "自动瞄准最近玩家，可选头部/身体"}
         },
         ["外观功能"] = {
             {name = "PlayerSizeButton", text = "玩家大小: 1", desc = "调整玩家体型大小"},
@@ -315,7 +320,7 @@ local function loadScript()
             {name = "FEFacialButton", text = "FE表情", desc = "加载FE表情脚本"},
             {name = "FEHugButton", text = "fe拥抱", desc = "加载FE拥抱脚本"},
             {name = "FECrouchButton", text = "fe蹲下", desc = "加载FE蹲下脚本"},
-            {name = "FESkyboxButton", text = "FE天空盒", desc = "加载FE天空盒脚本"},
+            {name = "FESkyboxButton", text = "FE天空盒 (要买UGC卡密：113633503026070)", desc = "加载FE天空盒脚本"},
             {name = "FESwordButton", text = "fe圣剑", desc = "加载FE圣剑脚本"},
             {name = "FECarButton", text = "FE人物变车", desc = "将人物变成汽车形态"},
             {name = "FESpiderManButton", text = "FE蜘蛛侠", desc = "加载FE蜘蛛侠脚本"},
@@ -327,10 +332,8 @@ local function loadScript()
             {name = "FE096Button", text = "fe合集", desc = "加载FE合集脚本"},
             {name = "FEHam00dButton", text = "fe ham00d菜单", desc = "加载FE ham00d菜单脚本"},
             {name = "CatAnimButton", text = "猫动作", desc = "加载猫动作脚本"},
-            {name = "InvincibleButton", text = "无敌", desc = "加载无敌脚本"},
             {name = "FEAK47Button", text = "FE AK47", desc = "加载FE AK47脚本"},
             {name = "FESniperButton", text = "FE 狙击枪", desc = "加载FE狙击枪脚本"},
-            -- 新增FE功能
             {name = "FER6DeerCanButton", text = "FEr6鹿罐", desc = "加载FEr6鹿罐脚本"},
             {name = "FER15DeerCanButton", text = "FEr15鹿罐", desc = "加载FEr15鹿罐脚本"},
             {name = "FECoolKidButton", text = "FE酷小孩", desc = "加载FE酷小孩脚本"},
@@ -347,6 +350,40 @@ local function loadScript()
             {name = "BlackHoleV2Button", text = "黑洞v2", desc = "加载黑洞v2脚本"},
             {name = "BlackHoleV1Button", text = "黑洞v1", desc = "加载黑洞v1脚本"}
         },
+        ["其他脚本"] = {
+            {name = "FakeLagButton", text = "假延迟", desc = "加载假延迟脚本"},
+            {name = "DayunButton", text = "大运", desc = "加载大运脚本"},
+            {name = "CrawlButton", text = "在地上爬", desc = "加载在地上爬脚本"},
+            {name = "FEFighterButton", text = "强行装备物品", desc = "强行装备物品脚本"},
+            {name = "InvisibleButton", text = "人物隐形脚本", desc = "加载人物隐形脚本"},
+            {name = "FakeFriendButton", text = "假朋友", desc = "生成假朋友NPC"},
+            {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"},
+            {name = "TrainEffectButton", text = "火车头效果", desc = "加载火车头效果脚本"},
+            {name = "FreePrivateServerButton", text = "免费私服", desc = "加载免费私服脚本"},
+            {name = "CaodanButton", text = "操蛋", desc = "加载操蛋脚本"},
+            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
+            {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
+            {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"},
+            {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
+            {name = "BurstScriptButton", text = "爆燃脚本", desc = "加载爆燃脚本"},
+            {name = "BootCheckButton", text = "开机检测", desc = "加载开机检测脚本"},
+            {name = "CalculatorButton", text = "计算器", desc = "加载计算器脚本"},
+            {name = "ChatBubbleBeautifyButton", text = "聊天气泡美化", desc = "加载聊天气泡美化脚本"},
+            {name = "C00lkidBlackShellButton", text = "c00lkid黑壳", desc = "加载c00lkid黑壳脚本"},
+            {name = "ChatTranslatorButton", text = "聊天翻译器", desc = "加载聊天翻译器脚本"},
+            {name = "KennyAutoTranslateButton", text = "kenny自动汉化", desc = "加载kenny自动汉化脚本"},
+            {name = "MindPullButton", text = "心灵牵引", desc = "加载心灵牵引脚本"},
+            {name = "TelepathyButton", text = "心灵感应", desc = "加载心灵感应脚本"},
+            {name = "FishScriptButton", text = "鱼脚本", desc = "加载鱼脚本"},
+            {name = "Forest99NightDiamondButton", text = "森林99夜刷钻石", desc = "加载森林99夜刷钻石脚本"},
+            {name = "NicoNextbotButton", text = "nico' Nextbot", desc = "加载nico' Nextbot脚本"},
+            {name = "ShipTreasureButton", text = "造船寻宝", desc = "加载造船寻宝脚本"},
+            {name = "SpeedLegendButton", text = "极速传奇", desc = "加载极速传奇脚本"},
+            {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
+            {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
+            {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
+            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
+        },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
             {name = "DoorsModeButton", text = "doors模式", desc = "加载doors模式脚本"},
@@ -362,54 +399,14 @@ local function loadScript()
         ["种植花园"] = {
             {name = "GardenButton", text = "种植花园", desc = "加载种植花园脚本"}
         },
-        ["其他整合脚本"] = {
+        ["其他脚本整合"] = {
             {name = "PiScriptButton", text = "皮脚本", desc = "加载皮脚本"},
             {name = "YeScriptButton", text = "叶脚本", desc = "加载叶脚本"},
             {name = "ChuScriptButton", text = "初脚本", desc = "加载初脚本"},
             {name = "DingScriptButton", text = "丁脚本", desc = "加载丁脚本"},
-            {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"}
-        },
-        ["其他脚本"] = {
-            {name = "FlyButton", text = "飞行v2", desc = "点击加载ARCEUS X FLY V2飞行脚本"},
-            {name = "InvincibleFlyButton", text = "无敌苍蝇飞行", desc = "加载无敌苍蝇飞行脚本"},
-            {name = "FakeLagButton", text = "假延迟", desc = "加载假延迟脚本"},
-            {name = "DayunButton", text = "大运", desc = "加载大运脚本"},
-            {name = "CrawlButton", text = "在地上爬", desc = "加载在地上爬脚本"},
-            {name = "FEFighterButton", text = "强行装备物品", desc = "强行装备物品脚本"},
-            {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
-            {name = "InvisibleButton", text = "人物隐形脚本", desc = "加载人物隐形脚本"},
-            {name = "FakeFriendButton", text = "假朋友", desc = "生成假朋友NPC"},
-            {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"},
-            {name = "TrainEffectButton", text = "火车头效果", desc = "加载火车头效果脚本"},
-            {name = "FreePrivateServerButton", text = "免费私服", desc = "加载免费私服脚本"},
-            {name = "CaodanButton", text = "操蛋", desc = "加载操蛋脚本"},
-            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"},
-            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
-            {name = "ForsakenButton", text = "被遗弃脚本", desc = "加载被遗弃脚本"},
-            {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
-            {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"},
+            {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
-            {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
-            {name = "BurstScriptButton", text = "爆燃脚本", desc = "加载爆燃脚本"},
-            {name = "BootCheckButton", text = "开机检测", desc = "加载开机检测脚本"},
-            {name = "CalculatorButton", text = "计算器", desc = "加载计算器脚本"},
-            {name = "ChatBubbleBeautifyButton", text = "聊天气泡美化", desc = "加载聊天气泡美化脚本"},
-            {name = "C00lkidBlackShellButton", text = "c00lkid黑壳", desc = "加载c00lkid黑壳脚本"},
-            {name = "ChatTranslatorButton", text = "聊天翻译器", desc = "加载聊天翻译器脚本"},
-            {name = "KennyAutoTranslateButton", text = "kenny自动汉化", desc = "加载kenny自动汉化脚本"},
-            {name = "MindPullButton", text = "心灵牵引", desc = "加载心灵牵引脚本"},
-            {name = "TelepathyButton", text = "心灵感应", desc = "加载心灵感应脚本"},
-            {name = "FishScriptButton", text = "鱼脚本", desc = "加载鱼脚本"},
-            {name = "Forest99NightDiamondButton", text = "森林99夜刷钻石", desc = "加载森林99夜刷钻石脚本"},
-            {name = "DeathOfDeathButton", text = "死亡之死", desc = "加载死亡之死脚本"},
-            {name = "NicoNextbotButton", text = "nico' Nextbot", desc = "加载nico' Nextbot脚本"},
-            {name = "ShipTreasureButton", text = "造船寻宝", desc = "加载造船寻宝脚本"},
-            {name = "AimBotESPButton", text = "自瞄透视碰撞箱[关]", desc = "可关闭的自瞄和透视和碰撞箱显示"},
-            {name = "SpeedLegendButton", text = "极速传奇", desc = "加载极速传奇脚本"},
-            {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
-            {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
-            {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
-            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
+            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"}
         },
         ["免费r币"] = {
             {name = "Free80RButton", text = "免费80r培根独家", desc = "点击获取免费80r币奖励"},
@@ -420,6 +417,17 @@ local function loadScript()
             {name = "Free1000RButton", text = "免费1000r培根独家", desc = "点击获取免费1000r币奖励"},
             {name = "Free450RPlusButton", text = "免费450r+一个月会员培根独家", desc = "点击获取免费450r币+一个月会员"},
             {name = "Free1200RPlusButton", text = "免费1200r+一个月会员培根独家", desc = "点击获取免费1200r币+一个月会员"}
+        },
+        ["死亡之死"] = {
+            {name = "DeathOfDeathButton", text = "死亡之死", desc = "加载死亡之死脚本"}
+        },
+        ["被遗弃"] = {
+            {name = "ForsakenButton", text = "被遗弃脚本", desc = "加载被遗弃脚本"},
+            {name = "ForsakenScript2Button", text = "被遗弃脚本二", desc = "加载被遗弃脚本二"}
+        },
+        ["无敌少侠飞行"] = {
+            {name = "InvincibleFlyR15Button", text = "无敌少侠飞行r15 [关闭]", desc = "R15角色无敌飞行模式"},
+            {name = "InvincibleFlyR6Button", text = "无敌少侠飞行r6 [关闭]", desc = "R6角色无敌飞行模式"}
         },
         ["搜索功能"] = {
             -- 搜索功能将在后面特殊处理
@@ -450,40 +458,40 @@ local function loadScript()
     
     -- 搜索框
     local SearchBox = Instance.new("TextBox")
-    SearchBox.Size = UDim2.new(1, -13.3, 0, 30) -- 减小三分之一
-    SearchBox.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+    SearchBox.Size = UDim2.new(1, -13.3, 0, 30)
+    SearchBox.Position = UDim2.new(0, 6.7, 0, 3.3)
     SearchBox.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
     SearchBox.BackgroundTransparency = 0.2
     SearchBox.TextColor3 = Color3.fromRGB(200, 200, 255)
     SearchBox.PlaceholderText = "输入关键字搜索功能..."
     SearchBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 200)
-    SearchBox.TextSize = 12 -- 字体大小不变
+    SearchBox.TextSize = 12
     SearchBox.Font = Enum.Font.Gotham
     SearchBox.ZIndex = 5
-    Instance.new("UICorner", SearchBox).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+    Instance.new("UICorner", SearchBox).CornerRadius = UDim.new(0, 8)
     Instance.new("UIStroke", SearchBox).Color = Color3.fromRGB(0, 150, 255)
     SearchBox.Parent = SearchContent
     
     -- 搜索按钮
     local SearchButton = Instance.new("TextButton")
-    SearchButton.Size = UDim2.new(0, 60, 0, 30) -- 减小三分之一
-    SearchButton.Position = UDim2.new(1, -66.7, 0, 3.3) -- 减小三分之一
+    SearchButton.Size = UDim2.new(0, 60, 0, 30)
+    SearchButton.Position = UDim2.new(1, -66.7, 0, 3.3)
     SearchButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
     SearchButton.BackgroundTransparency = 0.2
     SearchButton.Text = "搜索"
     SearchButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    SearchButton.TextSize = 12 -- 字体大小不变
+    SearchButton.TextSize = 12
     SearchButton.Font = Enum.Font.GothamBold
     SearchButton.ZIndex = 5
-    Instance.new("UICorner", SearchButton).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+    Instance.new("UICorner", SearchButton).CornerRadius = UDim.new(0, 8)
     SearchButton.Parent = SearchContent
     
     -- 搜索结果区域
     local SearchResultsScrolling = Instance.new("ScrollingFrame")
-    SearchResultsScrolling.Size = UDim2.new(1, -6.7, 1, -40) -- 减小三分之一
-    SearchResultsScrolling.Position = UDim2.new(0, 3.3, 0, 40) -- 减小三分之一
+    SearchResultsScrolling.Size = UDim2.new(1, -6.7, 1, -40)
+    SearchResultsScrolling.Position = UDim2.new(0, 3.3, 0, 40)
     SearchResultsScrolling.BackgroundTransparency = 1
-    SearchResultsScrolling.ScrollBarThickness = 4 -- 减小三分之一
+    SearchResultsScrolling.ScrollBarThickness = 4
     SearchResultsScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
     SearchResultsScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
     SearchResultsScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -491,18 +499,18 @@ local function loadScript()
     SearchResultsScrolling.Parent = SearchContent
     
     local SearchResultsList = Instance.new("UIListLayout", SearchResultsScrolling)
-    SearchResultsList.Padding = UDim.new(0, 5.3) -- 减小三分之一
+    SearchResultsList.Padding = UDim.new(0, 5.3)
     
-    Instance.new("UIPadding", SearchResultsScrolling).PaddingLeft = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", SearchResultsScrolling).PaddingRight = UDim.new(0, 3.3) -- 减小三分之一
-    Instance.new("UIPadding", SearchResultsScrolling).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingLeft = UDim.new(0, 3.3)
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingRight = UDim.new(0, 3.3)
+    Instance.new("UIPadding", SearchResultsScrolling).PaddingTop = UDim.new(0, 3.3)
 
     -- 公告内容框架
     local AnnouncementScrolling = Instance.new("ScrollingFrame")
-    AnnouncementScrolling.Size = UDim2.new(1, -6.7, 1, -6.7) -- 减小三分之一
-    AnnouncementScrolling.Position = UDim2.new(0, 3.3, 0, 3.3) -- 减小三分之一
+    AnnouncementScrolling.Size = UDim2.new(1, -6.7, 1, -6.7)
+    AnnouncementScrolling.Position = UDim2.new(0, 3.3, 0, 3.3)
     AnnouncementScrolling.BackgroundTransparency = 1
-    AnnouncementScrolling.ScrollBarThickness = 4 -- 减小三分之一
+    AnnouncementScrolling.ScrollBarThickness = 4
     AnnouncementScrolling.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
     AnnouncementScrolling.CanvasSize = UDim2.new(0, 0, 0, 0)
     AnnouncementScrolling.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -510,7 +518,7 @@ local function loadScript()
     AnnouncementScrolling.Parent = MainContent
     
     local AnnouncementList = Instance.new("UIListLayout", AnnouncementScrolling)
-    AnnouncementList.Padding = UDim.new(0, 8) -- 减小三分之一
+    AnnouncementList.Padding = UDim.new(0, 8)
     AnnouncementList.SortOrder = Enum.SortOrder.LayoutOrder
     
     Instance.new("UIPadding", AnnouncementScrolling).PaddingLeft = UDim.new(0, 5)
@@ -553,20 +561,20 @@ local function loadScript()
     
     -- 创建神秘猫图片框架
     local catImageFrame = Instance.new("Frame")
-    catImageFrame.Size = UDim2.new(1, 0, 0, 90) -- 高度是其他按钮的三倍
+    catImageFrame.Size = UDim2.new(1, 0, 0, 90)
     catImageFrame.BackgroundTransparency = 1
     catImageFrame.LayoutOrder = #AnnouncementScrolling:GetChildren()
     catImageFrame.Parent = AnnouncementScrolling
     
     -- 神秘猫图片
     local catImage = Instance.new("ImageLabel")
-    catImage.Size = UDim2.new(1, 0, 0, 70) -- 图片高度
+    catImage.Size = UDim2.new(1, 0, 0, 70)
     catImage.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
     catImage.BackgroundTransparency = 0.3
     catImage.Image = "rbxassetid://131184246499429"
     catImage.ScaleType = Enum.ScaleType.Crop
     catImage.ZIndex = 5
-    Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+    Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8)
     local catStroke = Instance.new("UIStroke", catImage)
     catStroke.Color = Color3.fromRGB(100, 100, 200)
     catImage.Parent = catImageFrame
@@ -650,14 +658,16 @@ local function loadScript()
     SearchContent.Visible = false
 
     -- 功能变量
-    local noclip, infiniteJump, spinning, walkAir = false, false, false, false
+    local noclip, infiniteJump, spinning, walkAir, flying, invincible, showCollision = false, false, false, false, false, false, false
     local rainbow, globalRainbow, ghost, sitSpinning, ridingHead = false, false, false, false, false
-    local climbing, autoMove, nightVision = false, false, false
+    local climbing, autoMove, nightVision, aimbotEnabled = false, false, false, false
     local walkSpeed, jumpPower, spinSpeed, playerSize, gravity, sitSpinSpeed = 16, 50, 10, 1, 196.2, 5
     local selectedPlayer = nil
     local connections = {}
     local originalTransparency, originalColors = {}
     local originalLightingSettings = {}
+    local aimbotTarget = nil
+    local aimToHead = true -- 默认瞄准头部
 
     -- 播放点击音效函数
     local function playClickSound()
@@ -672,27 +682,27 @@ local function loadScript()
     -- 通知函数（减小通知尺寸）
     local function showNotification(message, color)
         local notification = Instance.new("Frame")
-        notification.Size = UDim2.new(0, 200, 0, 40) -- 减小三分之一
-        notification.Position = UDim2.new(0.5, -100, 0.1, 0) -- 减小三分之一
+        notification.Size = UDim2.new(0, 200, 0, 40)
+        notification.Position = UDim2.new(0.5, -100, 0.1, 0)
         notification.BackgroundColor3 = color
         notification.BackgroundTransparency = 0.2
         notification.ZIndex = 100
-        Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+        Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 8)
         Instance.new("UIStroke", notification).Color = Color3.fromRGB(255, 255, 255)
         notification.Parent = ScreenGui
         
         local label = Instance.new("TextLabel")
-        label.Size = UDim2.new(1, -13.3, 1, -6.7) -- 减小三分之一
-        label.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+        label.Size = UDim2.new(1, -13.3, 1, -6.7)
+        label.Position = UDim2.new(0, 6.7, 0, 3.3)
         label.BackgroundTransparency = 1
         label.Text = message
         label.TextColor3 = Color3.fromRGB(255, 255, 255)
-        label.TextSize = 16 -- 字体大小不变
+        label.TextSize = 16
         label.Font = Enum.Font.GothamBold
         label.TextWrapped = true
         label.Parent = notification
         
-        notification.Position = UDim2.new(0.5, -100, 0, -46.7) -- 减小三分之一
+        notification.Position = UDim2.new(0.5, -100, 0, -46.7)
         TweenService:Create(notification, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -100, 0.1, 0)}):Play()
         
         wait(3)
@@ -707,7 +717,7 @@ local function loadScript()
         playClickSound()
         minimized = not minimized
         if minimized then
-            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 120, 0, 27)}):Play() -- 减小三分之一
+            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 120, 0, 27)}):Play()
             wait(0.3)
             TabFrame.Visible = false
             MainContent.Visible = false
@@ -715,7 +725,7 @@ local function loadScript()
         else
             TabFrame.Visible = true
             MainContent.Visible = true
-            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 467, 0, 300)}):Play() -- 减小三分之一
+            TweenService:Create(MainFrame, TweenInfo.new(0.3), {Size = UDim2.new(0, 467, 0, 300)}):Play()
             MinimizeButton.Text = "_"
         end
     end
@@ -823,67 +833,14 @@ local function loadScript()
         showNotification("力量传奇改力量已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- 自瞄透视碰撞箱功能
-    local aimbotESPEnabled = false
-    local aimbotConnection
-    local espParts = {}
-    local aimbotTarget = nil
-    
-    local function toggleAimbotESP()
+    -- 显示碰撞箱功能
+    local function toggleCollisionBox()
         playClickSound()
-        aimbotESPEnabled = not aimbotESPEnabled
+        showCollision = not showCollision
         
-        if aimbotESPEnabled then
-            ButtonInstances.AimBotESPButton.Text = "自瞄透视碰撞箱[开]"
-            ButtonInstances.AimBotESPButton.TextColor3 = Color3.fromRGB(0, 255, 150)
-            
-            -- 启用透视
-            for _, player in pairs(Players:GetPlayers()) do
-                if player ~= LocalPlayer and player.Character then
-                    local highlight = Instance.new("Highlight")
-                    highlight.Name = "BaconESP"
-                    highlight.FillColor = Color3.fromRGB(255, 0, 0)
-                    highlight.OutlineColor = Color3.fromRGB(255, 255, 0)
-                    highlight.FillTransparency = 0.5
-                    highlight.OutlineTransparency = 0
-                    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    highlight.Adornee = player.Character
-                    highlight.Parent = player.Character
-                    espParts[player] = highlight
-                end
-            end
-            
-            -- 启用自瞄
-            aimbotConnection = RunService.RenderStepped:Connect(function()
-                if aimbotESPEnabled then
-                    local character = LocalPlayer.Character
-                    local camera = Workspace.CurrentCamera
-                    
-                    if character and camera then
-                        local mouse = UserInputService:GetMouseLocation()
-                        local closestPlayer = nil
-                        local closestDistance = math.huge
-                        
-                        for _, player in pairs(Players:GetPlayers()) do
-                            if player ~= LocalPlayer and player.Character then
-                                local head = player.Character:FindFirstChild("Head")
-                                if head then
-                                    local screenPoint, visible = camera:WorldToViewportPoint(head.Position)
-                                    if visible then
-                                        local distance = (Vector2.new(mouse.X, mouse.Y) - Vector2.new(screenPoint.X, screenPoint.Y)).Magnitude
-                                        if distance < closestDistance and distance < 100 then
-                                            closestDistance = distance
-                                            closestPlayer = player
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                        
-                        aimbotTarget = closestPlayer
-                    end
-                end
-            end)
+        if showCollision then
+            ButtonInstances.CollisionBoxButton.Text = "显示碰撞箱 [开启]"
+            ButtonInstances.CollisionBoxButton.TextColor3 = Color3.fromRGB(0, 255, 150)
             
             -- 显示碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
@@ -898,24 +855,10 @@ local function loadScript()
                 end
             end
             
-            showNotification("自瞄透视碰撞箱已开启", Color3.fromRGB(0, 200, 0))
+            showNotification("碰撞箱显示已开启", Color3.fromRGB(0, 200, 0))
         else
-            ButtonInstances.AimBotESPButton.Text = "自瞄透视碰撞箱[关]"
-            ButtonInstances.AimBotESPButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-            
-            -- 关闭透视
-            for player, highlight in pairs(espParts) do
-                if highlight then
-                    highlight:Destroy()
-                end
-            end
-            espParts = {}
-            
-            -- 关闭自瞄
-            if aimbotConnection then
-                aimbotConnection:Disconnect()
-                aimbotConnection = nil
-            end
+            ButtonInstances.CollisionBoxButton.Text = "显示碰撞箱 [关闭]"
+            ButtonInstances.CollisionBoxButton.TextColor3 = Color3.fromRGB(200, 200, 255)
             
             -- 移除碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
@@ -924,7 +867,73 @@ local function loadScript()
                 end
             end
             
-            showNotification("自瞄透视碰撞箱已关闭", Color3.fromRGB(150, 150, 150))
+            showNotification("碰撞箱显示已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 自瞄功能
+    local function toggleAimbot()
+        playClickSound()
+        aimbotEnabled = not aimbotEnabled
+        
+        if aimbotEnabled then
+            ButtonInstances.AimbotButton.Text = "可关闭的自瞄 [开启]"
+            ButtonInstances.AimbotButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            -- 自瞄逻辑
+            connections.aimbot = RunService.RenderStepped:Connect(function()
+                if aimbotEnabled then
+                    local character = LocalPlayer.Character
+                    local camera = Workspace.CurrentCamera
+                    
+                    if character and camera then
+                        local closestPlayer = nil
+                        local closestDistance = math.huge
+                        
+                        for _, player in pairs(Players:GetPlayers()) do
+                            if player ~= LocalPlayer and player.Character then
+                                local targetPart = nil
+                                if aimToHead then
+                                    targetPart = player.Character:FindFirstChild("Head")
+                                else
+                                    targetPart = player.Character:FindFirstChild("HumanoidRootPart") or player.Character:FindFirstChild("Torso")
+                                end
+                                
+                                if targetPart then
+                                    local distance = (character.HumanoidRootPart.Position - targetPart.Position).Magnitude
+                                    if distance < closestDistance and distance < 100 then
+                                        closestDistance = distance
+                                        closestPlayer = player
+                                    end
+                                end
+                            end
+                        end
+                        
+                        if closestPlayer and closestPlayer.Character then
+                            aimbotTarget = closestPlayer
+                            local targetPart = aimToHead and closestPlayer.Character:FindFirstChild("Head") or 
+                                              closestPlayer.Character:FindFirstChild("HumanoidRootPart") or 
+                                              closestPlayer.Character:FindFirstChild("Torso")
+                            
+                            if targetPart then
+                                camera.CFrame = CFrame.new(camera.CFrame.Position, targetPart.Position)
+                            end
+                        end
+                    end
+                end
+            end)
+            
+            showNotification("自瞄已开启 (瞄准" .. (aimToHead and "头部" or "身体") .. ")", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.AimbotButton.Text = "可关闭的自瞄 [关闭]"
+            ButtonInstances.AimbotButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.aimbot then
+                connections.aimbot:Disconnect()
+                connections.aimbot = nil
+            end
+            
+            showNotification("自瞄已关闭", Color3.fromRGB(150, 150, 150))
         end
     end
 
@@ -1067,10 +1076,81 @@ local function loadScript()
         showNotification("nico' Nextbot已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    local function loadFlyV2()
+    -- 飞行v2功能
+    local function toggleFlyV2()
         playClickSound()
-        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
-        showNotification("飞行v2已加载!", Color3.fromRGB(0, 200, 0))
+        flying = not flying
+        
+        if flying then
+            ButtonInstances.FlyButton.Text = "飞行v2 [开启]"
+            ButtonInstances.FlyButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.Velocity = Vector3.new(0, 0, 0)
+            bodyVelocity.MaxForce = Vector3.new(0, 0, 0)
+            bodyVelocity.P = 1000
+            bodyVelocity.Name = "BaconFly"
+            
+            connections.fly = RunService.Heartbeat:Connect(function()
+                if flying and LocalPlayer.Character then
+                    local character = LocalPlayer.Character
+                    local root = character:FindFirstChild("HumanoidRootPart")
+                    
+                    if root then
+                        bodyVelocity.Parent = root
+                        bodyVelocity.MaxForce = Vector3.new(40000, 40000, 40000)
+                        
+                        local camera = Workspace.CurrentCamera
+                        local forward = camera.CFrame.LookVector
+                        local right = camera.CFrame.RightVector
+                        local up = Vector3.new(0, 1, 0)
+                        
+                        local velocity = Vector3.new(0, 0, 0)
+                        
+                        if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+                            velocity = velocity + forward * 50
+                        end
+                        if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+                            velocity = velocity - forward * 50
+                        end
+                        if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+                            velocity = velocity - right * 50
+                        end
+                        if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+                            velocity = velocity + right * 50
+                        end
+                        if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+                            velocity = velocity + up * 50
+                        end
+                        if UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+                            velocity = velocity - up * 50
+                        end
+                        
+                        bodyVelocity.Velocity = velocity
+                    end
+                end
+            end)
+            
+            showNotification("飞行模式已开启 (WASD控制，空格上升，Shift下降)", Color3.fromRGB(0, 150, 200))
+        else
+            ButtonInstances.FlyButton.Text = "飞行v2 [关闭]"
+            ButtonInstances.FlyButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.fly then
+                connections.fly:Disconnect()
+                connections.fly = nil
+            end
+            
+            local character = LocalPlayer.Character
+            if character then
+                local root = character:FindFirstChild("HumanoidRootPart")
+                if root and root:FindFirstChild("BaconFly") then
+                    root.BaconFly:Destroy()
+                end
+            end
+            
+            showNotification("飞行模式已关闭", Color3.fromRGB(150, 150, 150))
+        end
     end
 
     local function loadShipTreasure()
@@ -1184,7 +1264,7 @@ print("安全版自然灾害免疫已激活")
         showNotification("防摔已激活", Color3.fromRGB(0, 200, 0))
     end
 
-    -- 穿墙功能
+    -- 穿墙功能（修复版）
     local function toggleNoclip()
         playClickSound()
         noclip = not noclip
@@ -1196,13 +1276,29 @@ print("安全版自然灾害免疫已激活")
                 local character = LocalPlayer.Character
                 if character and noclip then
                     for _, part in pairs(character:GetDescendants()) do
-                        if part:IsA("BasePart") then part.CanCollide = false end
+                        if part:IsA("BasePart") then 
+                            part.CanCollide = false 
+                        end
                     end
                 end
             end)
             showNotification("穿墙模式已开启", Color3.fromRGB(0, 150, 200))
         else
-            if connections.noclip then connections.noclip:Disconnect() end
+            if connections.noclip then 
+                connections.noclip:Disconnect() 
+                connections.noclip = nil
+            end
+            
+            -- 恢复碰撞
+            local character = LocalPlayer.Character
+            if character then
+                for _, part in pairs(character:GetDescendants()) do
+                    if part:IsA("BasePart") then 
+                        part.CanCollide = true 
+                    end
+                end
+            end
+            
             showNotification("穿墙模式已关闭", Color3.fromRGB(150, 150, 150))
         end
     end
@@ -1418,7 +1514,7 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 查看玩家背包（减小背包窗口尺寸）
+    -- 查看玩家背包
     local function viewPlayerBackpack()
         playClickSound()
         if not selectedPlayer then
@@ -1426,10 +1522,10 @@ print("安全版自然灾害免疫已激活")
             return
         end
 
-        -- 创建背包查看窗口（减小三分之一）
+        -- 创建背包查看窗口
         local backpackFrame = Instance.new("Frame")
-        backpackFrame.Size = UDim2.new(0, 267, 0, 333) -- 减小三分之一
-        backpackFrame.Position = UDim2.new(0.5, -133.5, 0.5, -166.5) -- 减小三分之一
+        backpackFrame.Size = UDim2.new(0, 267, 0, 333)
+        backpackFrame.Position = UDim2.new(0.5, -133.5, 0.5, -166.5)
         backpackFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 80)
         backpackFrame.BackgroundTransparency = 0.1
         backpackFrame.BorderSizePixel = 2
@@ -1437,13 +1533,13 @@ print("安全版自然灾害免疫已激活")
         backpackFrame.Active = true
         backpackFrame.Draggable = true
         backpackFrame.ZIndex = 50
-        Instance.new("UICorner", backpackFrame).CornerRadius = UDim.new(0, 10) -- 减小三分之一
+        Instance.new("UICorner", backpackFrame).CornerRadius = UDim.new(0, 10)
         Instance.new("UIStroke", backpackFrame).Color = Color3.fromRGB(0, 150, 255)
         backpackFrame.Parent = ScreenGui
 
         -- 标题栏
         local titleBar = Instance.new("Frame")
-        titleBar.Size = UDim2.new(1, 0, 0, 27) -- 减小三分之一
+        titleBar.Size = UDim2.new(1, 0, 0, 27)
         titleBar.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
         titleBar.BackgroundTransparency = 0.1
         titleBar.BorderSizePixel = 0
@@ -1452,36 +1548,36 @@ print("安全版自然灾害免疫已激活")
         titleBar.Parent = backpackFrame
 
         local titleLabel = Instance.new("TextLabel")
-        titleLabel.Size = UDim2.new(1, -33.5, 1, 0) -- 减小三分之一
-        titleLabel.Position = UDim2.new(0, 10, 0, 0) -- 减小三分之一
+        titleLabel.Size = UDim2.new(1, -33.5, 1, 0)
+        titleLabel.Position = UDim2.new(0, 10, 0, 0)
         titleLabel.BackgroundTransparency = 1
         titleLabel.Text = selectedPlayer.Name .. "的背包"
         titleLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-        titleLabel.TextSize = 18 -- 字体大小不变
+        titleLabel.TextSize = 18
         titleLabel.TextXAlignment = Enum.TextXAlignment.Left
         titleLabel.Font = Enum.Font.GothamBold
         titleLabel.ZIndex = 52
         titleLabel.Parent = titleBar
 
         local closeButton = Instance.new("TextButton")
-        closeButton.Size = UDim2.new(0, 20, 0, 20) -- 减小三分之一
-        closeButton.Position = UDim2.new(1, -23.5, 0, 3.5) -- 减小三分之一
+        closeButton.Size = UDim2.new(0, 20, 0, 20)
+        closeButton.Position = UDim2.new(1, -23.5, 0, 3.5)
         closeButton.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
         closeButton.BackgroundTransparency = 0.2
         closeButton.Text = "X"
         closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-        closeButton.TextSize = 16 -- 字体大小不变
+        closeButton.TextSize = 16
         closeButton.Font = Enum.Font.GothamBold
         closeButton.ZIndex = 52
-        Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+        Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 5.3)
         closeButton.Parent = titleBar
 
         -- 内容区域
         local contentFrame = Instance.new("ScrollingFrame")
-        contentFrame.Size = UDim2.new(1, -13.3, 1, -40) -- 减小三分之一
-        contentFrame.Position = UDim2.new(0, 6.7, 0, 33.3) -- 减小三分之一
+        contentFrame.Size = UDim2.new(1, -13.3, 1, -40)
+        contentFrame.Position = UDim2.new(0, 6.7, 0, 33.3)
         contentFrame.BackgroundTransparency = 1
-        contentFrame.ScrollBarThickness = 5.3 -- 减小三分之一
+        contentFrame.ScrollBarThickness = 5.3
         contentFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 150, 255)
         contentFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
         contentFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -1489,8 +1585,8 @@ print("安全版自然灾害免疫已激活")
         contentFrame.Parent = backpackFrame
 
         local contentLayout = Instance.new("UIListLayout", contentFrame)
-        contentLayout.Padding = UDim.new(0, 6.7) -- 减小三分之一
-        Instance.new("UIPadding", contentFrame).PaddingTop = UDim.new(0, 3.3) -- 减小三分之一
+        contentLayout.Padding = UDim.new(0, 6.7)
+        Instance.new("UIPadding", contentFrame).PaddingTop = UDim.new(0, 3.3)
 
         -- 获取目标玩家的背包和角色中的工具
         local targetBackpack = selectedPlayer:FindFirstChildOfClass("Backpack")
@@ -1518,57 +1614,57 @@ print("安全版自然灾害免疫已激活")
         -- 显示工具列表
         if #tools == 0 then
             local noItemsLabel = Instance.new("TextLabel")
-            noItemsLabel.Size = UDim2.new(1, 0, 0, 33.3) -- 减小三分之一
+            noItemsLabel.Size = UDim2.new(1, 0, 0, 33.3)
             noItemsLabel.BackgroundTransparency = 1
             noItemsLabel.Text = "背包为空"
             noItemsLabel.TextColor3 = Color3.fromRGB(150, 150, 200)
-            noItemsLabel.TextSize = 16 -- 字体大小不变
+            noItemsLabel.TextSize = 16
             noItemsLabel.Font = Enum.Font.Gotham
             noItemsLabel.ZIndex = 52
             noItemsLabel.Parent = contentFrame
         else
             for _, tool in ipairs(tools) do
                 local itemFrame = Instance.new("Frame")
-                itemFrame.Size = UDim2.new(1, 0, 0, 40) -- 减小三分之一
+                itemFrame.Size = UDim2.new(1, 0, 0, 40)
                 itemFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
                 itemFrame.BackgroundTransparency = 0.3
                 itemFrame.ZIndex = 52
-                Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 6.7) -- 减小三分之一
+                Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 6.7)
                 Instance.new("UIStroke", itemFrame).Color = Color3.fromRGB(100, 100, 200)
                 itemFrame.Parent = contentFrame
 
                 local itemName = Instance.new("TextLabel")
-                itemName.Size = UDim2.new(0.6, -6.7, 0.5, -3.3) -- 减小三分之一
-                itemName.Position = UDim2.new(0, 6.7, 0, 3.3) -- 减小三分之一
+                itemName.Size = UDim2.new(0.6, -6.7, 0.5, -3.3)
+                itemName.Position = UDim2.new(0, 6.7, 0, 3.3)
                 itemName.BackgroundTransparency = 1
                 itemName.Text = tool.Name
                 itemName.TextColor3 = Color3.fromRGB(200, 200, 255)
-                itemName.TextSize = 16 -- 字体大小不变
+                itemName.TextSize = 16
                 itemName.TextXAlignment = Enum.TextXAlignment.Left
                 itemName.Font = Enum.Font.Gotham
                 itemName.ZIndex = 53
                 itemName.Parent = itemFrame
 
                 local stealButton = Instance.new("TextButton")
-                stealButton.Size = UDim2.new(0.35, -6.7, 0.5, -3.3) -- 减小三分之一
-                stealButton.Position = UDim2.new(0.6, 3.3, 0, 3.3) -- 减小三分之一
+                stealButton.Size = UDim2.new(0.35, -6.7, 0.5, -3.3)
+                stealButton.Position = UDim2.new(0.6, 3.3, 0, 3.3)
                 stealButton.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
                 stealButton.BackgroundTransparency = 0.2
                 stealButton.Text = "偷取"
                 stealButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-                stealButton.TextSize = 14 -- 字体大小不变
+                stealButton.TextSize = 14
                 stealButton.Font = Enum.Font.GothamBold
                 stealButton.ZIndex = 53
-                Instance.new("UICorner", stealButton).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                Instance.new("UICorner", stealButton).CornerRadius = UDim.new(0, 5.3)
                 stealButton.Parent = itemFrame
 
                 local itemDesc = Instance.new("TextLabel")
-                itemDesc.Size = UDim2.new(1, -13.3, 0.5, -3.3) -- 减小三分之一
+                itemDesc.Size = UDim2.new(1, -13.3, 0.5, -3.3)
                 itemDesc.Position = UDim2.new(0, 6.7, 0.5, 0)
                 itemDesc.BackgroundTransparency = 1
                 itemDesc.Text = "工具类物品"
                 itemDesc.TextColor3 = Color3.fromRGB(150, 150, 200)
-                itemDesc.TextSize = 12 -- 字体大小不变
+                itemDesc.TextSize = 12
                 itemDesc.TextXAlignment = Enum.TextXAlignment.Left
                 itemDesc.Font = Enum.Font.Gotham
                 itemDesc.ZIndex = 53
@@ -1730,10 +1826,10 @@ print("安全版自然灾害免疫已激活")
             originalLightingSettings.GlobalShadows = Lighting.GlobalShadows
             
             -- 应用夜视效果
-            Lighting.Ambient = Color3.fromRGB(128, 128, 128) -- 增加环境光
-            Lighting.Brightness = 2 -- 增加亮度
-            Lighting.ClockTime = 12 -- 设置为白天
-            Lighting.GlobalShadows = false -- 禁用阴影
+            Lighting.Ambient = Color3.fromRGB(128, 128, 128)
+            Lighting.Brightness = 2
+            Lighting.ClockTime = 12
+            Lighting.GlobalShadows = false
             
             showNotification("夜视模式已开启", Color3.fromRGB(0, 150, 200))
         else
@@ -1830,7 +1926,7 @@ print("安全版自然灾害免疫已激活")
     local function changeUIColor()
         playClickSound()
         local colors = {
-            Color3.fromRGB(0, 150, 255), -- 蓝色
+            Color3.fromRGB(0, 150, 255),
             Color3.fromRGB(255, 0, 100),
             Color3.fromRGB(0, 255, 150), 
             Color3.fromRGB(255, 150, 0),
@@ -1867,6 +1963,93 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
+    -- 无敌功能
+    local function toggleInvincible()
+        playClickSound()
+        invincible = not invincible
+        
+        if invincible then
+            ButtonInstances.InvincibleButton.Text = "无敌 [开启]"
+            ButtonInstances.InvincibleButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            local character = LocalPlayer.Character
+            if character then
+                local humanoid = character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid.Health = humanoid.MaxHealth
+                    humanoid.MaxHealth = math.huge
+                    humanoid.Health = math.huge
+                end
+            end
+            
+            showNotification("无敌模式已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.InvincibleButton.Text = "无敌 [关闭]"
+            ButtonInstances.InvincibleButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            local character = LocalPlayer.Character
+            if character then
+                local humanoid = character:FindFirstChildOfClass("Humanoid")
+                if humanoid then
+                    humanoid.MaxHealth = 100
+                    humanoid.Health = 100
+                end
+            end
+            
+            showNotification("无敌模式已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 踏空行走功能
+    local function toggleWalkAir()
+        playClickSound()
+        walkAir = not walkAir
+        
+        if walkAir then
+            ButtonInstances.WalkAirButton.Text = "踏空行走 [开启]"
+            ButtonInstances.WalkAirButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.walkAir = RunService.Heartbeat:Connect(function()
+                local character = LocalPlayer.Character
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    local root = character.HumanoidRootPart
+                    local ray = Ray.new(root.Position, Vector3.new(0, -5, 0))
+                    local hit = Workspace:FindPartOnRayWithIgnoreList(ray, {character})
+                    
+                    if not hit then
+                        root.Velocity = Vector3.new(root.Velocity.X, 0, root.Velocity.Z)
+                    end
+                end
+            end)
+            
+            showNotification("踏空行走已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.WalkAirButton.Text = "踏空行走 [关闭]"
+            ButtonInstances.WalkAirButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.walkAir then
+                connections.walkAir:Disconnect()
+                connections.walkAir = nil
+            end
+            
+            showNotification("踏空行走已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 无敌少侠飞行R6
+    local function toggleInvincibleFlyR6()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R6-38971"))()
+        showNotification("无敌少侠飞行R6已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 被遗弃脚本二
+    local function loadForsakenScript2()
+        playClickSound()
+        loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/SilkScripts/AppleStuff/refs/heads/main/AppleFSKV2")))()
+        showNotification("被遗弃脚本二已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 搜索功能
     local function performSearch()
         playClickSound()
@@ -1901,7 +2084,7 @@ print("安全版自然灾害免疫已激活")
                     
                     -- 创建搜索结果按钮
                     local resultFrame = Instance.new("Frame")
-                    resultFrame.Size = UDim2.new(1, 0, 0, 30) -- 减小三分之一
+                    resultFrame.Size = UDim2.new(1, 0, 0, 30)
                     resultFrame.BackgroundTransparency = 1
                     resultFrame.LayoutOrder = #SearchResultsScrolling:GetChildren()
                     
@@ -1911,12 +2094,12 @@ print("安全版自然灾害免疫已激活")
                     resultButton.BackgroundTransparency = 0.3
                     resultButton.Text = buttonText .. " [" .. tabName .. "]"
                     resultButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-                    resultButton.TextSize = 12 -- 字体大小不变
+                    resultButton.TextSize = 12
                     resultButton.Font = Enum.Font.Gotham
                     resultButton.AutoButtonColor = false
                     resultButton.ZIndex = 5
                     resultButton.TextWrapped = true
-                    Instance.new("UICorner", resultButton).CornerRadius = UDim.new(0, 8) -- 减小三分之一
+                    Instance.new("UICorner", resultButton).CornerRadius = UDim.new(0, 8)
                     local buttonStroke = Instance.new("UIStroke", resultButton)
                     buttonStroke.Color = Color3.fromRGB(100, 100, 200)
                     resultButton.Parent = resultFrame
@@ -1924,30 +2107,30 @@ print("安全版自然灾害免疫已激活")
                     -- 添加描述提示
                     resultButton.MouseEnter:Connect(function()
                         resultButton.BackgroundTransparency = 0.1
-                        buttonStroke.Thickness = 1.3 -- 减小三分之一
+                        buttonStroke.Thickness = 1.3
                         
                         local tooltip = Instance.new("TextLabel")
-                        tooltip.Size = UDim2.new(0, 107, 0, 0) -- 减小三分之一
-                        tooltip.Position = UDim2.new(0, -53.5, 1, 3.3) -- 减小三分之一
+                        tooltip.Size = UDim2.new(0, 107, 0, 0)
+                        tooltip.Position = UDim2.new(0, -53.5, 1, 3.3)
                         tooltip.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
                         tooltip.BackgroundTransparency = 0.1
                         tooltip.Text = func.desc or "无描述"
                         tooltip.TextColor3 = Color3.fromRGB(200, 200, 255)
-                        tooltip.TextSize = 11 -- 字体大小不变
+                        tooltip.TextSize = 11
                         tooltip.TextWrapped = true
                         tooltip.ZIndex = 100
                         tooltip.Visible = false
-                        Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3) -- 减小三分之一
+                        Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3)
                         Instance.new("UIStroke", tooltip).Color = Color3.fromRGB(0, 150, 255)
                         tooltip.Parent = resultFrame
                         
                         tooltip.Visible = true
-                        TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play() -- 减小三分之一
+                        TweenService:Create(tooltip, TweenInfo.new(0.2), {Size = UDim2.new(0, 107, 0, 33.3)}):Play()
                     end)
                     
                     resultButton.MouseLeave:Connect(function()
                         resultButton.BackgroundTransparency = 0.3
-                        buttonStroke.Thickness = 0.7 -- 减小三分之一
+                        buttonStroke.Thickness = 0.7
                         
                         local tooltip = resultFrame:FindFirstChildWhichIsA("TextLabel")
                         if tooltip then
@@ -2009,14 +2192,7 @@ print("安全版自然灾害免疫已激活")
 
     -- 绑定功能按钮
     local buttonActions = {
-        FlyButton = loadFlyV2,  -- 改为飞行v2
-        InvincibleFlyButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414", "无敌苍蝇飞行") end,
-        FakeLagButton = function() loadExternalScript("https://raw.githubusercontent.com/RENZXW/RENZXW-SCRIPTS/main/fakeLAGRENZXW.txt", "假延迟") end,
-        DayunButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "大运") end,
-        CrawlButton = function() loadExternalScript('https://raw.githubusercontent.com/0Ben1/fe/main/obf_vZDX8j5ggfAf58QhdJ59BVEmF6nmZgq4Mcjt2l8wn16CiStIW2P6EkNc605qv9K4.lua.txt', "在地上爬") end,
-        FEFacialButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-AFEM-14048", "FE表情") end,
-        FEFighterButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/强行丢弃.txt", "强行装备物品") end,
-        YeScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua", "叶脚本") end,
+        -- 基础功能
         NoclipButton = toggleNoclip,
         InfiniteJumpButton = toggleInfiniteJump,
         SpeedButton = changeSpeed,
@@ -2024,118 +2200,145 @@ print("安全版自然灾害免疫已激活")
         PlayerButton = selectPlayer,
         ClimbWallButton = toggleClimbWall,
         AntiFallButton = loadAntiFall,
-        ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
-        FESkyboxButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Fe-Emote-Player-51936", "FE天空盒") end,
-        FESwordButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neptunian%20V", "FE圣剑") end,
+        SuicideButton = suicide,
+        FlyButton = toggleFlyV2,
+        InvincibleButton = toggleInvincible,
+        CollisionBoxButton = toggleCollisionBox,
+        WalkAirButton = toggleWalkAir,
+        
+        -- 移动功能
         SpinButton = toggleSpin,
         SpinSpeedButton = changeSpinSpeed,
-        WalkAirButton = function() loadExternalScript("https://protected-roblox-scripts.onrender.com/2b33f845cf5c751e52c06abacaeb27e1", "踏空行走") end,
         AutoMoveButton = toggleAutoMove,
-        FECrouchButton = function() loadExternalScript("https://raw.githubusercontent.com/Azizanzz0/Scripts/refs/heads/main/Crouching.txt", "FE蹲下") end,
-        ClickTeleportButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Teleport-Tool-25249", "点击传送") end,
+        
+        -- 玩家交互
         KillAllButton = killAllPlayers,
         TeleportAllButton = teleportAllToMe,
         SitSpinButton = toggleSitSpin,
         RideHeadButton = toggleRideHead,
         ViewBackpackButton = viewPlayerBackpack,
-        FEHugButton = function() loadExternalScript("https://raw.githubusercontent.com/ExploitFin/Animations/refs/heads/main/Front%20and%20Back%20Hug%20Tool", "FE拥抱") end,
+        ClickTeleportButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Teleport-Tool-25249", "点击传送") end,
+        AimbotButton = toggleAimbot,
+        
+        -- 外观功能
         PlayerSizeButton = changePlayerSize,
         RainbowButton = toggleRainbow,
         GlobalRainbowButton = toggleGlobalRainbow,
         GhostButton = toggleGhost,
-        InvisibleButton = function() loadExternalScript('https://pastebin.com/raw/3Rnd9rHf', "人物隐形") end,
+        
+        -- 世界功能
         GravityButton = changeGravity,
         NightVisionButton = toggleNightVision,
+        HackButton = applyHackEffects,
+        UIColorButton = changeUIColor,
+        
+        -- FE功能
+        FEFacialButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-AFEM-14048", "FE表情") end,
+        FEHugButton = function() loadExternalScript("https://raw.githubusercontent.com/ExploitFin/Animations/refs/heads/main/Front%20and%20Back%20Hug%20Tool", "FE拥抱") end,
+        FECrouchButton = function() loadExternalScript("https://raw.githubusercontent.com/Azizanzz0/Scripts/refs/heads/main/Crouching.txt", "FE蹲下") end,
+        FESkyboxButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Fe-Emote-Player-51936", "FE天空盒") end,
+        FESwordButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Neptunian%20V", "FE圣剑") end,
         FECarButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-FE-SILLY-CAR-V1-48227", "FE人物变车") end,
         FESpiderManButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/蜘蛛侠.txt", "FE蜘蛛侠") end,
-        FakeFriendButton = function() loadExternalScript("https://raw.githubusercontent.com/sigmaboy123z/MYFRIENDSCRIPT/refs/heads/main/MYNEWFRIENDSPAWNER", "假朋友") end,
         FER6AnimationsButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-R6-Animations-Menu-By-Me-19427", "FER6动作") end,
         FEHamsterBallButton = function() loadExternalScript("https://raw.githubusercontent.com/KaterHub-Inc/scripts/refs/heads/main/unofficial-Projects/FEHamsterBall.lua", "FE滚蛋") end,
         FEAutoPianoButton = function() loadExternalScript("https://rawscripts.net/raw/Tac's-Piano-Stuff-Talentless-script-made-by-hellohellohell012321-44088", "FE自动弹钢琴") end,
+        FEControlNPCButton = function() loadExternalScript("https://raw.githubusercontent.com/randomstring0/fe-source/refs/heads/main/NPC/source/main.Luau", "FE控制NPC") end,
+        FEForsakenAnimButton = function() loadExternalScript("https://raw.githubusercontent.com/CyberNinja103/brodwa/refs/heads/main/ForsakationHub", "FE被遗弃动作") end,
+        FE096Button = function() loadExternalScript("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Animation-GUI-R6", "FE合集") end,
+        FEHam00dButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-sb-56309", "fe ham00d菜单") end,
+        CatAnimButton = function() loadExternalScript("https://pastebin.com/raw/Y1MkBRn3", "猫动作") end,
+        FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
+        FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
+        FER6DeerCanButton = loadFER6DeerCan,
+        FER15DeerCanButton = loadFER15DeerCan,
+        FECoolKidButton = loadFECoolKid,
+        FEJasonButton = loadFEJason,
+        FESnakeButton = loadFESnake,
+        FEBaseballPlayerButton = loadFEBaseballPlayer,
+        FEVRButton = loadFEVR,
+        
+        -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
         BlackHoleV5Button = loadBlackHoleV5,
         BlackHoleV4Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V4.txt", "黑洞v4") end,
         BlackHoleV3Button = loadBlackHoleV3,
         BlackHoleV2Button = loadBlackHoleV2,
         BlackHoleV1Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V1.lua.txt", "黑洞v1") end,
-        FEControlNPCButton = function() loadExternalScript("https://raw.githubusercontent.com/randomstring0/fe-source/refs/heads/main/NPC/source/main.Luau", "FE控制NPC") end,
-        FEForsakenAnimButton = function() loadExternalScript("https://raw.githubusercontent.com/CyberNinja103/brodwa/refs/heads/main/ForsakationHub", "FE被遗弃动作") end,
+        
+        -- 其他脚本
+        FakeLagButton = function() loadExternalScript("https://raw.githubusercontent.com/RENZXW/RENZXW-SCRIPTS/main/fakeLAGRENZXW.txt", "假延迟") end,
+        DayunButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "大运") end,
+        CrawlButton = function() loadExternalScript('https://raw.githubusercontent.com/0Ben1/fe/main/obf_vZDX8j5ggfAf58QhdJ59BVEmF6nmZgq4Mcjt2l8wn16CiStIW2P6EkNc605qv9K4.lua.txt', "在地上爬") end,
+        FEFighterButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/强行丢弃.txt", "强行装备物品") end,
+        InvisibleButton = function() loadExternalScript('https://pastebin.com/raw/3Rnd9rHf', "人物隐形") end,
+        FakeFriendButton = function() loadExternalScript("https://raw.githubusercontent.com/sigmaboy123z/MYFRIENDSCRIPT/refs/heads/main/MYNEWFRIENDSPAWNER", "假朋友") end,
         ChatDrawButton = function() loadExternalScript("https://raw.githubusercontent.com/ocfi/_/refs/heads/main/a", "聊天框画画") end,
-        FE096Button = function() loadExternalScript("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Animation-GUI-R6", "FE合集") end,
-        FEHam00dButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-sb-56309", "fe ham00d菜单") end,
         TrainEffectButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/越跑越快.txt", "火车头效果") end,
         FreePrivateServerButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Kenny免费私服.lua", "免费私服") end,
-        PiScriptButton = function() 
-            playClickSound()
-            getgenv().XiaoPi = "皮脚本QQ群1002100032"
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
-            showNotification("皮脚本已加载!", Color3.fromRGB(0, 200, 0))
-        end,
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
-        ScriptCenterButton = function() 
-            playClickSound()
-            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
-            showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
-        end,
-        HackButton = applyHackEffects,
-        UIColorButton = changeUIColor,
-        SuicideButton = suicide,
-        StealBrainRedButton = function() loadExternalScript("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/偷走脑红", "偷走脑红") end,
-        GardenButton = function() loadExternalScript("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1", "种植花园") end,
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
-        ForsakenButton = function() loadExternalScript("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub", "被遗弃脚本") end,
         ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
-        CatAnimButton = function() loadExternalScript("https://pastebin.com/raw/Y1MkBRn3", "猫动作") end,
-        InvincibleButton = function() loadExternalScript("https://raw.githubusercontent.com/5twh2hsf9j-byte/BowenPrime67/refs/heads/main/Python", "无敌脚本") end,
         BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "Kenny悦服循环打狗") end,
-        FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
-        FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
-        ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         WitherStormButton = function()
             playClickSound()
             showNotification("正在加载凋零风暴...", Color3.fromRGB(255, 100, 0))
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ian49972/SCRIPTS/refs/heads/main/Wither"))()
             showNotification("凋零风暴已加载!", Color3.fromRGB(0, 200, 0))
         end,
-        -- 新增功能
-        FER6DeerCanButton = loadFER6DeerCan,
-        FER15DeerCanButton = loadFER15DeerCan,
         BurstScriptButton = loadBurstScript,
         BootCheckButton = loadBootCheck,
         CalculatorButton = loadCalculator,
         ChatBubbleBeautifyButton = loadChatBubbleBeautify,
         C00lkidBlackShellButton = loadC00lkidBlackShell,
-        DoorsModeButton = loadDoorsMode,
-        DoorsHardcoreModeButton = loadDoorsHardcoreMode,
         ChatTranslatorButton = loadChatTranslator,
         KennyAutoTranslateButton = loadKennyAutoTranslate,
         MindPullButton = loadMindPull,
         TelepathyButton = loadTelepathy,
         FishScriptButton = loadFishScript,
-        DingScriptButton = loadDingScript,
-        ChuScriptButton = loadChuScript,
         Forest99NightDiamondButton = loadForest99NightDiamond,
-        StealBrainRedRainbowButton = loadStealBrainRedRainbow,
-        StealBrainRedBigBoardButton = loadStealBrainRedBigBoard,
-        DeathOfDeathButton = loadDeathOfDeath,
-        DoorsAutoAvoidButton = loadDoorsAutoAvoid,
-        DoorsExtremeModeButton = loadDoorsExtremeMode,
         NicoNextbotButton = loadNicoNextbot,
         ShipTreasureButton = loadShipTreasure,
-        AimBotESPButton = toggleAimbotESP,
         SpeedLegendButton = loadSpeedLegend,
         WallRunButton = loadWallRun,
         NaturalDisasterButton = loadNaturalDisaster,
-        FEVRButton = loadFEVR,
-        FECoolKidButton = loadFECoolKid,
-        FEJasonButton = loadFEJason,
-        FESnakeButton = loadFESnake,
-        FEBaseballPlayerButton = loadFEBaseballPlayer,
-        -- 新添加的三个按钮
-        DoorsButton = loadDoors,
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
-        -- 免费r币按钮
+        
+        -- doors
+        DoorsButton = loadDoors,
+        DoorsModeButton = loadDoorsMode,
+        DoorsHardcoreModeButton = loadDoorsHardcoreMode,
+        DoorsAutoAvoidButton = loadDoorsAutoAvoid,
+        DoorsExtremeModeButton = loadDoorsExtremeMode,
+        
+        -- 偷走脑红
+        StealBrainRedButton = function() loadExternalScript("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/偷走脑红", "偷走脑红") end,
+        StealBrainRedRainbowButton = loadStealBrainRedRainbow,
+        StealBrainRedBigBoardButton = loadStealBrainRedBigBoard,
+        
+        -- 种植花园
+        GardenButton = function() loadExternalScript("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1", "种植花园") end,
+        
+        -- 其他脚本整合
+        PiScriptButton = function() 
+            playClickSound()
+            getgenv().XiaoPi = "皮脚本QQ群1002100032"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
+            showNotification("皮脚本已加载!", Color3.fromRGB(0, 200, 0))
+        end,
+        YeScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua", "叶脚本") end,
+        ChuScriptButton = loadChuScript,
+        DingScriptButton = loadDingScript,
+        ScriptCenterButton = function() 
+            playClickSound()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+            showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
+        end,
+        ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
+        ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
+        
+        -- 免费r币
         Free80RButton = showFreeRBCurrencyEffect,
         Free120RButton = showFreeRBCurrencyEffect,
         Free240RButton = showFreeRBCurrencyEffect,
@@ -2143,7 +2346,18 @@ print("安全版自然灾害免疫已激活")
         Free500RButton = showFreeRBCurrencyEffect,
         Free1000RButton = showFreeRBCurrencyEffect,
         Free450RPlusButton = showFreeRBCurrencyEffect,
-        Free1200RPlusButton = showFreeRBCurrencyEffect
+        Free1200RPlusButton = showFreeRBCurrencyEffect,
+        
+        -- 死亡之死
+        DeathOfDeathButton = loadDeathOfDeath,
+        
+        -- 被遗弃
+        ForsakenButton = function() loadExternalScript("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub", "被遗弃脚本") end,
+        ForsakenScript2Button = loadForsakenScript2,
+        
+        -- 无敌少侠飞行
+        InvincibleFlyR15Button = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414", "无敌少侠飞行R15") end,
+        InvincibleFlyR6Button = toggleInvincibleFlyR6,
     }
 
     for buttonName, action in pairs(buttonActions) do
@@ -2152,20 +2366,20 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 启动动画（减小启动界面尺寸）
+    -- 启动动画
     local startupFrame = Instance.new("Frame")
     startupFrame.Size = UDim2.new(1, 0, 1, 0)
-    startupFrame.BackgroundTransparency = 1 -- 透明背景
+    startupFrame.BackgroundTransparency = 1
     startupFrame.ZIndex = 100
     startupFrame.Parent = ScreenGui
     
     local startupLabel = Instance.new("TextLabel")
-    startupLabel.Size = UDim2.new(0, 200, 0, 66.7) -- 减小三分之一
-    startupLabel.Position = UDim2.new(0.5, -100, 0.5, -33.35) -- 减小三分之一
+    startupLabel.Size = UDim2.new(0, 200, 0, 66.7)
+    startupLabel.Position = UDim2.new(0.5, -100, 0.5, -33.35)
     startupLabel.BackgroundTransparency = 1
     startupLabel.Text = "培根脚本 v6.4\n加载中..."
     startupLabel.TextColor3 = Color3.fromRGB(0, 255, 255)
-    startupLabel.TextSize = 24 -- 字体大小不变
+    startupLabel.TextSize = 24
     startupLabel.Font = Enum.Font.GothamBold
     startupLabel.ZIndex = 101
     startupLabel.Parent = startupFrame
@@ -2181,8 +2395,8 @@ print("安全版自然灾害免疫已激活")
         startupFrame:Destroy()
         
         MainFrame.Visible = true
-        MainFrame.Position = UDim2.new(1.5, -233.5, 0.5, -150) -- 减小三分之一
-        TweenService:Create(MainFrame, TweenInfo.new(0.8), {Position = UDim2.new(0.5, -233.5, 0.5, -150)}):Play() -- 减小三分之一
+        MainFrame.Position = UDim2.new(1.5, -233.5, 0.5, -150)
+        TweenService:Create(MainFrame, TweenInfo.new(0.8), {Position = UDim2.new(0.5, -233.5, 0.5, -150)}):Play()
         
         showNotification("培根脚本 v6.4 已加载!", Color3.fromRGB(0, 200, 255))
         
