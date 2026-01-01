@@ -416,6 +416,7 @@ local function loadScript()
             {name = "ChuScriptButton", text = "初脚本", desc = "加载初脚本"},
             {name = "DingScriptButton", text = "丁脚本", desc = "加载丁脚本"},
             {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"},
+            {name = "XAScriptCenterButton", text = "xa脚本中心", desc = "加载xa脚本中心"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
             {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"}
         },
@@ -2034,6 +2035,13 @@ print("安全版自然灾害免疫已激活")
         showNotification("皮脚本测试版已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- xa脚本中心
+    local function loadXAScriptCenter()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/h8nC0fLb", true))()
+        showNotification("xa脚本中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 子弹追踪
     local function toggleBulletTrack()
         playClickSound()
@@ -2350,6 +2358,7 @@ print("安全版自然灾害免疫已激活")
             loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
+        XAScriptCenterButton = loadXAScriptCenter,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
         
