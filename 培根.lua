@@ -144,7 +144,7 @@ local function loadScript()
     local Tabs = {
         "公告", "基础功能", "移动功能", "玩家交互", "外观功能", "世界功能", 
         "FE功能", "黑洞功能", "其他脚本", "doors", "偷走脑红", "种植花园", 
-        "其他脚本整合", "免费r币", "死亡之死", "被遗弃", "无敌少侠飞行"
+        "其他脚本整合", "俄亥俄州", "画我", "免费r币", "死亡之死", "被遗弃", "无敌少侠飞行"
     }
     local TabButtons = {}
     local CurrentTab = "公告"
@@ -294,8 +294,7 @@ local function loadScript()
             {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
             {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"},
             {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"},
-            -- 新添加的功能
-            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
+            -- 移除导管中心和防踢，移动到其他脚本整合
             {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"}
         },
         ["移动功能"] = {
@@ -356,7 +355,18 @@ local function loadScript()
             {name = "FEScriptIntegrationV2Button", text = "FE脚本整合v2", desc = "加载FE脚本整合v2脚本"},
             {name = "FENuoliButton", text = "FE诺丽", desc = "加载FE诺丽脚本"},
             {name = "FEIntegrationV3Button", text = "FE整合v3", desc = "加载FE整合v3脚本"},
-            {name = "FEAC6MusicVulnerabilityButton", text = "FE AC6漏洞放音乐", desc = "加载FE AC6漏洞放音乐脚本"}
+            {name = "FEAC6MusicVulnerabilityButton", text = "FE AC6漏洞放音乐", desc = "加载FE AC6漏洞放音乐脚本"},
+            -- 新添加的FE功能
+            {name = "FECreeperButton", text = "FE苦力怕", desc = "加载FE苦力怕脚本"},
+            {name = "FEGatlingButton", text = "FE加特林", desc = "加载FE加特林脚本"},
+            {name = "FEBoxingButton", text = "FE拳击", desc = "加载FE拳击脚本"},
+            {name = "FEMotorcycleButton", text = "FE摩托车", desc = "加载FE摩托车脚本"},
+            {name = "FEBanHammerButton", text = "FE封禁之锤", desc = "加载FE封禁之锤脚本"},
+            {name = "FEGatling2Button", text = "FE加特林2", desc = "加载FE加特林2脚本"},
+            {name = "FEFightingAnimButton", text = "FE格斗动作", desc = "加载FE格斗动作脚本"},
+            {name = "FER6HeadlessButton", text = "FE R6无头", desc = "加载FE R6无头脚本"},
+            {name = "FER15HeadlessButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},
+            {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -378,8 +388,6 @@ local function loadScript()
             {name = "FreePrivateServerButton", text = "免费私服", desc = "加载免费私服脚本"},
             {name = "CaodanButton", text = "操蛋", desc = "加载操蛋脚本"},
             {name = "CaodanV1Button", text = "操蛋v1", desc = "加载操蛋v1脚本"},
-            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
-            {name = "Ohio2Button", text = "俄亥俄州脚本2", desc = "加载俄亥俄州脚本2"},
             {name = "ThrowFlyButton", text = "甩飞脚本", desc = "加载甩飞脚本"},
             {name = "BeatDogButton", text = "Kenny悦服循环打狗", desc = "加载Kenny悦服循环打狗脚本"},
             {name = "WitherStormButton", text = "凋零风暴", desc = "加载凋零风暴脚本"},
@@ -401,11 +409,7 @@ local function loadScript()
             {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
-            -- 新添加的其他脚本
-            {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
-            {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"},
-            {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"},
-            {name = "XAOhioButton", text = "xa俄亥俄州", desc = "加载xa俄亥俄州脚本"}
+            {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"}
         },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
@@ -431,7 +435,23 @@ local function loadScript()
             {name = "ScriptCenterButton", text = "脚本中心", desc = "加载脚本中心"},
             {name = "XAScriptCenterButton", text = "xa脚本中心", desc = "加载xa脚本中心"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
-            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"}
+            {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"},
+            -- 新添加的unx脚本
+            {name = "UNXScriptButton", text = "unx脚本", desc = "加载unx脚本"},
+            -- 从基础功能移动过来的导管中心
+            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"}
+        },
+        ["俄亥俄州"] = {
+            -- 将所有俄亥俄州相关脚本移动到这里
+            {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
+            {name = "Ohio2Button", text = "俄亥俄州脚本2", desc = "加载俄亥俄州脚本2"},
+            {name = "XAOhioButton", text = "xa俄亥俄州", desc = "加载xa俄亥俄州脚本"}
+        },
+        ["画我"] = {
+            -- 将所有画我相关脚本移动到这里
+            {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
+            {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"},
+            {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"}
         },
         ["免费r币"] = {
             {name = "Free80RButton", text = "免费80r培根独家", desc = "点击获取免费80r币奖励"},
@@ -2274,6 +2294,83 @@ print("安全版自然灾害免疫已激活")
         showNotification("防踢脚本已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- UNX脚本
+    local function loadUNXScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/FPS-Flick-UNXHub-61980"))()
+        showNotification("unx脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE苦力怕
+    local function loadFECreeper()
+        playClickSound()
+        loadstring(game:HttpGet('https://gist.githubusercontent.com/1BlueCat/7668ee0c4e1b352d8ac51efd6ed6f3fc/raw/d6421d586bf9b5d2e3fc0ebf14203c849494ec5f/FE%2520Zombie'))()
+        showNotification("FE苦力怕已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE加特林
+    local function loadFEGatling()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/e7b408abcb813525d37e9b7a6bf301c9/raw/6421f9000e90e8a4c2ed57052208acbd6f9648dd/Minigun.txt"))()
+        showNotification("FE加特林已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE拳击
+    local function loadFEBoxing()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
+        showNotification("FE拳击已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE摩托车
+    local function loadFEMotorcycle()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
+        showNotification("FE摩托车已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE封禁之锤
+    local function loadFEBanHammer()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
+        showNotification("FE封禁之锤已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE加特林2
+    local function loadFEGatling2()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Minigun"))()
+        showNotification("FE加特林2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE格斗动作
+    local function loadFEFightingAnim()
+        playClickSound()
+        loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Fighter-Cracked"))()
+        showNotification("FE格斗动作已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE R6无头
+    local function loadFER6Headless()
+        playClickSound()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Head%20Pack'))()
+        showNotification("FE R6无头已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE R15无头
+    local function loadFER15Headless()
+        playClickSound()
+        loadstring(game:HttpGet(("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/假无头.lua"),true))()
+        showNotification("FE R15无头已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE N00kla5K菜单
+    local function loadFEN00kla5K()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-N00kla5K-f3x-gui-80801"))()
+        showNotification("FE N00kla5K菜单已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2307,7 +2404,6 @@ print("安全版自然灾害免疫已激活")
         WalkAirButton = loadWalkAir,
         PlayerESPButton = togglePlayerESP,
         BulletTrackButton = toggleBulletTrack,
-        ConduitCenterButton = loadConduitCenter,
         AntiKickButton = loadAntiKick,
         
         -- 移动功能
@@ -2368,6 +2464,17 @@ print("安全版自然灾害免疫已激活")
         FENuoliButton = loadFENuoli,
         FEIntegrationV3Button = loadFEIntegrationV3,
         FEAC6MusicVulnerabilityButton = loadFEAC6MusicVulnerability,
+        -- 新添加的FE功能
+        FECreeperButton = loadFECreeper,
+        FEGatlingButton = loadFEGatling,
+        FEBoxingButton = loadFEBoxing,
+        FEMotorcycleButton = loadFEMotorcycle,
+        FEBanHammerButton = loadFEBanHammer,
+        FEGatling2Button = loadFEGatling2,
+        FEFightingAnimButton = loadFEFightingAnim,
+        FER6HeadlessButton = loadFER6Headless,
+        FER15HeadlessButton = loadFER15Headless,
+        FEN00kla5KButton = loadFEN00kla5K,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2384,13 +2491,10 @@ print("安全版自然灾害免疫已激活")
         FEFighterButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/强行丢弃.txt", "强行装备物品") end,
         InvisibleButton = function() loadExternalScript('https://pastebin.com/raw/3Rnd9rHf', "人物隐形") end,
         FakeFriendButton = function() loadExternalScript("https://raw.githubusercontent.com/sigmaboy123z/MYFRIENDSCRIPT/refs/heads/main/MYNEWFRIENDSPAWNER", "假朋友") end,
-        ChatDrawButton = function() loadExternalScript("https://raw.githubusercontent.com/ocfi/_/refs/heads/main/a", "聊天框画画") end,
         TrainEffectButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/越跑越快.txt", "火车头效果") end,
         FreePrivateServerButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Kenny免费私服.lua", "免费私服") end,
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
         CaodanV1Button = loadCaodanV1,
-        OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
-        Ohio2Button = loadOhio2,
         ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
         BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "Kenny悦服循环打狗") end,
         WitherStormButton = function()
@@ -2417,10 +2521,7 @@ print("安全版自然灾害免疫已激活")
         NaturalDisasterButton = loadNaturalDisaster,
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
-        DrawMeScript1Button = loadDrawMeScript1,
-        DrawMeScript2Button = loadDrawMeScript2,
         PlayForsakenOnServerButton = loadPlayForsakenOnServer,
-        XAOhioButton = loadXAOhio,
         
         -- doors
         DoorsButton = loadDoors,
@@ -2456,6 +2557,18 @@ print("安全版自然灾害免疫已激活")
         XAScriptCenterButton = loadXAScriptCenter,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
+        UNXScriptButton = loadUNXScript,
+        ConduitCenterButton = loadConduitCenter,
+        
+        -- 俄亥俄州
+        OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
+        Ohio2Button = loadOhio2,
+        XAOhioButton = loadXAOhio,
+        
+        -- 画我
+        DrawMeScript1Button = loadDrawMeScript1,
+        DrawMeScript2Button = loadDrawMeScript2,
+        ChatDrawButton = function() loadExternalScript("https://raw.githubusercontent.com/ocfi/_/refs/heads/main/a", "聊天框画画") end,
         
         -- 免费r币
         Free80RButton = showFreeRBCurrencyEffect,
