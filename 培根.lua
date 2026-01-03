@@ -293,7 +293,10 @@ local function loadScript()
             {name = "CollisionBoxButton", text = "显示碰撞箱 [关闭]", desc = "显示物体碰撞箱"},
             {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
             {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"},
-            {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"}
+            {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"},
+            -- 新添加的功能
+            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
+            {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -348,7 +351,12 @@ local function loadScript()
             {name = "FEVRButton", text = "FE vr", desc = "加载FE vr脚本"},
             {name = "FE1x1x1x1Button", text = "FE魔王1x1x1x1", desc = "加载FE魔王1x1x1x1脚本"},
             {name = "FEHotlineRifleButton", text = "FE热线枪膛", desc = "加载FE热线枪膛脚本"},
-            {name = "FEIronFistButton", text = "FE铁拳", desc = "加载FE铁拳脚本"}
+            {name = "FEIronFistButton", text = "FE铁拳", desc = "加载FE铁拳脚本"},
+            -- 新添加的FE功能
+            {name = "FEScriptIntegrationV2Button", text = "FE脚本整合v2", desc = "加载FE脚本整合v2脚本"},
+            {name = "FENuoliButton", text = "FE诺丽", desc = "加载FE诺丽脚本"},
+            {name = "FEIntegrationV3Button", text = "FE整合v3", desc = "加载FE整合v3脚本"},
+            {name = "FEAC6MusicVulnerabilityButton", text = "FE AC6漏洞放音乐", desc = "加载FE AC6漏洞放音乐脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -392,7 +400,12 @@ local function loadScript()
             {name = "WallRunButton", text = "飞檐走壁", desc = "加载飞檐走壁脚本"},
             {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
-            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"}
+            {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
+            -- 新添加的其他脚本
+            {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
+            {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"},
+            {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"},
+            {name = "XAOhioButton", text = "xa俄亥俄州", desc = "加载xa俄亥俄州脚本"}
         },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
@@ -2189,6 +2202,78 @@ print("安全版自然灾害免疫已激活")
         showNotification("俄亥俄州脚本2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新添加的功能函数 ============
+
+    -- FE脚本整合v2
+    local function loadFEScriptIntegrationV2()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-TVgui-fe-bypass-V2-72662"))()
+        showNotification("FE脚本整合v2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE诺丽
+    local function loadFENuoli()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty0.lua"))()
+        showNotification("FE诺丽已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 画我脚本1
+    local function loadDrawMeScript1()
+        playClickSound()
+        loadstring(game:HttpGet("https://ancestrychanged.fun/loader.lua"))()
+        showNotification("画我脚本1已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 画我脚本2
+    local function loadDrawMeScript2()
+        playClickSound()
+        loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/3387bc2c06c6ab7e0606178d675e0ad46b29427c6a1f81e96a4c9d7a090eb68e/download"))()
+        showNotification("画我脚本2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 在服务器玩被遗弃脚本
+    local function loadPlayForsakenOnServer()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/CLwqkVKQ"))()
+        showNotification("在服务器玩被遗弃脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE整合v3
+    local function loadFEIntegrationV3()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxexploiter691/Genesisloader/main/Script.lua"))()
+        showNotification("FE整合v3已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE AC6漏洞放音乐
+    local function loadFEAC6MusicVulnerability()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Ac6-Music-Vulnerability-25536"))()
+        showNotification("FE AC6漏洞放音乐已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- xa俄亥俄州
+    local function loadXAOhio()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/俄亥俄州.lua"))()
+        showNotification("xa俄亥俄州已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 导管中心
+    local function loadConduitCenter()
+        playClickSound()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\117\115\101\114\97\110\101\119\114\102\102\47\114\111\98\108\111\120\45\47\109\97\105\110\47\37\69\54\37\57\68\37\65\49\37\69\54\37\65\67\37\66\69\37\69\53\37\56\68\37\56\70\37\69\56\37\65\69\37\65\69\34\41\41\40\41\10")()
+        showNotification("导管中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 防踢
+    local function loadAntiKick()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastebin.com/raw/JTMNb3qQ"))()
+        showNotification("防踢脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2222,6 +2307,8 @@ print("安全版自然灾害免疫已激活")
         WalkAirButton = loadWalkAir,
         PlayerESPButton = togglePlayerESP,
         BulletTrackButton = toggleBulletTrack,
+        ConduitCenterButton = loadConduitCenter,
+        AntiKickButton = loadAntiKick,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2277,6 +2364,10 @@ print("安全版自然灾害免疫已激活")
         FE1x1x1x1Button = loadFE1x1x1x1,
         FEHotlineRifleButton = loadFEHotlineRifle,
         FEIronFistButton = loadFEIronFist,
+        FEScriptIntegrationV2Button = loadFEScriptIntegrationV2,
+        FENuoliButton = loadFENuoli,
+        FEIntegrationV3Button = loadFEIntegrationV3,
+        FEAC6MusicVulnerabilityButton = loadFEAC6MusicVulnerability,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2326,6 +2417,10 @@ print("安全版自然灾害免疫已激活")
         NaturalDisasterButton = loadNaturalDisaster,
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
+        DrawMeScript1Button = loadDrawMeScript1,
+        DrawMeScript2Button = loadDrawMeScript2,
+        PlayForsakenOnServerButton = loadPlayForsakenOnServer,
+        XAOhioButton = loadXAOhio,
         
         -- doors
         DoorsButton = loadDoors,
