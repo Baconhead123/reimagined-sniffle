@@ -294,16 +294,12 @@ local function loadScript()
             {name = "WalkAirButton", text = "踏空行走", desc = "加载踏空行走脚本"},
             {name = "PlayerESPButton", text = "透视玩家 [关闭]", desc = "透视显示其他玩家轮廓"},
             {name = "BulletTrackButton", text = "子弹追踪 [关闭]", desc = "子弹自动追踪最近玩家"},
-            -- 移除导管中心和防踢，移动到其他脚本整合
-            {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"},
             -- 新添加的功能
+            {name = "FaceNearestPlayerButton", text = "面相附近玩家 [关闭]", desc = "循环面相附近最近的玩家"},
+            {name = "BackNearestPlayerButton", text = "背对附近玩家 [关闭]", desc = "循环背对附近最近的玩家"},
+            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止服务器反作弊将玩家拉回原处"},
             {name = "SpamButton", text = "刷屏", desc = "聊天刷屏工具"},
-            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"},
-            -- 新增功能：循环面向附近玩家和循环背对附近玩家
-            {name = "FaceNearestButton", text = "循环面向附近玩家 [关闭]", desc = "自动面向最近的玩家"},
-            {name = "BackNearestButton", text = "循环背对附近玩家 [关闭]", desc = "自动背对最近的玩家"},
-            -- 新增功能：防拉回
-            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止服务器反作弊拉回"}
+            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -359,12 +355,11 @@ local function loadScript()
             {name = "FE1x1x1x1Button", text = "FE魔王1x1x1x1", desc = "加载FE魔王1x1x1x1脚本"},
             {name = "FEHotlineRifleButton", text = "FE热线枪膛", desc = "加载FE热线枪膛脚本"},
             {name = "FEIronFistButton", text = "FE铁拳", desc = "加载FE铁拳脚本"},
-            -- 新添加的FE功能
+            {name = "FEVillainButton", text = "FE反派本色", desc = "加载FE反派本色脚本"},
             {name = "FEScriptIntegrationV2Button", text = "FE脚本整合v2", desc = "加载FE脚本整合v2脚本"},
             {name = "FENuoliButton", text = "FE诺丽", desc = "加载FE诺丽脚本"},
             {name = "FEIntegrationV3Button", text = "FE整合v3", desc = "加载FE整合v3脚本"},
             {name = "FEAC6MusicVulnerabilityButton", text = "FE AC6漏洞放音乐", desc = "加载FE AC6漏洞放音乐脚本"},
-            -- 新添加的FE功能
             {name = "FECreeperButton", text = "FE苦力怕", desc = "加载FE苦力怕脚本"},
             {name = "FEGatlingButton", text = "FE加特林", desc = "加载FE加特林脚本"},
             {name = "FEBoxingButton", text = "FE拳击", desc = "加载FE拳击脚本"},
@@ -375,10 +370,7 @@ local function loadScript()
             {name = "FER6HeadlessButton", text = "FE R6无头", desc = "加载FE R6无头脚本"},
             {name = "FER15HeadlessButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},
             {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"},
-            -- 新添加的FE索尼克
-            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"},
-            -- 新添加的FE反派本色
-            {name = "FEVillainButton", text = "FE反派本色", desc = "加载FE反派本色脚本"}
+            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -422,7 +414,6 @@ local function loadScript()
             {name = "MuscleLegendButton", text = "力量传奇", desc = "加载力量传奇脚本"},
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
             {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"},
-            -- 新添加的不知名黑壳脚本
             {name = "UnknownBlackShellButton", text = "不知名黑壳脚本", desc = "加载不知名黑壳脚本"}
         },
         ["doors"] = {
@@ -450,24 +441,18 @@ local function loadScript()
             {name = "XAScriptCenterButton", text = "xa脚本中心", desc = "加载xa脚本中心"},
             {name = "ChenScriptButton", text = "辰脚本", desc = "加载辰脚本"},
             {name = "ShaScriptButton", text = "沙脚本", desc = "加载沙脚本"},
-            -- 新添加的unx脚本
+            {name = "LeafScriptCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"},
             {name = "UNXScriptButton", text = "unx脚本", desc = "加载unx脚本"},
-            -- 从基础功能移动过来的导管中心
             {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
-            -- 新添加的功能
             {name = "SuperNBForeignScriptButton", text = "超级NB老外脚本", desc = "加载超级NB老外脚本"},
-            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"},
-            -- 新增的落叶中心
-            {name = "DeciduousCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"}
+            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"}
         },
         ["俄亥俄州"] = {
-            -- 将所有俄亥俄州相关脚本移动到这里
             {name = "OhioButton", text = "俄亥俄州脚本", desc = "加载俄亥俄州脚本"},
             {name = "Ohio2Button", text = "俄亥俄州脚本2", desc = "加载俄亥俄州脚本2"},
             {name = "XAOhioButton", text = "xa俄亥俄州", desc = "加载xa俄亥俄州脚本"}
         },
         ["画我"] = {
-            -- 将所有画我相关脚本移动到这里
             {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
             {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"},
             {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"}
@@ -667,11 +652,9 @@ local function loadScript()
     local espHighlights = {} -- 存储透视高亮对象
     local spinningOnNearest = false -- 循环旋转最近玩家
     local bulletTrackEnabled = false -- 子弹追踪状态
-    
-    -- 新增功能变量
-    local faceNearestEnabled = false -- 循环面向附近玩家
-    local backNearestEnabled = false -- 循环背对附近玩家
-    local antiPullbackEnabled = false -- 防拉回功能
+    local facingNearestEnabled = false -- 面相附近玩家
+    local backingNearestEnabled = false -- 背对附近玩家
+    local antiPullbackEnabled = false -- 防拉回状态
 
     -- 播放点击音效函数
     local function playClickSound()
@@ -761,7 +744,7 @@ local function loadScript()
         showNotification(name .. "已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- ============ 新增功能函数 ============
+    -- ============ 新添加的功能函数 ============
 
     -- FE反派本色
     local function loadFEVillain()
@@ -770,37 +753,38 @@ local function loadScript()
         showNotification("FE反派本色已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- 循环面向附近玩家
-    local function toggleFaceNearest()
+    -- 落叶中心
+    local function loadLeafScriptCenter()
         playClickSound()
-        faceNearestEnabled = not faceNearestEnabled
+        getgenv().LS="落叶中心"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
+        showNotification("落叶中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 循环面相附近玩家
+    local function toggleFaceNearestPlayer()
+        playClickSound()
+        facingNearestEnabled = not facingNearestEnabled
         
-        if faceNearestEnabled then
-            ButtonInstances.FaceNearestButton.Text = "循环面向附近玩家 [开启]"
-            ButtonInstances.FaceNearestButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+        if facingNearestEnabled then
+            ButtonInstances.FaceNearestPlayerButton.Text = "面相附近玩家 [开启]"
+            ButtonInstances.FaceNearestPlayerButton.TextColor3 = Color3.fromRGB(0, 255, 150)
             
-            -- 停止背对功能
-            if backNearestEnabled then
-                backNearestEnabled = false
-                ButtonInstances.BackNearestButton.Text = "循环背对附近玩家 [关闭]"
-                ButtonInstances.BackNearestButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-                if connections.backNearest then
-                    connections.backNearest:Disconnect()
-                    connections.backNearest = nil
-                end
+            -- 如果背对功能已开启，先关闭它
+            if backingNearestEnabled then
+                toggleBackNearestPlayer()
             end
             
             connections.faceNearest = RunService.Heartbeat:Connect(function()
-                local character = LocalPlayer.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    local myRoot = character.HumanoidRootPart
+                if facingNearestEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    -- 获取最近玩家
                     local nearestPlayer = nil
                     local shortestDistance = math.huge
                     
                     for _, player in pairs(Players:GetPlayers()) do
                         if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                            local distance = (myRoot.Position - player.Character.HumanoidRootPart.Position).Magnitude
-                            if distance < shortestDistance and distance < 100 then
+                            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 50 then
                                 shortestDistance = distance
                                 nearestPlayer = player
                             end
@@ -808,57 +792,53 @@ local function loadScript()
                     end
                     
                     if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                        local targetPos = nearestPlayer.Character.HumanoidRootPart.Position
-                        myRoot.CFrame = CFrame.new(myRoot.Position, Vector3.new(targetPos.X, myRoot.Position.Y, targetPos.Z))
+                        local myRoot = LocalPlayer.Character.HumanoidRootPart
+                        local targetRoot = nearestPlayer.Character.HumanoidRootPart
+                        
+                        -- 面向目标玩家
+                        myRoot.CFrame = CFrame.new(myRoot.Position, targetRoot.Position)
                     end
                 end
             end)
             
-            showNotification("循环面向附近玩家已开启", Color3.fromRGB(0, 200, 0))
+            showNotification("循环面相附近玩家已开启", Color3.fromRGB(0, 200, 0))
         else
-            ButtonInstances.FaceNearestButton.Text = "循环面向附近玩家 [关闭]"
-            ButtonInstances.FaceNearestButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            ButtonInstances.FaceNearestPlayerButton.Text = "面相附近玩家 [关闭]"
+            ButtonInstances.FaceNearestPlayerButton.TextColor3 = Color3.fromRGB(200, 200, 255)
             
             if connections.faceNearest then
                 connections.faceNearest:Disconnect()
                 connections.faceNearest = nil
             end
             
-            showNotification("循环面向附近玩家已关闭", Color3.fromRGB(150, 150, 150))
+            showNotification("循环面相附近玩家已关闭", Color3.fromRGB(150, 150, 150))
         end
     end
 
     -- 循环背对附近玩家
-    local function toggleBackNearest()
+    local function toggleBackNearestPlayer()
         playClickSound()
-        backNearestEnabled = not backNearestEnabled
+        backingNearestEnabled = not backingNearestEnabled
         
-        if backNearestEnabled then
-            ButtonInstances.BackNearestButton.Text = "循环背对附近玩家 [开启]"
-            ButtonInstances.BackNearestButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+        if backingNearestEnabled then
+            ButtonInstances.BackNearestPlayerButton.Text = "背对附近玩家 [开启]"
+            ButtonInstances.BackNearestPlayerButton.TextColor3 = Color3.fromRGB(0, 255, 150)
             
-            -- 停止面向功能
-            if faceNearestEnabled then
-                faceNearestEnabled = false
-                ButtonInstances.FaceNearestButton.Text = "循环面向附近玩家 [关闭]"
-                ButtonInstances.FaceNearestButton.TextColor3 = Color3.fromRGB(200, 200, 255)
-                if connections.faceNearest then
-                    connections.faceNearest:Disconnect()
-                    connections.faceNearest = nil
-                end
+            -- 如果面相功能已开启，先关闭它
+            if facingNearestEnabled then
+                toggleFaceNearestPlayer()
             end
             
             connections.backNearest = RunService.Heartbeat:Connect(function()
-                local character = LocalPlayer.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    local myRoot = character.HumanoidRootPart
+                if backingNearestEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    -- 获取最近玩家
                     local nearestPlayer = nil
                     local shortestDistance = math.huge
                     
                     for _, player in pairs(Players:GetPlayers()) do
                         if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                            local distance = (myRoot.Position - player.Character.HumanoidRootPart.Position).Magnitude
-                            if distance < shortestDistance and distance < 100 then
+                            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 50 then
                                 shortestDistance = distance
                                 nearestPlayer = player
                             end
@@ -866,19 +846,19 @@ local function loadScript()
                     end
                     
                     if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
-                        local targetPos = nearestPlayer.Character.HumanoidRootPart.Position
-                        -- 计算背对方向
-                        local direction = (myRoot.Position - targetPos).Unit
-                        local lookAtPos = myRoot.Position + direction
-                        myRoot.CFrame = CFrame.new(myRoot.Position, Vector3.new(lookAtPos.X, myRoot.Position.Y, lookAtPos.Z))
+                        local myRoot = LocalPlayer.Character.HumanoidRootPart
+                        local targetRoot = nearestPlayer.Character.HumanoidRootPart
+                        
+                        -- 背对目标玩家
+                        myRoot.CFrame = CFrame.new(myRoot.Position, targetRoot.Position) * CFrame.Angles(0, math.rad(180), 0)
                     end
                 end
             end)
             
             showNotification("循环背对附近玩家已开启", Color3.fromRGB(0, 200, 0))
         else
-            ButtonInstances.BackNearestButton.Text = "循环背对附近玩家 [关闭]"
-            ButtonInstances.BackNearestButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            ButtonInstances.BackNearestPlayerButton.Text = "背对附近玩家 [关闭]"
+            ButtonInstances.BackNearestPlayerButton.TextColor3 = Color3.fromRGB(200, 200, 255)
             
             if connections.backNearest then
                 connections.backNearest:Disconnect()
@@ -887,14 +867,6 @@ local function loadScript()
             
             showNotification("循环背对附近玩家已关闭", Color3.fromRGB(150, 150, 150))
         end
-    end
-
-    -- 落叶中心
-    local function loadDeciduousCenter()
-        playClickSound()
-        getgenv().LS = "落叶中心"
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
-        showNotification("落叶中心已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 防拉回功能
@@ -906,32 +878,30 @@ local function loadScript()
             ButtonInstances.AntiPullbackButton.Text = "防拉回 [开启]"
             ButtonInstances.AntiPullbackButton.TextColor3 = Color3.fromRGB(0, 255, 150)
             
+            -- 防拉回原理：存储玩家的上一个位置，当服务器试图拉回时，立即将玩家传送到期望的位置
             local lastPosition = nil
-            local antiPullbackConnection = nil
+            local lastVelocity = Vector3.new(0, 0, 0)
             
-            antiPullbackConnection = RunService.Heartbeat:Connect(function()
-                local character = LocalPlayer.Character
-                if character and character:FindFirstChild("HumanoidRootPart") then
-                    local rootPart = character.HumanoidRootPart
-                    local currentPosition = rootPart.Position
+            connections.antiPullback = RunService.Heartbeat:Connect(function()
+                if antiPullbackEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local rootPart = LocalPlayer.Character.HumanoidRootPart
                     
+                    -- 如果位置变化异常大（可能是被拉回），则立即传回
                     if lastPosition then
-                        -- 检查是否被拉回
-                        local distance = (currentPosition - lastPosition).Magnitude
-                        local expectedDistance = (rootPart.Velocity * RunService.Heartbeat:Wait()).Magnitude
+                        local distanceMoved = (rootPart.Position - lastPosition).Magnitude
                         
-                        -- 如果实际移动距离远小于预期距离（可能是被拉回了），则立即传送回上一个位置
-                        if distance > 0.1 and distance < expectedDistance * 0.1 then
-                            -- 检测到拉回，立即传送回上一个位置
-                            rootPart.CFrame = CFrame.new(lastPosition)
+                        -- 如果移动距离超过阈值且速度方向不一致，可能是被拉回
+                        if distanceMoved > 10 then
+                            -- 立即将玩家传送到期望的位置
+                            rootPart.CFrame = CFrame.new(lastPosition + (rootPart.Velocity.Unit * 0.1))
                         end
                     end
                     
-                    lastPosition = currentPosition
+                    -- 记录当前位置和速度
+                    lastPosition = rootPart.Position
+                    lastVelocity = rootPart.Velocity
                 end
             end)
-            
-            connections.antiPullback = antiPullbackConnection
             
             showNotification("防拉回已开启", Color3.fromRGB(0, 200, 0))
         else
@@ -2432,184 +2402,14 @@ print("安全版自然灾害免疫已激活")
         showNotification("俄亥俄州脚本2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- ============ 新添加的功能函数 ============
-
-    -- FE脚本整合v2
-    local function loadFEScriptIntegrationV2()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-TVgui-fe-bypass-V2-72662"))()
-        showNotification("FE脚本整合v2已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE诺丽
-    local function loadFENuoli()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty0.lua"))()
-        showNotification("FE诺丽已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 画我脚本1
-    local function loadDrawMeScript1()
-        playClickSound()
-        loadstring(game:HttpGet("https://ancestrychanged.fun/loader.lua"))()
-        showNotification("画我脚本1已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 画我脚本2
-    local function loadDrawMeScript2()
-        playClickSound()
-        loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/3387bc2c06c6ab7e0606178d675e0ad46b29427c6a1f81e96a4c9d7a090eb68e/download"))()
-        showNotification("画我脚本2已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 在服务器玩被遗弃脚本
-    local function loadPlayForsakenOnServer()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/CLwqkVKQ"))()
-        showNotification("在服务器玩被遗弃脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE整合v3
-    local function loadFEIntegrationV3()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxexploiter691/Genesisloader/main/Script.lua"))()
-        showNotification("FE整合v3已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE AC6漏洞放音乐
-    local function loadFEAC6MusicVulnerability()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Ac6-Music-Vulnerability-25536"))()
-        showNotification("FE AC6漏洞放音乐已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- xa俄亥俄州
-    local function loadXAOhio()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xingtaiduan/Script/refs/heads/main/Games/俄亥俄州.lua"))()
-        showNotification("xa俄亥俄州已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 导管中心
-    local function loadConduitCenter()
-        playClickSound()
-        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\117\115\101\114\97\110\101\119\114\102\102\47\114\111\98\108\111\120\45\47\109\97\105\110\47\37\69\54\37\57\68\37\65\49\37\69\54\37\65\67\37\66\69\37\69\53\37\56\68\37\56\70\37\69\56\37\65\69\37\65\69\34\41\41\40\41\10")()
-        showNotification("导管中心已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 防踢
-    local function loadAntiKick()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/JTMNb3qQ"))()
-        showNotification("防踢脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- UNX脚本
-    local function loadUNXScript()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/FPS-Flick-UNXHub-61980"))()
-        showNotification("unx脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE苦力怕
-    local function loadFECreeper()
-        playClickSound()
-        loadstring(game:HttpGet('https://gist.githubusercontent.com/1BlueCat/7668ee0c4e1b352d8ac51efd6ed6f3fc/raw/d6421d586bf9b5d2e3fc0ebf14203c849494ec5f/FE%2520Zombie'))()
-        showNotification("FE苦力怕已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE加特林
-    local function loadFEGatling()
-        playClickSound()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/e7b408abcb813525d37e9b7a6bf301c9/raw/6421f9000e90e8a4c2ed57052208acbd6f9648dd/Minigun.txt"))()
-        showNotification("FE加特林已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE拳击
-    local function loadFEBoxing()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Gale%20Fighter"))()
-        showNotification("FE拳击已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE摩托车
-    local function loadFEMotorcycle()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Motorcycle"))()
-        showNotification("FE摩托车已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE封禁之锤
-    local function loadFEBanHammer()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Ban%20Hammer"))()
-        showNotification("FE封禁之锤已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE加特林2
-    local function loadFEGatling2()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Minigun"))()
-        showNotification("FE加特林2已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE格斗动作
-    local function loadFEFightingAnim()
-        playClickSound()
-        loadstring(game:HttpGet("https://github.com/Sinister-Scripts/Roblox-Exploits/raw/refs/heads/main/FE-Fighter-Cracked"))()
-        showNotification("FE格斗动作已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE R6无头
-    local function loadFER6Headless()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Valiant-Ui-Lib-Gazed-/refs/heads/main/Head%20Pack'))()
-        showNotification("FE R6无头已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE R15无头
-    local function loadFER15Headless()
-        playClickSound()
-        loadstring(game:HttpGet(("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/假无头.lua"),true))()
-        showNotification("FE R15无头已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- FE N00kla5K菜单
-    local function loadFEN00kla5K()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-N00kla5K-f3x-gui-80801"))()
-        showNotification("FE N00kla5K菜单已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
     -- ============ 新添加的功能函数（根据您的要求） ============
-
-    -- FE索尼克
-    local function loadFESonic()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Sonic-script-r15-READ-DESC-81391"))()
-        showNotification("FE索尼克已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 超级NB老外脚本
-    local function loadSuperNBForeignScript()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-XVC-Hub-170-Games-Keyless-58593"))()
-        showNotification("超级NB老外脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 不知名黑壳脚本
-    local function loadUnknownBlackShell()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-1x93x1x-private-GUI-leaked-lol-81399"))()
-        showNotification("不知名黑壳脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
 
     -- 刷屏功能
     local function loadSpam()
         playClickSound()
         -- 简单实用的聊天刷屏脚本
         local Players = game:GetService("Players")
-        local LocalPlayer = game:GetService("Players").LocalPlayer
+        local LocalPlayer = Players.LocalPlayer
         local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
         -- 创建UI
@@ -2803,14 +2603,11 @@ print("安全版自然灾害免疫已激活")
         WalkAirButton = loadWalkAir,
         PlayerESPButton = togglePlayerESP,
         BulletTrackButton = toggleBulletTrack,
-        AntiKickButton = loadAntiKick,
-        -- 新添加的功能
+        FaceNearestPlayerButton = toggleFaceNearestPlayer,
+        BackNearestPlayerButton = toggleBackNearestPlayer,
+        AntiPullbackButton = toggleAntiPullback,
         SpamButton = loadSpam,
         FEBaconPrankButton = loadFEBaconPrank,
-        -- 新增功能
-        FaceNearestButton = toggleFaceNearest,
-        BackNearestButton = toggleBackNearest,
-        AntiPullbackButton = toggleAntiPullback,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2866,11 +2663,11 @@ print("安全版自然灾害免疫已激活")
         FE1x1x1x1Button = loadFE1x1x1x1,
         FEHotlineRifleButton = loadFEHotlineRifle,
         FEIronFistButton = loadFEIronFist,
+        FEVillainButton = loadFEVillain,
         FEScriptIntegrationV2Button = loadFEScriptIntegrationV2,
         FENuoliButton = loadFENuoli,
         FEIntegrationV3Button = loadFEIntegrationV3,
         FEAC6MusicVulnerabilityButton = loadFEAC6MusicVulnerability,
-        -- 新添加的FE功能
         FECreeperButton = loadFECreeper,
         FEGatlingButton = loadFEGatling,
         FEBoxingButton = loadFEBoxing,
@@ -2881,10 +2678,7 @@ print("安全版自然灾害免疫已激活")
         FER6HeadlessButton = loadFER6Headless,
         FER15HeadlessButton = loadFER15Headless,
         FEN00kla5KButton = loadFEN00kla5K,
-        -- 新添加的FE索尼克
         FESonicButton = loadFESonic,
-        -- 新添加的FE反派本色
-        FEVillainButton = loadFEVillain,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2932,7 +2726,6 @@ print("安全版自然灾害免疫已激活")
         MuscleLegendButton = loadMuscleLegend,
         MuscleLegendChangeButton = loadMuscleLegendChange,
         PlayForsakenOnServerButton = loadPlayForsakenOnServer,
-        -- 新添加的不知名黑壳脚本
         UnknownBlackShellButton = loadUnknownBlackShell,
         
         -- doors
@@ -2963,19 +2756,17 @@ print("安全版自然灾害免疫已激活")
         DingScriptButton = loadDingScript,
         ScriptCenterButton = function() 
             playClickSound()
-            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,54,37,66,65,37,57,49,34,41,41,40,41})end)()))()
+            loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
         XAScriptCenterButton = loadXAScriptCenter,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
+        LeafScriptCenterButton = loadLeafScriptCenter,
         UNXScriptButton = loadUNXScript,
         ConduitCenterButton = loadConduitCenter,
-        -- 新添加的功能
         SuperNBForeignScriptButton = loadSuperNBForeignScript,
         BSCenterButton = loadBSCenter,
-        -- 新增的落叶中心
-        DeciduousCenterButton = loadDeciduousCenter,
         
         -- 俄亥俄州
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
