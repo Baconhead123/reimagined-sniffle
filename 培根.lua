@@ -298,7 +298,12 @@ local function loadScript()
             {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"},
             -- 新添加的功能
             {name = "SpamButton", text = "刷屏", desc = "聊天刷屏工具"},
-            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"}
+            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"},
+            -- 新增的功能
+            {name = "FaceNearestPlayerButton", text = "循环面相附近玩家 [关闭]", desc = "循环面向最近的玩家"},
+            {name = "BackNearestPlayerButton", text = "循环背对附近玩家 [关闭]", desc = "循环背对最近的玩家"},
+            {name = "FEAttachDropButton", text = "FE附属饰品放掉", desc = "放掉FE附属饰品"},
+            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止反作弊拉回"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -371,7 +376,9 @@ local function loadScript()
             {name = "FER15HeadlessButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},
             {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"},
             -- 新添加的FE索尼克
-            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"}
+            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"},
+            -- 新添加的FE反派本色
+            {name = "FEVillainButton", text = "FE反派本色", desc = "加载FE反派本色脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -449,7 +456,9 @@ local function loadScript()
             {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
             -- 新添加的功能
             {name = "SuperNBForeignScriptButton", text = "超级NB老外脚本", desc = "加载超级NB老外脚本"},
-            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"}
+            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"},
+            -- 新添加的落叶中心
+            {name = "LeafCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"}
         },
         ["俄亥俄州"] = {
             -- 将所有俄亥俄州相关脚本移动到这里
@@ -658,6 +667,9 @@ local function loadScript()
     local espHighlights = {} -- 存储透视高亮对象
     local spinningOnNearest = false -- 循环旋转最近玩家
     local bulletTrackEnabled = false -- 子弹追踪状态
+    local faceNearestEnabled = false -- 循环面相附近玩家
+    local backNearestEnabled = false -- 循环背对附近玩家
+    local antiPullbackEnabled = false -- 防拉回功能状态
 
     -- 播放点击音效函数
     local function playClickSound()
@@ -852,7 +864,7 @@ local function loadScript()
             
             -- 移除碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
-                if obj:IsA("BasePart") and obj:FindFirstChild("BaconCollisionBox") then
+                if obj:IsA("BasePart") and obj.FindFirstChild("BaconCollisionBox") then
                     obj.BaconCollisionBox:Destroy()
                 end
             end
@@ -2570,6 +2582,255 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE培根脚本附属恶搞已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新增功能函数 ============
+
+    -- FE反派本色
+    local function loadFEVillain()
+        playClickSound()
+        loadstring(game:HttpGet(('https://gist.githubusercontent.com/axelinharlem182/1ee425c9d850af697f8c3cb108a9d816/raw/c4660b01faf4db266e8031e310121a65836f98a7/The%2520Villain'),true))()
+        showNotification("FE反派本色已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 循环面相附近玩家
+    local function toggleFaceNearestPlayer()
+        playClickSound()
+        faceNearestEnabled = not faceNearestEnabled
+        
+        if faceNearestEnabled then
+            -- 停止背对功能
+            if backNearestEnabled then
+                toggleBackNearestPlayer()
+            end
+            
+            ButtonInstances.FaceNearestPlayerButton.Text = "循环面相附近玩家 [开启]"
+            ButtonInstances.FaceNearestPlayerButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.faceNearest = RunService.Heartbeat:Connect(function()
+                if faceNearestEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    -- 获取最近玩家
+                    local nearestPlayer = nil
+                    local shortestDistance = math.huge
+                    
+                    for _, player in pairs(Players:GetPlayers()) do
+                        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 100 then
+                                shortestDistance = distance
+                                nearestPlayer = player
+                            end
+                        end
+                    end
+                    
+                    if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        local myRoot = LocalPlayer.Character.HumanoidRootPart
+                        local targetRoot = nearestPlayer.Character.HumanoidRootPart
+                        myRoot.CFrame = CFrame.new(myRoot.Position, Vector3.new(targetRoot.Position.X, myRoot.Position.Y, targetRoot.Position.Z))
+                    end
+                end
+            end)
+            
+            showNotification("循环面相附近玩家已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.FaceNearestPlayerButton.Text = "循环面相附近玩家 [关闭]"
+            ButtonInstances.FaceNearestPlayerButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.faceNearest then
+                connections.faceNearest:Disconnect()
+                connections.faceNearest = nil
+            end
+            
+            showNotification("循环面相附近玩家已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 循环背对附近玩家
+    local function toggleBackNearestPlayer()
+        playClickSound()
+        backNearestEnabled = not backNearestEnabled
+        
+        if backNearestEnabled then
+            -- 停止面相功能
+            if faceNearestEnabled then
+                toggleFaceNearestPlayer()
+            end
+            
+            ButtonInstances.BackNearestPlayerButton.Text = "循环背对附近玩家 [开启]"
+            ButtonInstances.BackNearestPlayerButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.backNearest = RunService.Heartbeat:Connect(function()
+                if backNearestEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    -- 获取最近玩家
+                    local nearestPlayer = nil
+                    local shortestDistance = math.huge
+                    
+                    for _, player in pairs(Players:GetPlayers()) do
+                        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                            local distance = (LocalPlayer.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 100 then
+                                shortestDistance = distance
+                                nearestPlayer = player
+                            end
+                        end
+                    end
+                    
+                    if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        local myRoot = LocalPlayer.Character.HumanoidRootPart
+                        local targetRoot = nearestPlayer.Character.HumanoidRootPart
+                        -- 背对玩家：面向相反方向
+                        local direction = (myRoot.Position - targetRoot.Position).Unit
+                        myRoot.CFrame = CFrame.new(myRoot.Position, myRoot.Position + direction)
+                    end
+                end
+            end)
+            
+            showNotification("循环背对附近玩家已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.BackNearestPlayerButton.Text = "循环背对附近玩家 [关闭]"
+            ButtonInstances.BackNearestPlayerButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.backNearest then
+                connections.backNearest:Disconnect()
+                connections.backNearest = nil
+            end
+            
+            showNotification("循环背对附近玩家已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 落叶中心
+    local function loadLeafCenter()
+        playClickSound()
+        getgenv().LS="落叶中心"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
+        showNotification("落叶中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE附属饰品放掉
+    local function loadFEAttachDrop()
+        playClickSound()
+        local Players = game:GetService("Players")
+        local RunService = game:GetService("RunService")
+        local LocalPlayer = Players.LocalPlayer
+        local StarterGui = game:GetService("StarterGui")
+
+        StarterGui:SetCore("SendNotification",{
+            Title = "Network Bypass",
+            Text = "Remake Made by Hiyall360",
+            Icon = "rbxassetid://12562053596"
+        })
+
+        if not getgenv().Network then
+            getgenv().Network = {
+                BaseParts = {};
+                Velocity = Vector3.new(0,999,0); -- huge upward force
+                Output = {
+                    Enabled = true;
+                    Prefix = "[NETWORK] ";
+                    Send = function(Type,Output,BypassOutput)
+                        if typeof(Type) == "function" and (Type == print or Type == warn or Type == error) and typeof(Output) == "string" then
+                            if Network["Output"].Enabled == true or BypassOutput then
+                                Type(Network["Output"].Prefix..Output)
+                            end
+                        end
+                    end;
+                };
+            }
+            Network.Output.Send(print,": Network Loaded.")
+        end
+
+        local hats = {}
+
+        for _,h in pairs(LocalPlayer.Character:GetChildren()) do
+            if h:IsA("Accessory") then
+                local hd = h.Handle
+                hd.AccessoryWeld:Destroy()
+                table.insert(Network.BaseParts, hd)
+                table.insert(hats, hd)
+            end
+        end
+
+        Network["PartOwnership"] = {}
+        Network["PartOwnership"]["Enabled"] = false
+        Network["PartOwnership"]["Enable"] = coroutine.create(function()
+            if not Network["PartOwnership"]["Enabled"] then
+                Network["PartOwnership"]["Enabled"] = true
+                Network["PartOwnership"]["Connection"] = RunService.Heartbeat:Connect(function()
+                    sethiddenproperty(LocalPlayer,"SimulationRadius",1/0)
+                    for _,Part in pairs(Network.BaseParts) do
+                        if Part:IsDescendantOf(workspace) then
+                            coroutine.wrap(function()
+                                Part.Velocity = Network.Velocity + Vector3.new(0,math.cos(tick()*10)/100,0)
+                            end)()
+                        end
+                    end
+                end)
+                Network.Output.Send(print,"PartOwnership enabled.")
+            else
+                Network.Output.Send(warn,"PartOwnership already enabled.")
+            end
+        end)
+
+        coroutine.resume(Network["PartOwnership"]["Enable"])
+        showNotification("FE附属饰品放掉已激活!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 防拉回功能
+    local function toggleAntiPullback()
+        playClickSound()
+        antiPullbackEnabled = not antiPullbackEnabled
+        
+        if antiPullbackEnabled then
+            ButtonInstances.AntiPullbackButton.Text = "防拉回 [开启]"
+            ButtonInstances.AntiPullbackButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            -- 保存原始位置
+            local lastPosition = nil
+            local lastUpdateTime = tick()
+            
+            connections.antiPullback = RunService.Heartbeat:Connect(function()
+                if antiPullbackEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local currentTime = tick()
+                    local currentPos = LocalPlayer.Character.HumanoidRootPart.Position
+                    
+                    -- 每0.1秒记录一次位置
+                    if currentTime - lastUpdateTime >= 0.1 then
+                        lastPosition = currentPos
+                        lastUpdateTime = currentTime
+                    end
+                    
+                    -- 如果位置发生突变（被拉回），立即传回原位置
+                    if lastPosition and (currentPos - lastPosition).Magnitude > 50 then
+                        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(lastPosition)
+                        showNotification("检测到拉回，已修正位置!", Color3.fromRGB(255, 100, 0))
+                    end
+                end
+            end)
+            
+            -- 监听角色变化
+            LocalPlayer.CharacterAdded:Connect(function()
+                wait(1) -- 等待角色完全加载
+                if antiPullbackEnabled then
+                    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        lastPosition = LocalPlayer.Character.HumanoidRootPart.Position
+                        lastUpdateTime = tick()
+                    end
+                end
+            end)
+            
+            showNotification("防拉回已开启!", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.AntiPullbackButton.Text = "防拉回 [关闭]"
+            ButtonInstances.AntiPullbackButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.antiPullback then
+                connections.antiPullback:Disconnect()
+                connections.antiPullback = nil
+            end
+            
+            showNotification("防拉回已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2607,6 +2868,11 @@ print("安全版自然灾害免疫已激活")
         -- 新添加的功能
         SpamButton = loadSpam,
         FEBaconPrankButton = loadFEBaconPrank,
+        -- 新增的功能
+        FaceNearestPlayerButton = toggleFaceNearestPlayer,
+        BackNearestPlayerButton = toggleBackNearestPlayer,
+        FEAttachDropButton = loadFEAttachDrop,
+        AntiPullbackButton = toggleAntiPullback,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2679,6 +2945,8 @@ print("安全版自然灾害免疫已激活")
         FEN00kla5KButton = loadFEN00kla5K,
         -- 新添加的FE索尼克
         FESonicButton = loadFESonic,
+        -- 新添加的FE反派本色
+        FEVillainButton = loadFEVillain,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2768,6 +3036,8 @@ print("安全版自然灾害免疫已激活")
         -- 新添加的功能
         SuperNBForeignScriptButton = loadSuperNBForeignScript,
         BSCenterButton = loadBSCenter,
+        -- 新添加的落叶中心
+        LeafCenterButton = loadLeafCenter,
         
         -- 俄亥俄州
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
