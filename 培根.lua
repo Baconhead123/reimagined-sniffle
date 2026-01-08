@@ -298,7 +298,11 @@ local function loadScript()
             {name = "AntiKickButton", text = "防踢", desc = "加载防踢脚本"},
             -- 新添加的功能
             {name = "SpamButton", text = "刷屏", desc = "聊天刷屏工具"},
-            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"}
+            {name = "FEBaconPrankButton", text = "FE培根脚本附属恶搞", desc = "FE培根脚本附属恶搞脚本"},
+            -- 新增功能
+            {name = "FaceNearbyButton", text = "循环面向附近玩家 [关闭]", desc = "循环面向最近的玩家"},
+            {name = "BackNearbyButton", text = "循环背对附近玩家 [关闭]", desc = "循环背对最近的玩家"},
+            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止反作弊拉回"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -306,10 +310,8 @@ local function loadScript()
             {name = "AutoMoveButton", text = "自动移动 [关闭]", desc = "自动向前移动"}
         },
         ["玩家交互"] = {
-            {name = "KillAllButton", text = "秒杀所有人", desc = "瞬间击败所有其他玩家"},
+            -- 删除骑在别人头上、在别人头上旋转、秒杀所有人
             {name = "TeleportAllButton", text = "传送所有人到我", desc = "把所有玩家传送到你身边"},
-            {name = "SitSpinButton", text = "坐在头上旋转 [关闭]", desc = "坐在目标玩家头上旋转"},
-            {name = "RideHeadButton", text = "骑在玩家头上 [关闭]", desc = "骑在目标玩家头上跟随移动"},
             {name = "ViewBackpackButton", text = "查看玩家背包", desc = "查看并偷取其他玩家的物品"},
             {name = "ClickTeleportButton", text = "点击传送", desc = "加载点击传送工具脚本"},
             {name = "AimbotButton", text = "自瞄 [关闭]", desc = "自动瞄准最近玩家，可选头部/身体"},
@@ -371,7 +373,12 @@ local function loadScript()
             {name = "FER15HeadlessButton", text = "FE R15无头", desc = "加载FE R15无头脚本"},
             {name = "FEN00kla5KButton", text = "FE N00kla5K菜单", desc = "加载FE N00kla5K菜单脚本"},
             -- 新添加的FE索尼克
-            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"}
+            {name = "FESonicButton", text = "FE索尼克", desc = "加载FE索尼克脚本"},
+            -- 新增FE功能
+            {name = "FEVillainButton", text = "FE反派本色", desc = "加载FE反派本色脚本"},
+            {name = "FESuperGirlButton", text = "FE女超人", desc = "加载FE女超人脚本"},
+            {name = "FEFreeAnimationButton", text = "FE免费动画包", desc = "加载FE免费动画包脚本"},
+            {name = "FEGetCoilsButton", text = "FE获取各种线圈脚本", desc = "加载FE获取各种线圈脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -416,7 +423,9 @@ local function loadScript()
             {name = "MuscleLegendChangeButton", text = "力量传奇改力量", desc = "加载力量传奇改力量脚本"},
             {name = "PlayForsakenOnServerButton", text = "在服务器玩被遗弃脚本", desc = "在服务器玩被遗弃脚本"},
             -- 新添加的不知名黑壳脚本
-            {name = "UnknownBlackShellButton", text = "不知名黑壳脚本", desc = "加载不知名黑壳脚本"}
+            {name = "UnknownBlackShellButton", text = "不知名黑壳脚本", desc = "加载不知名黑壳脚本"},
+            -- 新增全局聊天脚本
+            {name = "GlobalChatButton", text = "全局聊天脚本", desc = "加载全局聊天脚本"}
         },
         ["doors"] = {
             {name = "DoorsButton", text = "doors", desc = "加载doors脚本"},
@@ -449,7 +458,9 @@ local function loadScript()
             {name = "ConduitCenterButton", text = "导管中心", desc = "加载导管中心脚本"},
             -- 新添加的功能
             {name = "SuperNBForeignScriptButton", text = "超级NB老外脚本", desc = "加载超级NB老外脚本"},
-            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"}
+            {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"},
+            -- 新增落叶中心
+            {name = "FallenLeavesCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"}
         },
         ["俄亥俄州"] = {
             -- 将所有俄亥俄州相关脚本移动到这里
@@ -658,6 +669,10 @@ local function loadScript()
     local espHighlights = {} -- 存储透视高亮对象
     local spinningOnNearest = false -- 循环旋转最近玩家
     local bulletTrackEnabled = false -- 子弹追踪状态
+    local faceNearbyEnabled = false -- 循环面向附近玩家
+    local backNearbyEnabled = false -- 循环背对附近玩家
+    local antiPullbackEnabled = false -- 防拉回功能
+    local lastPosition = nil -- 记录最后位置
 
     -- 播放点击音效函数
     local function playClickSound()
@@ -800,27 +815,6 @@ local function loadScript()
         
         -- 显示通知
         showNotification("免费R币特效已启动!", Color3.fromRGB(255, 100, 0))
-    end
-
-    -- 新添加的doors功能
-    local function loadDoors()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/mstudio45/MSDOORS/main/MSDOORS.lua'))()
-        showNotification("doors已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 新添加的力量传奇功能
-    local function loadMuscleLegend()
-        playClickSound()
-        loadstring(game:GetObjects("rbxassetid://10048914323")[1].Source)()
-        showNotification("力量传奇已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 新添加的力量传奇改力量功能
-    local function loadMuscleLegendChange()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua'))()
-        showNotification("力量传奇改力量已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 显示碰撞箱功能
@@ -1017,223 +1011,11 @@ local function loadScript()
         end
     end
 
-    -- 新增功能函数
-    local function loadFER6DeerCan()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
-        showNotification("FEr6鹿罐已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFER15DeerCan()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
-        showNotification("FEr15鹿罐已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadBurstScript()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/放克表情.lua"))()
-        showNotification("爆燃脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadBootCheck()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/开机检测.lua"))()
-        showNotification("开机检测已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadCalculator()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Calculator'))()
-        showNotification("计算器已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadChatBubbleBeautify()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/4M1NrMnc.txt"))()
-        showNotification("聊天气泡美化已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadC00lkidBlackShell()
-        playClickSound()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-coolkid-gui-15453"))()
-        showNotification("c00lkid黑壳已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDoorsMode()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/Pm3rvBNw"))()
-        showNotification("doors模式已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDoorsHardcoreMode()
-        playClickSound()
-        loadstring(game:HttpGet("https://glot.io/snippets/gp5pu59o7f/raw"))()
-        showNotification("doors硬核模式已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadChatTranslator()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Translator'))()
-        showNotification("聊天翻译器已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadKennyAutoTranslate()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY自动汉化.txt"))()
-        showNotification("kenny自动汉化已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadMindPull()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/翻译.txt"))()
-        showNotification("心灵牵引已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadTelepathy()
-        playClickSound()
-        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty11.lua"))()
-        showNotification("心灵感应已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFishScript()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-        showNotification("鱼脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDingScript()
-        playClickSound()
-        loadstring(game:HttpGet("http://pastefy.app/g7wgZQya/raw"))()
-        showNotification("丁脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadChuScript()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/refs/heads/main/初脚本.lua"))()
-        showNotification("初脚本已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadForest99NightDiamond()
-        playClickSound()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/MQPS7/99-Night-in-the-Forset/refs/heads/main/Gfarm'))()
-        showNotification("森林99夜刷钻石已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadStealBrainRedRainbow()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastefy.app/PkYWvKhM/raw"))()
-        showNotification("偷走脑红彩虹板已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadStealBrainRedBigBoard()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/zhe4ie0W"))()
-        showNotification("偷走脑红大板子已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDeathOfDeath()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub"))()
-        showNotification("死亡之死已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDoorsAutoAvoid()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Script.lua"))()
-        showNotification("doors自动躲怪全图高亮已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadDoorsExtremeMode()
-        playClickSound()
-        loadstring(game:HttpGet('https://github.com/HollowedOutMods/MayhemMode/blob/main/loader.lua?raw=true'))()
-        showNotification("doors极端模式已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadNicoNextbot()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/NicoNextBots", true))()
-        showNotification("nico' Nextbot已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
     -- 飞行v1功能
     local function loadFlyV1()
         playClickSound()
         loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\90\66\122\99\84\109\49\102\34\41\41\40\41\10")()
         showNotification("飞行v1已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadShipTreasure()
-        playClickSound()
-        loadstring(game:HttpGet(('https://raw.githubusercontent.com/urmomjklol69/GoldFarmBabft/main/GoldFarm.lua'),true))()
-        showNotification("造船寻宝已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadSpeedLegend()
-        playClickSound()
-        loadstring(Game:HttpGet("https://pastebin.com/raw/0A4J7V8M"))()
-        showNotification("极速传奇已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadWallRun()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/zXk4Rq2r"))()
-        showNotification("飞檐走壁已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadNaturalDisaster()
-        playClickSound()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/TurkOyuncu99/7c75386107937fa006304efd24543ad4/raw/8d759dfcd95d39949c692735cfdf62baec0bf835/cafwetweg", true))()
-        showNotification("自然灾害已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFEVR()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty45.lua"))()
-        showNotification("FE vr已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFECoolKid()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty2.lua"))()
-        showNotification("FE酷小孩已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFEJason()
-        playClickSound()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/MelonsStuff/6203b323781cfb0a7ad35e4e9f60e026/raw/222815c2a4f6ffe38f8ae3965f6b3640c180ab4c/Jason.lua"))()
-        showNotification("FE杰森已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFESnake()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty5.lua"))()
-        showNotification("FE蛇已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadFEBaseballPlayer()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty44.lua"))()
-        showNotification("FE棒球手已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 新黑洞功能
-    local function loadBlackHoleV5()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V5.txt"))()
-        showNotification("黑洞v5已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadBlackHoleV3()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V3.txt"))()
-        showNotification("黑洞v3已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    local function loadBlackHoleV2()
-        playClickSound()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E7%A3%81%E9%93%81%E9%BB%91%E6%B4%9EV2.txt"))()
-        showNotification("黑洞v2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 防摔功能
@@ -1436,18 +1218,6 @@ print("安全版自然灾害免疫已激活")
         end
     end
 
-    -- 秒杀所有人
-    local function killAllPlayers()
-        playClickSound()
-        for _, player in pairs(Players:GetPlayers()) do
-            if player ~= LocalPlayer then
-                local humanoid = player.Character and player.Character:FindFirstChildOfClass("Humanoid")
-                if humanoid then humanoid.Health = 0 end
-            end
-        end
-        showNotification("已秒杀所有玩家", Color3.fromRGB(255, 50, 50))
-    end
-
     -- 传送所有人到我
     local function teleportAllToMe()
         playClickSound()
@@ -1463,41 +1233,6 @@ print("安全版自然灾害免疫已激活")
                 end
             end
             showNotification("已传送所有玩家", Color3.fromRGB(0, 200, 0))
-        end
-    end
-
-    -- 坐在头上旋转
-    local function toggleSitSpin()
-        playClickSound()
-        if not selectedPlayer then
-            showNotification("请先选择一个玩家!", Color3.fromRGB(255, 50, 50))
-            return
-        end
-        
-        sitSpinning = not sitSpinning
-        ButtonInstances.SitSpinButton.Text = "坐在头上旋转 [" .. (sitSpinning and "开启]" or "关闭]")
-        ButtonInstances.SitSpinButton.TextColor3 = sitSpinning and Color3.fromRGB(0, 255, 150) or Color3.fromRGB(200, 200, 255)
-        
-        if sitSpinning then
-            local myCharacter, targetCharacter = LocalPlayer.Character, selectedPlayer.Character
-            local myRoot, targetRoot = myCharacter and myCharacter:FindFirstChild("HumanoidRootPart"), targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart")
-            
-            if myRoot and targetRoot then
-                myRoot.CFrame = targetRoot.CFrame + Vector3.new(0, 5, 0)
-                local angle = 0
-                
-                connections.sitSpin = RunService.Heartbeat:Connect(function()
-                    if sitSpinning and targetRoot then
-                        angle = angle + math.rad(sitSpinSpeed)
-                        local x, z = math.cos(angle) * 3, math.sin(angle) * 3
-                        myRoot.CFrame = CFrame.new(targetRoot.Position + Vector3.new(x, 5, z), targetRoot.Position)
-                    end
-                end)
-                showNotification("正在" .. selectedPlayer.Name .. "头上旋转!", Color3.fromRGB(0, 150, 200))
-            end
-        else
-            if connections.sitSpin then connections.sitSpin:Disconnect() end
-            showNotification("停止坐在头上旋转", Color3.fromRGB(150, 150, 150))
         end
     end
 
@@ -1541,36 +1276,6 @@ print("安全版自然灾害免疫已激活")
                 connections.autoSpinNearest = nil
             end
             showNotification("循环旋转最近玩家已关闭", Color3.fromRGB(150, 150, 150))
-        end
-    end
-
-    -- 骑在玩家头上
-    local function toggleRideHead()
-        playClickSound()
-        if not selectedPlayer then
-            showNotification("请先选择一个玩家!", Color3.fromRGB(255, 50, 50))
-            return
-        end
-        
-        ridingHead = not ridingHead
-        ButtonInstances.RideHeadButton.Text = "骑在玩家头上 [" .. (ridingHead and "开启]" or "关闭]")
-        ButtonInstances.RideHeadButton.TextColor3 = ridingHead and Color3.fromRGB(0, 255, 150) or Color3.fromRGB(200, 200, 255)
-        
-        if ridingHead then
-            local myCharacter, targetCharacter = LocalPlayer.Character, selectedPlayer.Character
-            local myRoot, targetRoot = myCharacter and myCharacter:FindFirstChild("HumanoidRootPart"), targetCharacter and targetCharacter:FindFirstChild("HumanoidRootPart")
-            
-            if myRoot and targetRoot then
-                connections.ride = RunService.Heartbeat:Connect(function()
-                    if ridingHead and targetRoot then
-                        myRoot.CFrame = CFrame.new(targetRoot.Position + Vector3.new(0, 3, 0))
-                    end
-                end)
-                showNotification("正在骑在" .. selectedPlayer.Name .. "头上!", Color3.fromRGB(0, 150, 200))
-            end
-        else
-            if connections.ride then connections.ride:Disconnect() end
-            showNotification("停止骑在玩家头上", Color3.fromRGB(150, 150, 150))
         end
     end
 
@@ -2063,28 +1768,6 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE铁拳已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- 操蛋v1
-    local function loadCaodanV1()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/bzmhRgKL"))()
-        showNotification("操蛋v1已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- 皮脚本测试版
-    local function loadPiScriptTest()
-        playClickSound()
-        getgenv().XiaoPi="皮脚本测试版QQ群1002100032"
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/PijiaobenV1.lua"))()
-        showNotification("皮脚本测试版已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
-    -- xa脚本中心
-    local function loadXAScriptCenter()
-        playClickSound()
-        loadstring(game:HttpGet("https://pastebin.com/raw/h8nC0fLb", true))()
-        showNotification("xa脚本中心已加载!", Color3.fromRGB(0, 200, 0))
-    end
-
     -- 子弹追踪
     local function toggleBulletTrack()
         playClickSound()
@@ -2381,8 +2064,6 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE N00kla5K菜单已加载!", Color3.fromRGB(0, 200, 0))
     end
 
-    -- ============ 新添加的功能函数（根据您的要求） ============
-
     -- FE索尼克
     local function loadFESonic()
         playClickSound()
@@ -2570,6 +2251,191 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE培根脚本附属恶搞已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新增的功能函数 ============
+
+    -- FE反派本色
+    local function loadFEVillain()
+        playClickSound()
+        loadstring(game:HttpGet(('https://gist.githubusercontent.com/axelinharlem182/1ee425c9d850af697f8c3cb108a9d816/raw/c4660b01faf4db266e8031e310121a65836f98a7/The%2520Villain'),true))()
+        showNotification("FE反派本色已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 循环面向附近玩家
+    local function toggleFaceNearby()
+        playClickSound()
+        faceNearbyEnabled = not faceNearbyEnabled
+        
+        if faceNearbyEnabled then
+            ButtonInstances.FaceNearbyButton.Text = "循环面向附近玩家 [开启]"
+            ButtonInstances.FaceNearbyButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.faceNearby = RunService.Heartbeat:Connect(function()
+                if faceNearbyEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local myRoot = LocalPlayer.Character.HumanoidRootPart
+                    local nearestPlayer = nil
+                    local shortestDistance = math.huge
+                    
+                    for _, player in pairs(Players:GetPlayers()) do
+                        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                            local distance = (myRoot.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 50 then
+                                shortestDistance = distance
+                                nearestPlayer = player
+                            end
+                        end
+                    end
+                    
+                    if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        local targetPos = nearestPlayer.Character.HumanoidRootPart.Position
+                        myRoot.CFrame = CFrame.new(myRoot.Position, Vector3.new(targetPos.X, myRoot.Position.Y, targetPos.Z))
+                    end
+                end
+            end)
+            
+            showNotification("循环面向附近玩家已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.FaceNearbyButton.Text = "循环面向附近玩家 [关闭]"
+            ButtonInstances.FaceNearbyButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.faceNearby then
+                connections.faceNearby:Disconnect()
+                connections.faceNearby = nil
+            end
+            
+            showNotification("循环面向附近玩家已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 循环背对附近玩家
+    local function toggleBackNearby()
+        playClickSound()
+        backNearbyEnabled = not backNearbyEnabled
+        
+        if backNearbyEnabled then
+            ButtonInstances.BackNearbyButton.Text = "循环背对附近玩家 [开启]"
+            ButtonInstances.BackNearbyButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.backNearby = RunService.Heartbeat:Connect(function()
+                if backNearbyEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local myRoot = LocalPlayer.Character.HumanoidRootPart
+                    local nearestPlayer = nil
+                    local shortestDistance = math.huge
+                    
+                    for _, player in pairs(Players:GetPlayers()) do
+                        if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                            local distance = (myRoot.Position - player.Character.HumanoidRootPart.Position).Magnitude
+                            if distance < shortestDistance and distance < 50 then
+                                shortestDistance = distance
+                                nearestPlayer = player
+                            end
+                        end
+                    end
+                    
+                    if nearestPlayer and nearestPlayer.Character and nearestPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        local targetPos = nearestPlayer.Character.HumanoidRootPart.Position
+                        local direction = (myRoot.Position - targetPos).Unit
+                        myRoot.CFrame = CFrame.new(myRoot.Position, myRoot.Position + direction)
+                    end
+                end
+            end)
+            
+            showNotification("循环背对附近玩家已开启", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.BackNearbyButton.Text = "循环背对附近玩家 [关闭]"
+            ButtonInstances.BackNearbyButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.backNearby then
+                connections.backNearby:Disconnect()
+                connections.backNearby = nil
+            end
+            
+            showNotification("循环背对附近玩家已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 防拉回功能
+    local function toggleAntiPullback()
+        playClickSound()
+        antiPullbackEnabled = not antiPullbackEnabled
+        
+        if antiPullbackEnabled then
+            ButtonInstances.AntiPullbackButton.Text = "防拉回 [开启]"
+            ButtonInstances.AntiPullbackButton.TextColor3 = Color3.fromRGB(0, 255, 150)
+            
+            connections.antiPullback = RunService.Heartbeat:Connect(function()
+                if antiPullbackEnabled and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local root = LocalPlayer.Character.HumanoidRootPart
+                    
+                    -- 记录当前位置
+                    if not lastPosition then
+                        lastPosition = root.Position
+                    end
+                    
+                    -- 检测是否被拉回（位置变化大于阈值）
+                    local distance = (root.Position - lastPosition).Magnitude
+                    
+                    if distance > 100 then -- 如果被拉回超过100单位
+                        -- 传回到记录的位置
+                        root.CFrame = CFrame.new(lastPosition)
+                        showNotification("检测到拉回，已传回原位", Color3.fromRGB(255, 100, 0))
+                    else
+                        -- 更新记录的位置
+                        lastPosition = root.Position
+                    end
+                end
+            end)
+            
+            showNotification("防拉回已开启，将防止反作弊拉回", Color3.fromRGB(0, 200, 0))
+        else
+            ButtonInstances.AntiPullbackButton.Text = "防拉回 [关闭]"
+            ButtonInstances.AntiPullbackButton.TextColor3 = Color3.fromRGB(200, 200, 255)
+            
+            if connections.antiPullback then
+                connections.antiPullback:Disconnect()
+                connections.antiPullback = nil
+            end
+            
+            lastPosition = nil
+            showNotification("防拉回已关闭", Color3.fromRGB(150, 150, 150))
+        end
+    end
+
+    -- 落叶中心
+    local function loadFallenLeavesCenter()
+        playClickSound()
+        getgenv().LS="落叶中心"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
+        showNotification("落叶中心已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE女超人
+    local function loadFESuperGirl()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-Super-Girl-80449"))()
+        showNotification("FE女超人已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE免费动画包
+    local function loadFEFreeAnimation()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Emotes.lua"))()
+        showNotification("FE免费动画包已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 全局聊天脚本
+    local function loadGlobalChat()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Ru-chat-Roblox-82664"))()
+        showNotification("全局聊天脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE获取各种线圈脚本
+    local function loadFEGetCoils()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Ru-chat-Roblox-82664"))()
+        showNotification("FE获取各种线圈脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2607,6 +2473,10 @@ print("安全版自然灾害免疫已激活")
         -- 新添加的功能
         SpamButton = loadSpam,
         FEBaconPrankButton = loadFEBaconPrank,
+        -- 新增基础功能
+        FaceNearbyButton = toggleFaceNearby,
+        BackNearbyButton = toggleBackNearby,
+        AntiPullbackButton = toggleAntiPullback,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2614,10 +2484,7 @@ print("安全版自然灾害免疫已激活")
         AutoMoveButton = toggleAutoMove,
         
         -- 玩家交互
-        KillAllButton = killAllPlayers,
         TeleportAllButton = teleportAllToMe,
-        SitSpinButton = toggleSitSpin,
-        RideHeadButton = toggleRideHead,
         ViewBackpackButton = viewPlayerBackpack,
         ClickTeleportButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-Teleport-Tool-25249", "点击传送") end,
         AimbotButton = toggleAimbot,
@@ -2652,8 +2519,8 @@ print("安全版自然灾害免疫已激活")
         CatAnimButton = function() loadExternalScript("https://pastebin.com/raw/Y1MkBRn3", "猫动作") end,
         FEAK47Button = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/AK-47", "FE AK47") end,
         FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
-        FER6DeerCanButton = loadFER6DeerCan,
-        FER15DeerCanButton = loadFER15DeerCan,
+        FER6DeerCanButton = function() loadExternalScript("https://pastefy.app/wa3v2Vgm/raw", "FEr6鹿罐") end,
+        FER15DeerCanButton = function() loadExternalScript("https://pastefy.app/YZoglOyJ/raw", "FEr15鹿罐") end,
         FECoolKidButton = loadFECoolKid,
         FEJasonButton = loadFEJason,
         FESnakeButton = loadFESnake,
@@ -2666,7 +2533,6 @@ print("安全版自然灾害免疫已激活")
         FENuoliButton = loadFENuoli,
         FEIntegrationV3Button = loadFEIntegrationV3,
         FEAC6MusicVulnerabilityButton = loadFEAC6MusicVulnerability,
-        -- 新添加的FE功能
         FECreeperButton = loadFECreeper,
         FEGatlingButton = loadFEGatling,
         FEBoxingButton = loadFEBoxing,
@@ -2677,15 +2543,19 @@ print("安全版自然灾害免疫已激活")
         FER6HeadlessButton = loadFER6Headless,
         FER15HeadlessButton = loadFER15Headless,
         FEN00kla5KButton = loadFEN00kla5K,
-        -- 新添加的FE索尼克
         FESonicButton = loadFESonic,
+        -- 新增FE功能
+        FEVillainButton = loadFEVillain,
+        FESuperGirlButton = loadFESuperGirl,
+        FEFreeAnimationButton = loadFEFreeAnimation,
+        FEGetCoilsButton = loadFEGetCoils,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
-        BlackHoleV5Button = loadBlackHoleV5,
+        BlackHoleV5Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V5.txt", "黑洞v5") end,
         BlackHoleV4Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V4.txt", "黑洞v4") end,
-        BlackHoleV3Button = loadBlackHoleV3,
-        BlackHoleV2Button = loadBlackHoleV2,
+        BlackHoleV3Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V3.txt", "黑洞v3") end,
+        BlackHoleV2Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/%E7%A3%81%E9%93%81%E9%BB%91%E6%B4%9EV2.txt", "黑洞v2") end,
         BlackHoleV1Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V1.lua.txt", "黑洞v1") end,
         
         -- 其他脚本
@@ -2698,7 +2568,7 @@ print("安全版自然灾害免疫已激活")
         TrainEffectButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/越跑越快.txt", "火车头效果") end,
         FreePrivateServerButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/Kenny免费私服.lua", "免费私服") end,
         CaodanButton = function() loadExternalScript("https://pastebin.com/raw/hkyuHQ7Y", "操蛋脚本") end,
-        CaodanV1Button = loadCaodanV1,
+        CaodanV1Button = function() loadExternalScript("https://pastebin.com/raw/bzmhRgKL", "操蛋v1") end,
         ThrowFlyButton = function() loadExternalScript("https://raw.githubusercontent.com/3LD4D0/Crazy-Man-R6/36ec60d16bf8d208c40807aa0fd2662af76a5385/Crazy%20Man%20R6", "甩飞脚本") end,
         BeatDogButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY爆打黄油.txt", "Kenny悦服循环打狗") end,
         WitherStormButton = function()
@@ -2707,39 +2577,40 @@ print("安全版自然灾害免疫已激活")
             loadstring(game:HttpGet("https://raw.githubusercontent.com/ian49972/SCRIPTS/refs/heads/main/Wither"))()
             showNotification("凋零风暴已加载!", Color3.fromRGB(0, 200, 0))
         end,
-        BurstScriptButton = loadBurstScript,
-        BootCheckButton = loadBootCheck,
-        CalculatorButton = loadCalculator,
-        ChatBubbleBeautifyButton = loadChatBubbleBeautify,
-        C00lkidBlackShellButton = loadC00lkidBlackShell,
-        ChatTranslatorButton = loadChatTranslator,
-        KennyAutoTranslateButton = loadKennyAutoTranslate,
-        MindPullButton = loadMindPull,
-        TelepathyButton = loadTelepathy,
-        FishScriptButton = loadFishScript,
-        Forest99NightDiamondButton = loadForest99NightDiamond,
-        NicoNextbotButton = loadNicoNextbot,
-        ShipTreasureButton = loadShipTreasure,
-        SpeedLegendButton = loadSpeedLegend,
-        WallRunButton = loadWallRun,
-        NaturalDisasterButton = loadNaturalDisaster,
-        MuscleLegendButton = loadMuscleLegend,
-        MuscleLegendChangeButton = loadMuscleLegendChange,
+        BurstScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/放克表情.lua", "爆燃脚本") end,
+        BootCheckButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/kenk/refs/heads/main/开机检测.lua", "开机检测") end,
+        CalculatorButton = function() loadExternalScript("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Calculator", "计算器") end,
+        ChatBubbleBeautifyButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/4M1NrMnc.txt", "聊天气泡美化") end,
+        C00lkidBlackShellButton = function() loadExternalScript("https://rawscripts.net/raw/Universal-Script-coolkid-gui-15453", "c00lkid黑壳") end,
+        ChatTranslatorButton = function() loadExternalScript("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Translator", "聊天翻译器") end,
+        KennyAutoTranslateButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY自动汉化.txt", "kenny自动汉化") end,
+        MindPullButton = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/翻译.txt", "心灵牵引") end,
+        TelepathyButton = function() loadExternalScript("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty11.lua", "心灵感应") end,
+        FishScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", "鱼脚本") end,
+        Forest99NightDiamondButton = function() loadExternalScript("https://raw.githubusercontent.com/MQPS7/99-Night-in-the-Forset/refs/heads/main/Gfarm", "森林99夜刷钻石") end,
+        NicoNextbotButton = function() loadExternalScript("https://raw.githubusercontent.com/GamingScripter/Darkrai-X/main/Games/NicoNextBots", "nico' Nextbot") end,
+        ShipTreasureButton = function() loadExternalScript("https://raw.githubusercontent.com/urmomjklol69/GoldFarmBabft/main/GoldFarm.lua", "造船寻宝") end,
+        SpeedLegendButton = function() loadExternalScript("https://pastebin.com/raw/0A4J7V8M", "极速传奇") end,
+        WallRunButton = function() loadExternalScript("https://pastebin.com/raw/zXk4Rq2r", "飞檐走壁") end,
+        NaturalDisasterButton = function() loadExternalScript("https://gist.githubusercontent.com/TurkOyuncu99/7c75386107937fa006304efd24543ad4/raw/8d759dfcd95d39949c692735cfdf62baec0bf835/cafwetweg", "自然灾害") end,
+        MuscleLegendButton = function() loadExternalScript("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float", "力量传奇") end,
+        MuscleLegendChangeButton = function() loadExternalScript("https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua", "力量传奇改力量") end,
         PlayForsakenOnServerButton = loadPlayForsakenOnServer,
-        -- 新添加的不知名黑壳脚本
         UnknownBlackShellButton = loadUnknownBlackShell,
+        -- 新增全局聊天脚本
+        GlobalChatButton = loadGlobalChat,
         
         -- doors
-        DoorsButton = loadDoors,
-        DoorsModeButton = loadDoorsMode,
-        DoorsHardcoreModeButton = loadDoorsHardcoreMode,
-        DoorsAutoAvoidButton = loadDoorsAutoAvoid,
-        DoorsExtremeModeButton = loadDoorsExtremeMode,
+        DoorsButton = function() loadExternalScript("https://raw.githubusercontent.com/mstudio45/MSDOORS/main/MSDOORS.lua", "doors") end,
+        DoorsModeButton = function() loadExternalScript("https://pastebin.com/raw/Pm3rvBNw", "doors模式") end,
+        DoorsHardcoreModeButton = function() loadExternalScript("https://glot.io/snippets/gp5pu59o7f/raw", "doors硬核模式") end,
+        DoorsAutoAvoidButton = function() loadExternalScript("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Script.lua", "doors自动躲怪全图高亮") end,
+        DoorsExtremeModeButton = function() loadExternalScript("https://github.com/HollowedOutMods/MayhemMode/blob/main/loader.lua?raw=true", "doors极端模式") end,
         
         -- 偷走脑红
         StealBrainRedButton = function() loadExternalScript("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/偷走脑红", "偷走脑红") end,
-        StealBrainRedRainbowButton = loadStealBrainRedRainbow,
-        StealBrainRedBigBoardButton = loadStealBrainRedBigBoard,
+        StealBrainRedRainbowButton = function() loadExternalScript("https://pastefy.app/PkYWvKhM/raw", "偷走脑红彩虹板") end,
+        StealBrainRedBigBoardButton = function() loadExternalScript("https://pastebin.com/raw/zhe4ie0W", "偷走脑红大板子") end,
         
         -- 种植花园
         GardenButton = function() loadExternalScript("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1", "种植花园") end,
@@ -2751,23 +2622,29 @@ print("安全版自然灾害免疫已激活")
             loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/QQ1002100032-Roblox-Pi-script.lua"))()
             showNotification("皮脚本已加载!", Color3.fromRGB(0, 200, 0))
         end,
-        PiScriptTestButton = loadPiScriptTest,
+        PiScriptTestButton = function() 
+            playClickSound()
+            getgenv().XiaoPi="皮脚本测试版QQ群1002100032"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/xiaopi77/xiaopi77/main/PijiaobenV1.lua"))()
+            showNotification("皮脚本测试版已加载!", Color3.fromRGB(0, 200, 0))
+        end,
         YeScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/roblox-ye/QQ515966991/refs/heads/main/ROBLOX-CNVIP-XIAOYE.lua", "叶脚本") end,
-        ChuScriptButton = loadChuScript,
-        DingScriptButton = loadDingScript,
+        ChuScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/ShenJiaoBen/ShenJiaoBen/refs/heads/main/初脚本.lua", "初脚本") end,
+        DingScriptButton = function() loadExternalScript("http://pastefy.app/g7wgZQya/raw", "丁脚本") end,
         ScriptCenterButton = function() 
             playClickSound()
             loadstring(utf8.char((function() return table.unpack({108,111,97,100,115,116,114,105,110,103,40,103,97,109,101,58,72,116,116,112,71,101,116,40,34,104,116,116,112,115,58,47,47,114,97,119,46,103,105,116,104,117,98,117,115,101,114,99,111,110,116,101,110,116,46,99,111,109,47,67,104,105,110,97,81,89,47,45,47,109,97,105,110,47,37,69,54,37,56,51,37,56,53,37,69,52,37,66,65,37,57,49,34,41,41,40,41})end)()))()
             showNotification("脚本中心已加载!", Color3.fromRGB(0, 200, 0))
         end,
-        XAScriptCenterButton = loadXAScriptCenter,
+        XAScriptCenterButton = function() loadExternalScript("https://pastebin.com/raw/h8nC0fLb", "xa脚本中心") end,
         ChenScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/qwrt5589/eododo/main/XG_SYNB.txt", "辰脚本") end,
         ShaScriptButton = function() loadExternalScript("https://raw.githubusercontent.com/114514lzkill/SaHUB/refs/heads/main/SaHUB", "沙脚本") end,
         UNXScriptButton = loadUNXScript,
         ConduitCenterButton = loadConduitCenter,
-        -- 新添加的功能
         SuperNBForeignScriptButton = loadSuperNBForeignScript,
         BSCenterButton = loadBSCenter,
+        -- 新增落叶中心
+        FallenLeavesCenterButton = loadFallenLeavesCenter,
         
         -- 俄亥俄州
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
@@ -2790,7 +2667,7 @@ print("安全版自然灾害免疫已激活")
         Free1200RPlusButton = showFreeRBCurrencyEffect,
         
         -- 死亡之死
-        DeathOfDeathButton = loadDeathOfDeath,
+        DeathOfDeathButton = function() loadExternalScript("https://raw.githubusercontent.com/thuker-evader/Die-of-death/refs/heads/main/Red%20hub", "死亡之死") end,
         
         -- 被遗弃
         ForsakenButton = function() loadExternalScript("https://raw.githubusercontent.com/BobJunior1/ForsakenBoi/refs/heads/main/B0bbyHub", "被遗弃脚本") end,
