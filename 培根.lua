@@ -378,7 +378,21 @@ local function loadScript()
             {name = "FEVillainButton", text = "FE反派本色", desc = "加载FE反派本色脚本"},
             {name = "FESuperGirlButton", text = "FE女超人", desc = "加载FE女超人脚本"},
             {name = "FEFreeAnimationButton", text = "FE免费动画包", desc = "加载FE免费动画包脚本"},
-            {name = "FEGetCoilsButton", text = "FE获取各种线圈脚本", desc = "加载FE获取各种线圈脚本"}
+            {name = "FEGetCoilsButton", text = "FE获取各种线圈脚本", desc = "加载FE获取各种线圈脚本"},
+            -- 新添加的FE恶魔
+            {name = "FEDemogorgonButton", text = "FE恶魔", desc = "加载FE恶魔脚本"},
+            -- 新添加的FEr6动作优化
+            {name = "FER6AnimationOptimizationButton", text = "FEr6动作优化", desc = "加载FEr6动作优化脚本"},
+            -- 新添加的FE堕落之神
+            {name = "FEFallenGodButton", text = "FE堕落之神", desc = "加载FE堕落之神脚本"},
+            -- 新添加的FE红色索尼克
+            {name = "FERedSonicButton", text = "FE红色索尼克", desc = "加载FE红色索尼克脚本"},
+            -- 新添加的FE exe索尼克
+            {name = "FEExeSonicButton", text = "FE exe索尼克", desc = "加载FE exe索尼克脚本"},
+            -- 新添加的FE小孩
+            {name = "FEChildButton", text = "FE小孩", desc = "加载FE小孩脚本"},
+            -- 新添加的FE机械人偶
+            {name = "FEMechanicalDollButton", text = "FE机械人偶", desc = "加载FE机械人偶脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -460,7 +474,9 @@ local function loadScript()
             {name = "SuperNBForeignScriptButton", text = "超级NB老外脚本", desc = "加载超级NB老外脚本"},
             {name = "BSCenterButton", text = "bs中心", desc = "加载bs中心脚本"},
             -- 新增落叶中心
-            {name = "FallenLeavesCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"}
+            {name = "FallenLeavesCenterButton", text = "落叶中心", desc = "加载落叶中心脚本"},
+            -- 新添加的rob脚本
+            {name = "ROBScriptButton", text = "rob脚本", desc = "加载rob脚本"}
         },
         ["俄亥俄州"] = {
             -- 将所有俄亥俄州相关脚本移动到这里
@@ -846,7 +862,7 @@ local function loadScript()
             
             -- 移除碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
-                if obj:IsA("BasePart") and obj:FindFirstChild("BaconCollisionBox") then
+                if obj:IsA("BasePart") and obj.FindFirstChild("BaconCollisionBox") then
                     obj.BaconCollisionBox:Destroy()
                 end
             end
@@ -2436,6 +2452,64 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE获取各种线圈脚本已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新添加的FE功能函数 ============
+
+    -- FE恶魔
+    local function loadFEDemogorgon()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/egoropeez13-ui/FE-Demogorgon-R15-Anim/refs/heads/main/FE"))()
+        showNotification("FE恶魔已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FEr6动作优化
+    local function loadFER6AnimationOptimization()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/ZWgckZdU/raw"))()
+        showNotification("FEr6动作优化已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE堕落之神
+    local function loadFEFallenGod()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/awJrO3Q5/raw"))()
+        showNotification("FE堕落之神已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE红色索尼克
+    local function loadFERedSonic()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/0QSkiaHL/raw"))()
+        showNotification("FE红色索尼克已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE exe索尼克
+    local function loadFEExeSonic()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/XCtZsGhP/raw"))()
+        showNotification("FE exe索尼克已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE小孩
+    local function loadFEChild()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Azizanzz0/Scripts/refs/heads/main/Haram.lua"))()
+        showNotification("FE小孩已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE机械人偶
+    local function loadFEMechanicalDoll()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Azizanzz0/Scripts/refs/heads/main/TorMonitorKetua.lua"))()
+        showNotification("FE机械人偶已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- rob脚本
+    local function loadROBScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Zyb150933/ROB/refs/heads/main/ROB.V1"))()
+        showNotification("rob脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2549,6 +2623,14 @@ print("安全版自然灾害免疫已激活")
         FESuperGirlButton = loadFESuperGirl,
         FEFreeAnimationButton = loadFEFreeAnimation,
         FEGetCoilsButton = loadFEGetCoils,
+        -- 新添加的FE功能
+        FEDemogorgonButton = loadFEDemogorgon,
+        FER6AnimationOptimizationButton = loadFER6AnimationOptimization,
+        FEFallenGodButton = loadFEFallenGod,
+        FERedSonicButton = loadFERedSonic,
+        FEExeSonicButton = loadFEExeSonic,
+        FEChildButton = loadFEChild,
+        FEMechanicalDollButton = loadFEMechanicalDoll,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2645,6 +2727,8 @@ print("安全版自然灾害免疫已激活")
         BSCenterButton = loadBSCenter,
         -- 新增落叶中心
         FallenLeavesCenterButton = loadFallenLeavesCenter,
+        -- 新增rob脚本
+        ROBScriptButton = loadROBScript,
         
         -- 俄亥俄州
         OhioButton = function() loadExternalScript("https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/ehaiezhou", "俄亥俄州脚本") end,
