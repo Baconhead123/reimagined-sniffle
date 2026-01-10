@@ -286,7 +286,7 @@ local function loadScript()
             {name = "ClimbWallV2Button", text = "爬墙v2", desc = "加载爬墙v2脚本"},
             {name = "AntiFallButton", text = "防摔(多点几次)", desc = "防止从高处掉落受伤"},
             {name = "SuicideButton", text = "自杀", desc = "立即死亡"},
-            {name = "FlyButton", text = "飞行v1", desc = "加载飞行v1脚本"},
+            {name = "FlyButton", text = "飞行", desc = "加载飞行脚本"},
             {name = "InvincibleButton", text = "无敌", desc = "加载无敌脚本"},
             {name = "InvincibleV2Button", text = "无敌v2", desc = "加载无敌v2脚本"},
             {name = "InvincibleV3Button", text = "无敌v3", desc = "加载无敌v3脚本"},
@@ -392,7 +392,9 @@ local function loadScript()
             -- 新添加的FE小孩
             {name = "FEChildButton", text = "FE小孩", desc = "加载FE小孩脚本"},
             -- 新添加的FE机械人偶
-            {name = "FEMechanicalDollButton", text = "FE机械人偶", desc = "加载FE机械人偶脚本"}
+            {name = "FEMechanicalDollButton", text = "FE机械人偶", desc = "加载FE机械人偶脚本"},
+            -- 新添加的FE小汽车脚本
+            {name = "FECarScriptButton", text = "FE小汽车脚本", desc = "加载FE小汽车脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -488,6 +490,7 @@ local function loadScript()
             -- 将所有画我相关脚本移动到这里
             {name = "DrawMeScript1Button", text = "画我脚本1", desc = "加载画我脚本1"},
             {name = "DrawMeScript2Button", text = "画我脚本2", desc = "加载画我脚本2"},
+            {name = "DrawMeScript3Button", text = "画我脚本3", desc = "加载画我脚本3"},
             {name = "ChatDrawButton", text = "在聊天框画画", desc = "在聊天框中绘制图案"}
         },
         ["免费r币"] = {
@@ -1027,11 +1030,11 @@ local function loadScript()
         end
     end
 
-    -- 飞行v1功能
-    local function loadFlyV1()
+    -- 飞行功能（修改为培根飞行脚本）
+    local function loadFly()
         playClickSound()
-        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\112\97\115\116\101\98\105\110\46\99\111\109\47\114\97\119\47\90\66\122\99\84\109\49\102\34\41\41\40\41\10")()
-        showNotification("飞行v1已加载!", Color3.fromRGB(0, 200, 0))
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Baconhead123/fe-/refs/heads/main/培根飞行"))()
+        showNotification("飞行已加载!", Color3.fromRGB(0, 200, 0))
     end
 
     -- 防摔功能
@@ -1961,6 +1964,13 @@ print("安全版自然灾害免疫已激活")
         showNotification("画我脚本2已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- 画我脚本3（新增）
+    local function loadDrawMeScript3()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/KENNY画我.lua"))()
+        showNotification("画我脚本3已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 在服务器玩被遗弃脚本
     local function loadPlayForsakenOnServer()
         playClickSound()
@@ -2106,7 +2116,7 @@ print("安全版自然灾害免疫已激活")
         playClickSound()
         -- 简单实用的聊天刷屏脚本
         local Players = game:GetService("Players")
-        local LocalPlayer = Players.LocalPlayer
+        local LocalPlayer = game:GetService("Players").LocalPlayer
         local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
         -- 创建UI
@@ -2503,6 +2513,13 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE机械人偶已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- FE小汽车脚本（新增）
+    local function loadFECarScript()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/UqDEIOpO/raw"))()
+        showNotification("FE小汽车脚本已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- rob脚本
     local function loadROBScript()
         playClickSound()
@@ -2535,7 +2552,7 @@ print("安全版自然灾害免疫已激活")
         ClimbWallV2Button = loadClimbWallV2,
         AntiFallButton = loadAntiFall,
         SuicideButton = suicide,
-        FlyButton = loadFlyV1,
+        FlyButton = loadFly, -- 修改为新的飞行脚本
         InvincibleButton = loadInvincibleScript,
         InvincibleV2Button = loadInvincibleV2,
         InvincibleV3Button = loadInvincibleV3,
@@ -2631,6 +2648,8 @@ print("安全版自然灾害免疫已激活")
         FEExeSonicButton = loadFEExeSonic,
         FEChildButton = loadFEChild,
         FEMechanicalDollButton = loadFEMechanicalDoll,
+        -- 新添加的FE小汽车脚本
+        FECarScriptButton = loadFECarScript,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
@@ -2738,6 +2757,7 @@ print("安全版自然灾害免疫已激活")
         -- 画我
         DrawMeScript1Button = loadDrawMeScript1,
         DrawMeScript2Button = loadDrawMeScript2,
+        DrawMeScript3Button = loadDrawMeScript3, -- 新增画我脚本3
         ChatDrawButton = function() loadExternalScript("https://raw.githubusercontent.com/ocfi/_/refs/heads/main/a", "聊天框画画") end,
         
         -- 免费r币
