@@ -302,7 +302,9 @@ local function loadScript()
             -- 新增功能
             {name = "FaceNearbyButton", text = "循环面向附近玩家 [关闭]", desc = "循环面向最近的玩家"},
             {name = "BackNearbyButton", text = "循环背对附近玩家 [关闭]", desc = "循环背对最近的玩家"},
-            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止反作弊拉回"}
+            {name = "AntiPullbackButton", text = "防拉回 [关闭]", desc = "防止反作弊拉回"},
+            -- 新添加的后门执行器
+            {name = "BackdoorExecutorButton", text = "后门执行器", desc = "加载后门执行器脚本"}
         },
         ["移动功能"] = {
             {name = "SpinButton", text = "人物旋转 [关闭]", desc = "让人物持续旋转"},
@@ -394,7 +396,13 @@ local function loadScript()
             -- 新添加的FE机械人偶
             {name = "FEMechanicalDollButton", text = "FE机械人偶", desc = "加载FE机械人偶脚本"},
             -- 新添加的FE小汽车脚本
-            {name = "FECarScriptButton", text = "FE小汽车脚本", desc = "加载FE小汽车脚本"}
+            {name = "FECarScriptButton", text = "FE小汽车脚本", desc = "加载FE小汽车脚本"},
+            -- 新添加的FE1x4小弟
+            {name = "FE1x4MinionButton", text = "FE1x4小弟", desc = "加载FE1x4小弟脚本"},
+            -- 新添加的FE kill所有人
+            {name = "FEKillAllButton", text = "FE kill所有人", desc = "加载FE kill所有人脚本"},
+            -- 新添加的FE设置玩家大小
+            {name = "FESetPlayerSizeButton", text = "FE设置玩家大小", desc = "加载FE设置玩家大小脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -2527,6 +2535,36 @@ print("安全版自然灾害免疫已激活")
         showNotification("rob脚本已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新添加的四个功能函数 ============
+
+    -- FE1x4小弟
+    local function loadFE1x4Minion()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-1x1x1x1-Lord-by-melon-scripter-81204"))()
+        showNotification("FE1x4小弟已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE kill所有人
+    local function loadFEKillAll()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/noritery/twt-killall/refs/heads/main/main.lua"))()
+        showNotification("FE kill所有人已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE设置玩家大小
+    local function loadFESetPlayerSize()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zyablicevalexei-star/sizefe/refs/heads/main/sizefe.lua"))()
+        showNotification("FE设置玩家大小已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- 后门执行器
+    local function loadBackdoorExecutor()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/melinicovyra-cell/Roblox-script/refs/heads/main/Backdoor.%20Executor"))()
+        showNotification("后门执行器已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2568,6 +2606,8 @@ print("安全版自然灾害免疫已激活")
         FaceNearbyButton = toggleFaceNearby,
         BackNearbyButton = toggleBackNearby,
         AntiPullbackButton = toggleAntiPullback,
+        -- 新添加的后门执行器
+        BackdoorExecutorButton = loadBackdoorExecutor,
         
         -- 移动功能
         SpinButton = toggleSpin,
@@ -2650,6 +2690,12 @@ print("安全版自然灾害免疫已激活")
         FEMechanicalDollButton = loadFEMechanicalDoll,
         -- 新添加的FE小汽车脚本
         FECarScriptButton = loadFECarScript,
+        -- 新添加的FE1x4小弟
+        FE1x4MinionButton = loadFE1x4Minion,
+        -- 新添加的FE kill所有人
+        FEKillAllButton = loadFEKillAll,
+        -- 新添加的FE设置玩家大小
+        FESetPlayerSizeButton = loadFESetPlayerSize,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
