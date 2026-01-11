@@ -320,14 +320,11 @@ local function loadScript()
             {name = "AutoSpinNearestButton", text = "循环旋转最近玩家 [关闭]", desc = "自动在附近最近玩家头上旋转"}
         },
         ["外观功能"] = {
-            {name = "PlayerSizeButton", text = "玩家大小: 1", desc = "调整玩家体型大小"},
-            {name = "RainbowButton", text = "彩虹模式 [关闭]", desc = "全身彩虹颜色变化"},
-            {name = "GlobalRainbowButton", text = "全局彩虹 [关闭]", desc = "所有物体和建筑彩虹变色"}
+            {name = "PlayerSizeButton", text = "玩家大小: 1", desc = "调整玩家体型大小"}
         },
         ["世界功能"] = {
             {name = "GravityButton", text = "重力设置: 196.2", desc = "修改游戏重力"},
             {name = "NightVisionButton", text = "夜视模式 [关闭]", desc = "开启夜视功能，黑暗环境变亮"},
-            {name = "HackButton", text = "黑客入侵", desc = "客户端特效：改变贴图、天空盒、火焰效果等"},
             {name = "UIColorButton", text = "UI颜色调节", desc = "随机改变UI颜色主题"}
         },
         ["FE功能"] = {
@@ -402,7 +399,13 @@ local function loadScript()
             -- 新添加的FE kill所有人
             {name = "FEKillAllButton", text = "FE kill所有人", desc = "加载FE kill所有人脚本"},
             -- 新添加的FE设置玩家大小
-            {name = "FESetPlayerSizeButton", text = "FE设置玩家大小", desc = "加载FE设置玩家大小脚本"}
+            {name = "FESetPlayerSizeButton", text = "FE设置玩家大小", desc = "加载FE设置玩家大小脚本"},
+            -- 新添加的FE墨水人
+            {name = "FEInkManButton", text = "FE墨水人", desc = "加载FE墨水人脚本"},
+            -- 新添加的FE控制npcV2
+            {name = "FEControlNPCV2Button", text = "FE控制npcV2", desc = "加载FE控制npcV2脚本"},
+            -- 新添加的FE电磁枪
+            {name = "FEElectromagneticGunButton", text = "FE电磁枪", desc = "加载FE电磁枪脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -684,12 +687,12 @@ local function loadScript()
 
     -- 功能变量
     local noclip, infiniteJump, spinning, flying, showCollision = false, false, false, false, false
-    local rainbow, globalRainbow, sitSpinning, ridingHead, playerESPEnabled = false, false, false, false, false
+    local sitSpinning, ridingHead, playerESPEnabled = false, false, false
     local climbing, autoMove, nightVision, aimbotEnabled = false, false, false, false
     local walkSpeed, jumpPower, spinSpeed, playerSize, gravity, sitSpinSpeed = 16, 50, 10, 1, 196.2, 5
     local selectedPlayer = nil
     local connections = {}
-    local originalTransparency, originalColors = {}
+    local originalColors = {}
     local originalLightingSettings = {}
     local aimbotTarget = nil
     local aimToHead = true -- 默认瞄准头部
@@ -1508,68 +1511,6 @@ print("安全版自然灾害免疫已激活")
         showNotification("玩家大小设置为: " .. playerSize, Color3.fromRGB(0, 150, 200))
     end
 
-    -- 彩虹模式
-    local function toggleRainbow()
-        playClickSound()
-        rainbow = not rainbow
-        ButtonInstances.RainbowButton.Text = "彩虹模式 [" .. (rainbow and "开启]" or "关闭]")
-        ButtonInstances.RainbowButton.TextColor3 = rainbow and Color3.fromRGB(0, 255, 150) or Color3.fromRGB(200, 200, 255)
-        
-        if rainbow then
-            local hue = 0
-            connections.rainbow = RunService.Heartbeat:Connect(function()
-                if rainbow then
-                    hue = (hue + 0.01) % 1
-                    local color = Color3.fromHSV(hue, 1, 1)
-                    local character = LocalPlayer.Character
-                    if character then
-                        for _, part in pairs(character:GetDescendants()) do
-                            if part:IsA("BasePart") then part.BrickColor = BrickColor.new(color) end
-                        end
-                    end
-                end
-            end)
-            showNotification("彩虹模式已开启", Color3.fromRGB(0, 150, 200))
-        else
-            if connections.rainbow then connections.rainbow:Disconnect() end
-            showNotification("彩虹模式已关闭", Color3.fromRGB(150, 150, 150))
-        end
-    end
-
-    -- 全局彩虹
-    local function toggleGlobalRainbow()
-        playClickSound()
-        globalRainbow = not globalRainbow
-        ButtonInstances.GlobalRainbowButton.Text = "全局彩虹 [" .. (globalRainbow and "开启]" or "关闭]")
-        ButtonInstances.GlobalRainbowButton.TextColor3 = globalRainbow and Color3.fromRGB(0, 255, 150) or Color3.fromRGB(200, 200, 255)
-        
-        if globalRainbow then
-            originalColors = {}
-            for _, obj in pairs(Workspace:GetDescendants()) do
-                if obj:IsA("BasePart") then originalColors[obj] = obj.BrickColor end
-            end
-            
-            local hue = 0
-            connections.globalRainbow = RunService.Heartbeat:Connect(function()
-                if globalRainbow then
-                    hue = (hue + 0.005) % 1
-                    local color = Color3.fromHSV(hue, 1, 1)
-                    for _, obj in pairs(Workspace:GetDescendants()) do
-                        if obj:IsA("BasePart") then obj.BrickColor = BrickColor.new(color) end
-                    end
-                end
-            end)
-            showNotification("全局彩虹模式已开启!", Color3.fromRGB(0, 150, 200))
-        else
-            if connections.globalRainbow then connections.globalRainbow:Disconnect() end
-            for obj, originalColor in pairs(originalColors) do
-                if obj and obj.Parent then obj.BrickColor = originalColor end
-            end
-            originalColors = {}
-            showNotification("全局彩虹模式已关闭", Color3.fromRGB(150, 150, 150))
-        end
-    end
-
     -- 重力设置
     local function changeGravity()
         playClickSound()
@@ -1618,77 +1559,6 @@ print("安全版自然灾害免疫已激活")
             
             showNotification("夜视模式已关闭", Color3.fromRGB(150, 150, 150))
         end
-    end
-
-    -- 黑客入侵特效
-    local function applyHackEffects()
-        playClickSound()
-        showNotification("黑客入侵特效启动中...", Color3.fromRGB(255, 0, 0))
-        
-        -- 音乐
-        local sound = Instance.new("Sound")
-        sound.SoundId = "rbxassetid://128934903242385"
-        sound.Looped = true
-        sound.Volume = 0.5
-        sound.Parent = SoundService
-        sound:Play()
-        game:GetService("Debris"):AddItem(sound, 2)
-
-        -- 天空盒
-        local sky = Instance.new("Sky")
-        for _, property in pairs({"SkyboxBk", "SkyboxDn", "SkyboxFt", "SkyboxLf", "SkyboxRt", "SkyboxUp"}) do
-            sky[property] = "rbxassetid://78752306566484"
-        end
-        sky.Parent = Lighting
-
-        -- 修改贴图和添加特效
-        for _, obj in pairs(Workspace:GetDescendants()) do
-            if obj:IsA("Decal") or obj:IsA("Texture") then
-                obj.Texture = "rbxassetid://78752306566484"
-            elseif obj:IsA("BasePart") and obj.Name ~= "Handle" then
-                -- 添加火焰效果
-                local fire = Instance.new("Fire")
-                fire.Size = math.random(5, 15)
-                fire.Heat = math.random(5, 15)
-                fire.Color = Color3.new(1, 0.3, 0)
-                fire.SecondaryColor = Color3.new(1, 0.8, 0)
-                fire.Parent = obj
-                
-                -- 添加粒子发射器
-                local particle = Instance.new("ParticleEmitter")
-                particle.Texture = "rbxassetid://78752306566484"
-                particle.Lifetime = NumberRange.new(1, 3)
-                particle.Rate = 50
-                particle.SpreadAngle = Vector2.new(45, 45)
-                particle.Speed = NumberRange.new(5, 15)
-                particle.Parent = obj
-            end
-        end
-        
-        -- 处理新添加的对象
-        Workspace.DescendantAdded:Connect(function(descendant)
-            wait(0.1)
-            if descendant:IsA("Decal") or descendant:IsA("Texture") then
-                descendant.Texture = "rbxassetid://78752306566484"
-            elseif descendant:IsA("BasePart") and descendant.Name ~= "Handle" then
-                local fire = Instance.new("Fire")
-                fire.Size = math.random(5, 15)
-                fire.Heat = math.random(5, 15)
-                fire.Color = Color3.new(1, 0.3, 0)
-                fire.SecondaryColor = Color3.new(1, 0.8, 0)
-                fire.Parent = descendant
-                
-                local particle = Instance.new("ParticleEmitter")
-                particle.Texture = "rbxassetid://78752306566484"
-                particle.Lifetime = NumberRange.new(1, 3)
-                particle.Rate = 50
-                particle.SpreadAngle = Vector2.new(45, 45)
-                particle.Speed = NumberRange.new(5, 15)
-                particle.Parent = descendant
-            end
-        end)
-        
-        showNotification("黑客入侵特效已应用!", Color3.fromRGB(0, 200, 0))
     end
 
     -- UI颜色调节
@@ -2565,6 +2435,27 @@ print("安全版自然灾害免疫已激活")
         showNotification("后门执行器已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新增的FE墨水人功能 ============
+    local function loadFEInkMan()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty6.lua"))()
+        showNotification("FE墨水人已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- ============ 新增的FE控制npcV2功能 ============
+    local function loadFEControlNPCV2()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty8.lua"))()
+        showNotification("FE控制npcV2已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- ============ 新增的FE电磁枪功能 ============
+    local function loadFEElectromagneticGun()
+        playClickSound()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/qwertys/refs/heads/main/qwerty10.lua"))()
+        showNotification("FE电磁枪已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2623,13 +2514,10 @@ print("安全版自然灾害免疫已激活")
         
         -- 外观功能
         PlayerSizeButton = changePlayerSize,
-        RainbowButton = toggleRainbow,
-        GlobalRainbowButton = toggleGlobalRainbow,
         
         -- 世界功能
         GravityButton = changeGravity,
         NightVisionButton = toggleNightVision,
-        HackButton = applyHackEffects,
         UIColorButton = changeUIColor,
         
         -- FE功能
@@ -2652,11 +2540,6 @@ print("安全版自然灾害免疫已激活")
         FESniperButton = function() loadExternalScript("https://raw.githubusercontent.com/GenesisFE/Genesis/main/Obfuscations/Sniper", "FE 狙击枪") end,
         FER6DeerCanButton = function() loadExternalScript("https://pastefy.app/wa3v2Vgm/raw", "FEr6鹿罐") end,
         FER15DeerCanButton = function() loadExternalScript("https://pastefy.app/YZoglOyJ/raw", "FEr15鹿罐") end,
-        FECoolKidButton = loadFECoolKid,
-        FEJasonButton = loadFEJason,
-        FESnakeButton = loadFESnake,
-        FEBaseballPlayerButton = loadFEBaseballPlayer,
-        FEVRButton = loadFEVR,
         FE1x1x1x1Button = loadFE1x1x1x1,
         FEHotlineRifleButton = loadFEHotlineRifle,
         FEIronFistButton = loadFEIronFist,
@@ -2696,6 +2579,12 @@ print("安全版自然灾害免疫已激活")
         FEKillAllButton = loadFEKillAll,
         -- 新添加的FE设置玩家大小
         FESetPlayerSizeButton = loadFESetPlayerSize,
+        -- 新添加的FE墨水人
+        FEInkManButton = loadFEInkMan,
+        -- 新添加的FE控制npcV2
+        FEControlNPCV2Button = loadFEControlNPCV2,
+        -- 新添加的FE电磁枪
+        FEElectromagneticGunButton = loadFEElectromagneticGun,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
