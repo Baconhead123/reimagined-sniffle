@@ -405,7 +405,14 @@ local function loadScript()
             -- 新添加的FE控制npcV2
             {name = "FEControlNPCV2Button", text = "FE控制npcV2", desc = "加载FE控制npcV2脚本"},
             -- 新添加的FE电磁枪
-            {name = "FEElectromagneticGunButton", text = "FE电磁枪", desc = "加载FE电磁枪脚本"}
+            {name = "FEElectromagneticGunButton", text = "FE电磁枪", desc = "加载FE电磁枪脚本"},
+            -- 新添加的6个FE功能
+            {name = "FEDanceButton", text = "FE舞蹈", desc = "加载FE舞蹈脚本"},
+            {name = "FEClownButton", text = "FE小丑", desc = "加载FE小丑脚本"},
+            {name = "FEGiantDanceButton", text = "FE巨人跳舞", desc = "加载FE巨人跳舞脚本"},
+            {name = "FERunButton", text = "FE奔跑", desc = "加载FE奔跑脚本"},
+            {name = "FEScareButton", text = "FE惊吓", desc = "加载FE惊吓脚本"},
+            {name = "FEWeirdBodyButton", text = "FE奇怪体型", desc = "加载FE奇怪体型脚本"}
         },
         ["黑洞功能"] = {
             {name = "BlackHoleV6Button", text = "黑洞v6", desc = "加载黑洞v6脚本"},
@@ -876,7 +883,7 @@ local function loadScript()
             
             -- 移除碰撞箱
             for _, obj in pairs(Workspace:GetDescendants()) do
-                if obj:IsA("BasePart") and obj.FindFirstChild("BaconCollisionBox") then
+                if obj:FindFirstChild("BaconCollisionBox") then
                     obj.BaconCollisionBox:Destroy()
                 end
             end
@@ -2456,6 +2463,50 @@ print("安全版自然灾害免疫已激活")
         showNotification("FE电磁枪已加载!", Color3.fromRGB(0, 200, 0))
     end
 
+    -- ============ 新增的6个FE功能函数 ============
+
+    -- FE舞蹈
+    local function loadFEDance()
+        playClickSound()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Epik-dancezzzzz-r6-reanimation-57423"))()
+        showNotification("FE舞蹈已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE小丑
+    local function loadFEClown()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/Thepopularuser/c3cf480bf56a3554cd69ea5cdc27c744/raw/88a2c305dcce4e79c9501d9ce84973d91a9e298e/gistfile1.txt"))()
+        showNotification("FE小丑已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE巨人跳舞
+    local function loadFEGiantDance()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/Gn9OlT6O/raw"))()
+        showNotification("FE巨人跳舞已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE奔跑
+    local function loadFERun()
+        playClickSound()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/josevitor8247-png/9ac5a01e7214e5340c5586edf121dd86/raw/15f038bc493b4b809c5c21a2621b217880185c3b/4.1_BETA.lua"))()
+        showNotification("FE奔跑已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE惊吓
+    local function loadFEScare()
+        playClickSound()
+        loadstring(game:HttpGet('https://pastebin.com/raw/DzG8tdy1'))()
+        showNotification("FE惊吓已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
+    -- FE奇怪体型
+    local function loadFEWeirdBody()
+        playClickSound()
+        loadstring(game:HttpGet("https://pastefy.app/IdFZZPtC/raw"))()
+        showNotification("FE奇怪体型已加载!", Color3.fromRGB(0, 200, 0))
+    end
+
     -- 绑定按钮事件
     MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
     CloseButton.MouseButton1Click:Connect(function()
@@ -2585,6 +2636,13 @@ print("安全版自然灾害免疫已激活")
         FEControlNPCV2Button = loadFEControlNPCV2,
         -- 新添加的FE电磁枪
         FEElectromagneticGunButton = loadFEElectromagneticGun,
+        -- 新添加的6个FE功能
+        FEDanceButton = loadFEDance,
+        FEClownButton = loadFEClown,
+        FEGiantDanceButton = loadFEGiantDance,
+        FERunButton = loadFERun,
+        FEScareButton = loadFEScare,
+        FEWeirdBodyButton = loadFEWeirdBody,
         
         -- 黑洞功能
         BlackHoleV6Button = function() loadExternalScript("https://raw.githubusercontent.com/ke9460394-dot/ugik/refs/heads/main/V6.txt", "黑洞v6") end,
